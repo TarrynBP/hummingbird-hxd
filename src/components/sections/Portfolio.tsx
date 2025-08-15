@@ -1,92 +1,157 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { useSanityDocuments } from "../../hooks/useSanity";
+import { caseStudiesQuery } from "../../lib/sanity-queries";
+import { CaseStudy } from "../../types/sanity";
+import { useNavigate } from "react-router-dom";
 
 const Portfolio = () => {
-  const projects = [
-    {
-      title: "Bloom Botanicals",
-      category: "E-commerce",
-      colors: ["#77cebb", "#c1a5b4", "#fee1a3"],
-      description: "Natural skincare brand with earthy, calming palette"
-    },
-    {
-      title: "Azure Consulting",
-      category: "Professional Services", 
-      colors: ["#4a90e2", "#77cebb", "#f8f9fa"],
-      description: "Trust-building blues with accent mint tones"
-    },
-    {
-      title: "Sunset Cafe",
-      category: "Restaurant",
-      colors: ["#fee1a3", "#ff6b6b", "#c1a5b4"],
-      description: "Warm, inviting palette to enhance appetite appeal"
-    },
-    {
-      title: "Mindful Therapy",
-      category: "Healthcare",
-      colors: ["#c1a5b4", "#e8f4f8", "#77cebb"],
-      description: "Soothing mauve and teal for emotional comfort"
-    },
-    {
-      title: "Creative Studio",
-      category: "Agency",
-      colors: ["#77cebb", "#fee1a3", "#c1a5b4"],
-      description: "Full brand palette showcasing creative versatility"
-    },
-    {
-      title: "Tech Startup",
-      category: "Technology",
-      colors: ["#6c5ce7", "#77cebb", "#2d3436"],
-      description: "Modern purple and teal for innovation and trust"
-    }
-  ];
+  const { data: caseStudies, loading, error } = useSanityDocuments<CaseStudy>(caseStudiesQuery);
+  const navigate = useNavigate();
+
+  const handleCaseStudyClick = (slug: string) => {
+    navigate(`/case-study/${slug}`);
+  };
+
+  if (loading) {
+    return (
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-serif font-bold mb-4">
+              Our Portfolio
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We help small businesses work smarter and show up better online. From websites to workflows to AI tools, we make things simpler for you and smoother for your customers.
+            </p>
+          </div>
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <span className="ml-2">Loading case studies...</span>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-serif font-bold mb-4">
+              Our Portfolio
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We help small businesses work smarter and show up better online. From websites to workflows to AI tools, we make things simpler for you and smoother for your customers.
+            </p>
+          </div>
+          <div className="bg-red-50 border border-red-200 rounded-md p-4 max-w-2xl mx-auto">
+            <h3 className="text-red-800 font-medium">Error loading case studies</h3>
+            <p className="text-red-600 mt-1">{error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!caseStudies || caseStudies.length === 0) {
+    return (
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-serif font-bold mb-4">
+              Our Portfolio
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We help small businesses work smarter and show up better online. From websites to workflows to AI tools, we make things simpler for you and smoother for your customers.
+            </p>
+          </div>
+          <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 max-w-2xl mx-auto">
+            <h3 className="text-yellow-800 font-medium">No case studies found</h3>
+            <p className="text-yellow-600 mt-1">No case studies found in Sanity. Please create some content.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
-            Portfolio Highlights
+          <h2 className="text-4xl font-serif font-bold mb-4">
+            Our Portfolio
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Each project tells a unique story through carefully crafted color palettes 
-            that connect emotionally with the target audience.
+            We help small businesses work smarter and show up better online. From websites to workflows to AI tools, we make things simpler for you and smoother for your customers.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 overflow-hidden">
-              <div className="h-48 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200">
-                  {/* Color Palette Display */}
-                  <div className="absolute bottom-4 left-4 flex space-x-2">
-                    {project.colors.map((color, colorIndex) => (
+                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+           {caseStudies.map((caseStudy) => (
+             <Card 
+               key={caseStudy._id} 
+               className="border-0 shadow-lg bg-white hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+               onClick={() => handleCaseStudyClick(caseStudy.slug.current)}
+             >
+              <CardContent className="p-8">
+                {/* Header with category tag and color palette */}
+                <div className="flex justify-between items-start mb-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-800">
+                    {caseStudy.category}
+                  </span>
+                  <div className="flex space-x-2">
+                    {caseStudy.colorPalette && caseStudy.colorPalette.map((color, index) => (
                       <div
-                        key={colorIndex}
-                        className="w-6 h-6 rounded-full border-2 border-white shadow-md"
-                        style={{ backgroundColor: color }}
+                        key={index}
+                        className="w-4 h-4 rounded-full border border-gray-200"
+                        style={{ backgroundColor: color.color }}
                       />
                     ))}
                   </div>
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ExternalLink className="h-5 w-5 text-gray-600" />
-                  </div>
                 </div>
-              </div>
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-serif font-semibold text-gray-900">
-                    {project.title}
-                  </h3>
-                  <span className="text-sm text-mint-teal font-medium">
-                    {project.category}
-                  </span>
-                </div>
-                <p className="text-gray-600 text-sm">
-                  {project.description}
+
+                {/* Project title */}
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  {caseStudy.title}
+                </h3>
+
+                {/* Project description */}
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {caseStudy.description}
                 </p>
+
+                {/* Key Features */}
+                {caseStudy.features && caseStudy.features.length > 0 && (
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-gray-900 mb-3">Key Features</h4>
+                    <ul className="space-y-2">
+                      {caseStudy.features.slice(0, 3).map((feature, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span className="text-gray-600 text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Results */}
+                {caseStudy.results && (
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-gray-900 mb-3">Results</h4>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {caseStudy.results}
+                    </p>
+                  </div>
+                )}
+
+                {/* Arrow icon */}
+                <div className="flex justify-end">
+                  <ArrowRight className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-colors duration-200" />
+                </div>
               </CardContent>
             </Card>
           ))}

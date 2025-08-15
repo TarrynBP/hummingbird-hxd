@@ -15,17 +15,16 @@ const CTA = () => {
           <span className="text-gradient">colorful future?</span>
         </h2>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-          Let's create a website that doesn't just look beautiful—one that connects 
-          emotionally with your audience and drives real results for your business.
+          Every colour, every shape, every word of your website is carefully chosen to connect with your audience and invite
+          a relationship, driving real results for your business.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="bg-mint-teal hover:bg-mint-teal-dark text-white group">
-            <Calendar className="mr-2 h-5 w-5" />
-            Book Free Consultation
+            View Our Packages
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
           <Button size="lg" variant="outline" className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white">
-            View Pricing
+            View More Work
           </Button>
         </div>
       </div>
