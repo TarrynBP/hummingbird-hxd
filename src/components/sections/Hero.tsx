@@ -15,26 +15,17 @@ const Hero = () => {
           <div className="animate-fade-in">
             <div className="flex items-center space-x-2 mb-6">
               <Palette className="h-6 w-6 text-mint-teal" />
-              <span className="text-mint-teal font-medium">Color-Driven Design</span>
+              <span className="text-mint-teal font-medium">Human Experience Design</span>
             </div>
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-gray-900 mb-6 leading-tight">
-              Websites that{" "}
-              <span className="text-gradient">speak in color</span>
+            Design for{" "}
+              <span className="text-gradient">humanity</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              We craft emotionally resonant Wix websites using the psychology of color theory. 
-              Every hue, shade, and gradient is carefully chosen to connect with your audience 
-              and elevate your brand story.
+              Shaping your service with care, from the flow of your site to the systems behind it. 
+              We create experiences that welcome your customers in, support your team, and help your 
+              business grow with purpose.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-mint-teal hover:bg-mint-teal-dark text-white group">
-                Start Your Project
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white">
-                View Our Work
-              </Button>
-            </div>
           </div>
 
           <div className="relative lg:block hidden">

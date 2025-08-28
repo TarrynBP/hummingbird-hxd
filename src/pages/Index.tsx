@@ -4,15 +4,17 @@ import Services from "@/components/sections/Services";
 import Learning from "@/components/sections/Learning";
 import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
+import Values from "@/components/sections/Values";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero />
       <Services />
-      <Learning />
       <Testimonials />
+      <Learning />
       <CTA />
+      <Values/>
     </div>
   );
 };

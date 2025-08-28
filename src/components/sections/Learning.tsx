@@ -9,7 +9,7 @@ const Learning = () => {
       readTime: "5 min read",
       title: "What's Slowing You Down?",
       description: "How to spot small problems before they start costing you time and energy.",
-      image: "/placeholder.svg"
+      image: "https://plus.unsplash.com/premium_photo-1661503072964-497e6165d77e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnVzeXxlbnwwfHwwfHx8MA%3D%3D"
     },
     {
       id: "improve-user-work",
@@ -17,7 +17,7 @@ const Learning = () => {
       readTime: "5 min read",
       title: "Ways to Improve How You Work",
       description: "A few easy wins to help you save time, stay organized, and set up customers better.",
-      image: "/placeholder.svg"
+      image: "https://plus.unsplash.com/premium_photo-1661503072964-497e6165d77e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnVzeXxlbnwwfHwwfHx8MA%3D%3D"
     },
     {
       id: "truth-about-admin",
@@ -25,7 +25,7 @@ const Learning = () => {
       readTime: "5 min read", 
       title: "Truth That Help You Do Less Admin",
       description: "Everyday tools that take small tasks off your plate without making life complicated.",
-      image: "/placeholder.svg"
+      image: "https://plus.unsplash.com/premium_photo-1661503072964-497e6165d77e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnVzeXxlbnwwfHwwfHx8MA%3D%3D"
     },
     {
       id: "improve-offers",
@@ -33,7 +33,7 @@ const Learning = () => {
       readTime: "3 min read",
       title: "Start Small, Improve Often",
       description: "Why tiny changes over time beat one big overhaul and move from good to great.",
-      image: "/placeholder.svg"
+      image: "https://plus.unsplash.com/premium_photo-1661503072964-497e6165d77e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnVzeXxlbnwwfHwwfHx8MA%3D%3D"
     },
     {
       id: "business-essentials",
@@ -41,7 +41,7 @@ const Learning = () => {
       readTime: "3 min read", 
       title: "Which Business Essentials Run",
       description: "The simple shifts that free up your time and improve how your team works.",
-      image: "/placeholder.svg"
+      image: "https://plus.unsplash.com/premium_photo-1661503072964-497e6165d77e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnVzeXxlbnwwfHwwfHx8MA%3D%3D"
     },
     {
       id: "progress-not-perfection",
@@ -49,7 +49,7 @@ const Learning = () => {
       readTime: "5 min read",
       title: "Progress, Not Perfection",
       description: "Why it's okay to start small, focus on progress, and fix what matters most right now.",
-      image: "/placeholder.svg"
+      image: "https://plus.unsplash.com/premium_photo-1661503072964-497e6165d77e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnVzeXxlbnwwfHwwfHx8MA%3D%3D"
     }
   ];
 

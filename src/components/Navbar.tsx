@@ -14,8 +14,6 @@ const Navbar = () => {
     { path: "/", label: "Home" },
     { path: "/about", label: "About" },
     { path: "/services", label: "Services" },
-    { path: "/portfolio", label: "Portfolio" },
-    { path: "/articles", label: "Articles" },
     { path: "/contact", label: "Contact" },
   ];
 
@@ -25,12 +23,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 gradient-mint-mauve rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">H</span>
-            </div>
-            <span className="text-xl font-serif font-semibold text-gray-900">
-              HummingBird
-            </span>
+            <img 
+              src="/assets/logo-sl.svg" 
+              alt="HummingBird Logo" 
+              className="w-40 h-40"
+            />
           </Link>
 
           {/* Desktop Navigation */}

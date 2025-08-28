@@ -9,17 +9,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 gradient-mint-mauve rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">H</span>
-              </div>
-              <span className="text-xl font-serif font-semibold text-gray-900">
-                HummingBird
-              </span>
+            <div className="flex items-center space-x-2">
+              <img 
+                src="/assets/logo-lm.svg" 
+                alt="HummingBird Logo" 
+                className="w-12 h-12"
+              />
             </div>
             <p className="text-gray-600 max-w-md mb-4">
-              Creating emotionally resonant websites through the power of color theory. 
-              We specialize in Wix website design that speaks directly to your audience.
+              Shaping your service with care, from the flow of your site to the systems behind it. 
+              We create experiences that welcome your customers in, support your team, and help your 
+              business grow with purpose.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-mint-teal transition-colors">
@@ -67,11 +67,11 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2 text-gray-600">
                 <Mail className="h-4 w-4" />
-                <span>hello@hummingbird.design</span>
+                <span>tarryn.pietersen@hummingbird.design</span>
               </li>
               <li className="flex items-center space-x-2 text-gray-600">
                 <Phone className="h-4 w-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+72 (072) 608 5749</span>
               </li>
             </ul>
           </div>
