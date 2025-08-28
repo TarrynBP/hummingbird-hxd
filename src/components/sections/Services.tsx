@@ -14,16 +14,28 @@ const Services = () => {
       icon: Zap,
       title: "Simplify Your Workflow",
       description: "We’ll review your everyday tasks and customer steps to spot simple ways to improve your customer experience and how things run.",
+      title: "Launch with Purpose",
+      description: "We’ll design a website that guides your customers step by step. One that’s easy to love, and made for small business growth.",
+      color: "mint-teal"
+    },
+    {
+      icon: Zap,
+      title: "Simplify Your Workflow",
+      description: "We’ll review your everyday tasks and customer steps to spot simple ways to improve your customer experience and how things run.",
       color: "mint-teal"
     },
     {
       icon: Palette,
       title: "Get Set Online", 
       description: "We’ll help you choose and connect the right digital tools for your business, so your online setup supports how you work and how you grow.",
+      title: "Get Set Online", 
+      description: "We’ll help you choose and connect the right digital tools for your business, so your online setup supports how you work and how you grow.",
       color: "soft-mauve"
     },
     {
       icon: Lightbulb,
+      title: "Grow with AI",
+      description: "We’ll show you how to use AI in smart, practical ways to ease your workload, so you focus on the growth of your business.",
       title: "Grow with AI",
       description: "We’ll show you how to use AI in smart, practical ways to ease your workload, so you focus on the growth of your business.",
       color: "creamy-apricot"

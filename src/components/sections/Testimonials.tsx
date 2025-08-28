@@ -38,17 +38,17 @@ const Testimonials = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="border-0 shadow-lg">
-              <CardContent className="p-8">
+            <Card key={index} className="border-0 shadow-lg h-full">
+              <CardContent className="p-8 h-full flex flex-col">
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <blockquote className="text-gray-700 mb-6 leading-relaxed">
+                <blockquote className="text-gray-700 mb-6 leading-relaxed flex-grow">
                   "{testimonial.content}"
                 </blockquote>
-                <div className="flex items-center">
+                <div className="flex items-center mt-auto">
                   <div className="w-12 h-12 gradient-mint-mauve rounded-full flex items-center justify-center mr-4">
                     <span className="text-white font-semibold">
                       {testimonial.name.split(' ').map(n => n[0]).join('')}

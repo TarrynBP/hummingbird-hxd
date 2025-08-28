@@ -1,10 +1,66 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Clock, Calendar, Share2, BookOpen, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSanityDocument } from "../hooks/useSanity";
+import { articleBySlugQuery } from "../lib/sanity-queries";
+import { Article } from "../types/sanity";
+import { useMemo } from "react";
 
 const Blog = () => {
   const { blogId } = useParams();
+
+  // Memoize the parameters to prevent infinite re-renders
+  const params = useMemo(() => {
+    return blogId ? { slug: blogId } : undefined;
+  }, [blogId]);
+
+  // Fetch article data from Sanity
+  const { data: article, loading, error } = useSanityDocument<Article>(
+    blogId ? articleBySlugQuery(blogId) : "",
+    params
+  );
+
+  // If no blogId is provided, redirect to home
+  if (!blogId) {
+    return <Navigate to="/" replace />;
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-16 bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p>Loading article...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !article) {
+    return <Navigate to="/" replace />;
+  }
+
+  // Helper function to format date
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      day: '2-digit', 
+      month: 'short', 
+      year: 'numeric' 
+    });
+  };
+
+  // Helper function to estimate read time
+  const estimateReadTime = (body: any[]) => {
+    if (!body || body.length === 0) return "3 min read";
+    
+    // Count words in the body (rough estimation)
+    const text = JSON.stringify(body);
+    const wordCount = text.split(' ').length;
+    const readTime = Math.ceil(wordCount / 200); // Average reading speed
+    return `${readTime} min read`;
+  };
 
   const blogPosts = {
     "color-psychology-web-design": {
@@ -317,18 +373,19 @@ const Blog = () => {
     }
   };
 
-  const post = blogPosts[blogId as keyof typeof blogPosts];
+  // Remove the hardcoded blogPosts lookup since we're using Sanity data
+  // const post = blogPosts[blogId as keyof typeof blogPosts];
 
-  if (!post) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-secondary/20">
-        <div className="text-center">
-          <h1 className="text-4xl font-serif font-bold text-foreground mb-4">Blog Post Not Found</h1>
-          <Link to="/" className="text-mint-teal hover:underline">Return to Home</Link>
-        </div>
-      </div>
-    );
-  }
+  // if (!post) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-secondary/20">
+  //       <div className="text-center">
+  //         <h1 className="text-4xl font-serif font-bold text-foreground mb-4">Blog Post Not Found</h1>
+  //         <Link to="/" className="text-mint-teal hover:underline">Return to Home</Link>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-secondary/5 to-background">
@@ -347,28 +404,28 @@ const Blog = () => {
           <div className="mb-8">
             <div className="flex items-center flex-wrap gap-4 text-sm text-muted-foreground mb-6">
               <span className="bg-gradient-to-r from-mint-teal to-soft-mauve text-white px-4 py-2 rounded-full font-medium">
-                {post.category}
+                {article.category}
               </span>
               <div className="flex items-center">
                 <Calendar className="h-4 w-4 mr-2" />
-                {post.date}
+                {formatDate(article.publishedAt)}
               </div>
               <div className="flex items-center">
                 <Clock className="h-4 w-4 mr-2" />
-                {post.readTime}
+                {estimateReadTime(article.body)}
               </div>
               <div className="flex items-center">
                 <User className="h-4 w-4 mr-2" />
-                {post.author}
+                {article.author}
               </div>
             </div>
             
             <h1 className="text-4xl lg:text-6xl font-serif font-bold text-foreground mb-6 leading-tight">
-              {post.title}
+              {article.title}
             </h1>
             
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
-              {post.excerpt}
+              {article.description}
             </p>
           </div>
 
@@ -389,10 +446,28 @@ const Blog = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <Card className="border-0 shadow-2xl bg-card/50 backdrop-blur-sm">
           <CardContent className="p-8 lg:p-16">
-            <div 
-              className="prose prose-lg max-w-none text-foreground"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <div className="prose prose-lg max-w-none text-foreground">
+              {article.body ? (
+                <div className="text-lg leading-relaxed">
+                  {/* For now, display a simple text representation of the body */}
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    {article.description}
+                  </p>
+                  <p className="text-lg leading-relaxed">
+                    Article content will be displayed here. The body field contains Portable Text data that needs to be rendered properly.
+                  </p>
+                </div>
+              ) : (
+                <div className="text-lg leading-relaxed">
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    {article.description}
+                  </p>
+                  <p className="text-lg leading-relaxed">
+                    No additional content available for this article.
+                  </p>
+                </div>
+              )}
+            </div>
 
             {/* CTA Section */}
             <div className="mt-16 pt-12 border-t border-border">

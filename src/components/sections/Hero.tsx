@@ -16,6 +16,7 @@ const Hero = () => {
             <div className="flex items-center space-x-2 mb-6">
               <Palette className="h-6 w-6 text-mint-teal" />
               <span className="text-mint-teal font-medium">Human Experience Design</span>
+              <span className="text-mint-teal font-medium">Human Experience Design</span>
             </div>
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-gray-900 mb-6 leading-tight">
             Design for{" "}
