@@ -1,11 +1,22 @@
-
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Mail, Phone, MapPin, Clock, Send, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -17,11 +28,11 @@ const Contact = () => {
     company: "",
     service: "",
     budget: "",
-    message: ""
+    message: "",
   });
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -36,48 +47,43 @@ const Contact = () => {
       company: "",
       service: "",
       budget: "",
-      message: ""
+      message: "",
     });
   };
 
   const contactInfo = [
     {
-      icon: Mail,
-      title: "Email",
-      details: "hello@hummingbird.design",
-      description: "Send us an email anytime"
-    },
-    {
       icon: Phone,
       title: "Phone",
-      details: "+1 (555) 123-4567",
-      description: "Mon-Fri from 9am to 6pm EST"
+      details: "+27 (72) 608-5749",
+      description: "Mon-Fri from 9am to 6pm EST",
     },
     {
       icon: MapPin,
       title: "Location",
-      details: "New York, NY",
-      description: "Available for remote projects worldwide"
+      details: "Kenilworth, Cape Town",
+      description: "Available for remote projects worldwide",
     },
     {
       icon: Clock,
       title: "Response Time",
       details: "24 hours",
-      description: "We'll get back to you quickly"
-    }
+      description: "We'll get back to you quickly",
+    },
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 gradient-mint-mauve opacity-5"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
-            Let's Create Something <span className="text-gradient">Beautiful</span>
+            Let's transform your business{" "}
+            <span className="text-gradient">together</span>
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Ready to transform your digital presence with the power of color? 
+            Ready to transform your digital presence with the power of colour?
             We'd love to hear about your project and explore how we can help.
           </p>
         </div>
@@ -90,10 +96,10 @@ const Contact = () => {
             <Card className="border-0 shadow-lg">
               <CardHeader>
                 <CardTitle className="text-2xl font-serif font-semibold">
-                  Start Your Project
+                  Contact Us
                 </CardTitle>
                 <CardDescription>
-                  Tell us about your vision and we'll create a custom proposal for your project.
+                Let us know your thoughts
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -104,7 +110,9 @@ const Contact = () => {
                       <Input
                         id="name"
                         value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("name", e.target.value)
+                        }
                         placeholder="Your full name"
                         required
                       />
@@ -115,7 +123,9 @@ const Contact = () => {
                         id="email"
                         type="email"
                         value={formData.email}
-                        onChange={(e) => handleInputChange("email", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
                         placeholder="your@email.com"
                         required
                       />
@@ -127,7 +137,9 @@ const Contact = () => {
                     <Input
                       id="company"
                       value={formData.company}
-                      onChange={(e) => handleInputChange("company", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("company", e.target.value)
+                      }
                       placeholder="Your company name"
                     />
                   </div>
@@ -135,29 +147,51 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label>Service Interested In</Label>
-                      <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
+                      <Select
+                        value={formData.service}
+                        onValueChange={(value) =>
+                          handleInputChange("service", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="website-design">Wix Website Design</SelectItem>
-                          <SelectItem value="color-strategy">Color Strategy Consulting</SelectItem>
-                          <SelectItem value="brand-identity">Brand Identity Design</SelectItem>
-                          <SelectItem value="ux-optimization">UX/UI Optimization</SelectItem>
-                          <SelectItem value="complete-package">Complete Package</SelectItem>
+                          <SelectItem value="website-design">
+                            Wix Website Design
+                          </SelectItem>
+                          <SelectItem value="color-strategy">
+                            Color Strategy Consulting
+                          </SelectItem>
+                          <SelectItem value="brand-identity">
+                            Brand Identity Design
+                          </SelectItem>
+                          <SelectItem value="ux-optimization">
+                            UX/UI Optimization
+                          </SelectItem>
+                          <SelectItem value="complete-package">
+                            Complete Package
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div className="space-y-2">
                       <Label>Project Budget</Label>
-                      <Select value={formData.budget} onValueChange={(value) => handleInputChange("budget", value)}>
+                      <Select
+                        value={formData.budget}
+                        onValueChange={(value) =>
+                          handleInputChange("budget", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="under-2k">Under $2,000</SelectItem>
                           <SelectItem value="2k-5k">$2,000 - $5,000</SelectItem>
-                          <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
+                          <SelectItem value="5k-10k">
+                            $5,000 - $10,000
+                          </SelectItem>
                           <SelectItem value="10k-plus">$10,000+</SelectItem>
                           <SelectItem value="not-sure">Not sure yet</SelectItem>
                         </SelectContent>
@@ -170,7 +204,9 @@ const Contact = () => {
                     <Textarea
                       id="message"
                       value={formData.message}
-                      onChange={(e) => handleInputChange("message", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("message", e.target.value)
+                      }
                       placeholder="Tell us about your project, goals, and any specific requirements..."
                       className="min-h-32"
                       required
@@ -178,11 +214,20 @@ const Contact = () => {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button type="submit" size="lg" className="bg-mint-teal hover:bg-mint-teal-dark text-white group">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="bg-mint-teal hover:bg-mint-teal-dark text-white group"
+                    >
                       <Send className="mr-2 h-4 w-4" />
                       Send Message
                     </Button>
-                    <Button type="button" size="lg" variant="outline" className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white">
+                    <Button
+                      type="button"
+                      size="lg"
+                      variant="outline"
+                      className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white"
+                    >
                       <Calendar className="mr-2 h-4 w-4" />
                       Schedule Call
                     </Button>
@@ -212,9 +257,15 @@ const Contact = () => {
                         <Icon className="h-6 w-6 text-mint-teal" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
-                        <p className="text-mint-teal font-medium mb-1">{item.details}</p>
-                        <p className="text-sm text-gray-600">{item.description}</p>
+                        <h3 className="font-semibold text-gray-900 mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-mint-teal font-medium mb-1">
+                          {item.details}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          {item.description}
+                        </p>
                       </div>
                     </div>
                   );
@@ -228,8 +279,8 @@ const Contact = () => {
                   Free Color Consultation
                 </h3>
                 <p className="text-white/90 mb-4 leading-relaxed">
-                  Book a 30-minute consultation to discuss your color strategy and 
-                  receive actionable insights for your brand.
+                  Book a 30-minute consultation to discuss your color strategy
+                  and receive actionable insights for your brand.
                 </p>
                 <Button variant="secondary" className="w-full">
                   Book Free Call
@@ -244,16 +295,31 @@ const Contact = () => {
                 </h3>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-1">How long does a project take?</h4>
-                    <p className="text-sm text-gray-600">Most projects are completed within 2-6 weeks, depending on scope and complexity.</p>
+                    <h4 className="font-medium text-gray-900 mb-1">
+                      How long does a project take?
+                    </h4>
+                    <p className="text-sm text-gray-600">
+                      Most projects are completed within 2-6 weeks, depending on
+                      scope and complexity.
+                    </p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-1">Do you work with existing websites?</h4>
-                    <p className="text-sm text-gray-600">Yes! We offer optimization services for existing Wix websites to improve their color strategy.</p>
+                    <h4 className="font-medium text-gray-900 mb-1">
+                      Do you work with existing websites?
+                    </h4>
+                    <p className="text-sm text-gray-600">
+                      Yes! We offer optimization services for existing Wix
+                      websites to improve their color strategy.
+                    </p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-1">What's included in support?</h4>
-                    <p className="text-sm text-gray-600">All projects include training, documentation, and ongoing support for the specified period.</p>
+                    <h4 className="font-medium text-gray-900 mb-1">
+                      What's included in support?
+                    </h4>
+                    <p className="text-sm text-gray-600">
+                      All projects include training, documentation, and ongoing
+                      support for the specified period.
+                    </p>
                   </div>
                 </div>
               </CardContent>
