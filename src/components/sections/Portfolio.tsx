@@ -6,74 +6,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { usePortfolioItems } from "@/hooks/useSanityData";
+import { urlFor } from "@/lib/sanity";
+import { ArrowRight } from "lucide-react";
 
 const Portfolio = () => {
-  const portfolioItems = [
-    {
-      id: "telecoms-x",
-      title: "Telecoms X",
-      description: "Effortless web signup and upgrades",
-      color: "mint-teal",
-      keyFeatures: [
-        "Streamlined signup process",
-        "Intuitive upgrade flow",
-        "Mobile-first design",
-      ],
-      projectedResults: [
-        "40% faster signup completion",
-        "25% increase in upgrades",
-        "Improved user satisfaction",
-      ],
-    },
-    {
-      id: "banking-x",
-      title: "Banking X",
-      description: "Redesigned client account experience",
-      color: "pink-500",
-      keyFeatures: [
-        "Simplified account management",
-        "Enhanced security features",
-        "Personalized dashboard",
-      ],
-      projectedResults: [
-        "50% reduction in support calls",
-        "30% increase in engagement",
-        "Higher customer retention",
-      ],
-    },
-    {
-      id: "enrique-fourie",
-      title: "Enrique Fourie",
-      description: "Elegant website for hair and makeup artistry",
-      color: "yellow-500",
-      keyFeatures: [
-        "Portfolio showcase",
-        "Booking system integration",
-        "Brand storytelling",
-      ],
-      projectedResults: [
-        "60% increase in bookings",
-        "Professional brand presence",
-        "Enhanced client experience",
-      ],
-    },
-    {
-      id: "yoursashwindows",
-      title: "Yoursashwindows.com",
-      description: "Modern website for sash window restoration",
-      color: "purple-500",
-      keyFeatures: [
-        "Service showcase",
-        "Quote request system",
-        "Before/after galleries",
-      ],
-      projectedResults: [
-        "45% more quote requests",
-        "Improved local SEO",
-        "Professional credibility",
-      ],
-    },
-  ];
+  const { data: portfolioItems, isLoading, error } = usePortfolioItems();
+
+  // Use Sanity data directly
+  const portfolioData = portfolioItems;
 
   return (
     <section className="py-20 bg-gray-50">
@@ -89,63 +30,212 @@ const Portfolio = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {portfolioItems.map((item, index) => (
-            <Link key={index} to={`/case-study/${item.id}`}>
-              <Card className="group hover:shadow-lg transition-all duration-300 border-0 bg-white cursor-pointer">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center mb-4">
-                    <div
-                      className={`w-3 h-3 rounded-full mr-3 ${
-                        item.color === "mint-teal"
-                          ? "bg-mint-teal"
-                          : item.color === "pink-500"
-                          ? "bg-pink-500"
-                          : item.color === "yellow-500"
-                          ? "bg-yellow-500"
-                          : "bg-purple-500"
-                      }`}
-                    ></div>
-                    <CardTitle className="text-lg font-serif font-semibold">
-                      {item.title}
-                    </CardTitle>
-                  </div>
-                  <CardDescription className="text-gray-600">
-                    {item.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">
-                      Key Features
-                    </h4>
-                    <ul className="text-sm text-gray-600 space-y-1">
-                      {item.keyFeatures.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start">
-                          <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">
-                      Projected Results
-                    </h4>
-                    <ul className="text-sm text-gray-600 space-y-1">
-                      {item.projectedResults.map((result, resultIndex) => (
-                        <li key={resultIndex} className="flex items-start">
-                          <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                          {result}
-                        </li>
-                      ))}
-                    </ul>
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[...Array(4)].map((_, index) => (
+              <Card key={index} className="border-0 bg-white h-full">
+                <CardContent className="p-6 h-full flex flex-col">
+                  <div className="animate-pulse">
+                    {/* Top Section */}
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="h-6 bg-gray-200 rounded-full w-20"></div>
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-gray-200 rounded-full"></div>
+                        <div className="w-2 h-2 bg-gray-200 rounded-full"></div>
+                        <div className="w-2 h-2 bg-gray-200 rounded-full"></div>
+                        <div className="w-2 h-2 bg-gray-200 rounded-full"></div>
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <div className="h-8 bg-gray-200 rounded mb-3"></div>
+
+                    {/* Description */}
+                    <div className="space-y-2 mb-6 flex-grow">
+                      <div className="h-4 bg-gray-200 rounded"></div>
+                      <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                    </div>
+
+                    {/* Key Features */}
+                    <div className="mb-6">
+                      <div className="h-5 bg-gray-200 rounded w-24 mb-3"></div>
+                      <div className="space-y-2">
+                        <div className="h-3 bg-gray-200 rounded"></div>
+                        <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                        <div className="h-3 bg-gray-200 rounded w-4/5"></div>
+                      </div>
+                    </div>
+
+                    {/* Projected Results */}
+                    <div className="mb-6">
+                      <div className="h-5 bg-gray-200 rounded w-32 mb-3"></div>
+                      <div className="h-4 bg-gray-200 rounded w-full"></div>
+                    </div>
+
+                    {/* Arrow */}
+                    <div className="flex justify-end">
+                      <div className="w-5 h-5 bg-gray-200 rounded"></div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
-            </Link>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : error || !portfolioData || portfolioData.length === 0 ? (
+          <div className="text-center py-16">
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+              Portfolio items not found
+            </h3>
+            <p className="text-gray-600">
+              Please add portfolio items in your Sanity Studio.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {portfolioData.map((item, index) => (
+              <Link
+                key={index}
+                to={`/case-study/${item.slug?.current || item._id}`}
+              >
+                <Card className="group hover:shadow-lg transition-all duration-300 border-0 bg-white cursor-pointer h-full">
+                  <CardContent className="p-6 h-full flex flex-col">
+                    {/* Top Section with Tag and Navigation Dots */}
+                    <div className="flex justify-between items-start mb-4">
+                      {/* Category Tag */}
+                      <div className="px-3 py-1 bg-pink-100 border border-pink-200 rounded-full">
+                        <span className="text-sm font-medium text-gray-700">
+                          {item.category || "Project"}
+                        </span>
+                      </div>
+
+                      {/* Navigation Dots - using color palette */}
+                      <div className="flex space-x-1">
+                        {item.colorPalette && item.colorPalette.length > 0 ? (
+                          item.colorPalette
+                            .slice(0, 4)
+                            .map((color, colorIndex) => (
+                              <div
+                                key={colorIndex}
+                                className="w-2 h-2 rounded-full"
+                                style={{
+                                  backgroundColor:
+                                    color.color || color.hex || "#10B981",
+                                }}
+                              ></div>
+                            ))
+                        ) : (
+                          // Fallback colors if no color palette
+                          <>
+                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                            <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
+                            <div className="w-2 h-2 bg-white border border-gray-300 rounded-full"></div>
+                            <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Main Title */}
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3 leading-tight">
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
+                      {item.description}
+                    </p>
+
+                    {/* Key Features Section */}
+                    <div className="mb-6">
+                      <h4 className="font-bold text-gray-900 mb-3">
+                        Key Features:
+                      </h4>
+                      <ul className="space-y-2">
+                        {(item.features || item.keyFeatures || [])
+                          .slice(0, 3)
+                          .map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-start">
+                              <span
+                                className="w-1.5 h-1.5 rounded-full mt-2 mr-3 flex-shrink-0"
+                                style={{
+                                  backgroundColor:
+                                    item.colorPalette &&
+                                    item.colorPalette.length > 0
+                                      ? item.colorPalette[0]?.color ||
+                                        item.colorPalette[0]?.hex ||
+                                        "#10B981"
+                                      : "#10B981",
+                                }}
+                              ></span>
+                              <span className="text-sm text-gray-600">
+                                {feature}
+                              </span>
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+
+                    {/* Projected Results Section */}
+                    <div className="mb-6">
+                      <h4 className="font-bold text-gray-900 mb-3">
+                        Projected Results:
+                      </h4>
+                      <p
+                        className="text-sm"
+                        style={{
+                          color:
+                            item.colorPalette && item.colorPalette.length > 0
+                              ? item.colorPalette[0]?.color ||
+                                item.colorPalette[0]?.hex ||
+                                "#10B981"
+                              : "#10B981",
+                        }}
+                      >
+                        {item.projectedResults &&
+                        item.projectedResults.length > 0
+                          ? item.projectedResults
+                              .slice(0, 4)
+                              .map((result, index) =>
+                                typeof result === "string"
+                                  ? result
+                                  : result.description || result.metric
+                              )
+                              .join(", ")
+                          : item.measurableImpact &&
+                            item.measurableImpact.length > 0
+                          ? item.measurableImpact
+                              .slice(0, 4)
+                              .map(
+                                (metric, index) =>
+                                  `${metric.percentage || "+25%"} ${
+                                    metric.title || "improvement"
+                                  }`
+                              )
+                              .join(", ")
+                          : "+25% clarity, +25% upgrades, -35% drop-offs, +28% mobile completion"}
+                      </p>
+                    </div>
+
+                    {/* Arrow Icon */}
+                    <div className="flex justify-end mt-auto">
+                      <ArrowRight
+                        className="w-5 h-5"
+                        style={{
+                          color:
+                            item.colorPalette && item.colorPalette.length > 0
+                              ? item.colorPalette[0]?.color ||
+                                item.colorPalette[0]?.hex ||
+                                "#10B981"
+                              : "#10B981",
+                        }}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

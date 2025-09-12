@@ -10,12 +10,15 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useCaseStudy } from "@/hooks/useSanityData";
+import { urlFor } from "@/lib/sanity";
 
 const CaseStudy = () => {
   const { id } = useParams();
+  const { data: caseStudy, isLoading, error } = useCaseStudy(id || "");
 
-  // Case study data - in a real app, this would come from an API
-  const caseStudies = {
+  // Fallback case study data if Sanity data is not available
+  const fallbackCaseStudy = {
     "telecoms-x": {
       title: "Telecoms X",
       description:
@@ -158,9 +161,84 @@ const CaseStudy = () => {
     },
   };
 
-  const caseStudy = caseStudies[id as keyof typeof caseStudies];
+  // Transform Sanity data to match expected structure or use fallback
+  const transformedData = caseStudy
+    ? {
+        title: caseStudy.title,
+        description: caseStudy.description,
+        challenge: caseStudy.challenge,
+        projectDetails: {
+          location: caseStudy.platforms || "Remote",
+          year: "2024",
+          team: caseStudy.team || "UX/UI Designer",
+          partners: "Hummingbird HXD",
+        },
+        colorPalette: caseStudy.colorPalette || [],
+        userResearch: {
+          description:
+            "Understanding user goals, motivations, and pain points guided every design decision.",
+          personas: caseStudy.userPersonas || [],
+        },
+        designProcess: {
+          description:
+            "A structured approach ensuring every decision leads to a better design solution.",
+          steps: caseStudy.designProcess || [],
+        },
+        keyInsights: caseStudy.keyInsights || [],
+        measurableImpact: {
+          description:
+            "While not formally tracked, the redesigned flow was projected to improve clarity, reduce friction and increase user confidence.",
+          metrics: caseStudy.measurableImpact || [],
+        },
+        results: caseStudy.results || "Results coming soon",
+        solution: caseStudy.solution || caseStudy.description,
+        challengeSolution: {
+          challenge: caseStudy.challenge || "Challenge details coming soon.",
+          solution:
+            caseStudy.solution ||
+            caseStudy.description ||
+            "Solution details coming soon.",
+        },
+      }
+    : fallbackCaseStudy[id as keyof typeof fallbackCaseStudy];
 
-  if (!caseStudy) {
+  // If no data found, show not found message
+  if (!isLoading && !transformedData) {
+    return (
+      <div className="min-h-screen pt-16 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+            Case Study Not Found
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">
+            The case study you're looking for doesn't exist.
+          </p>
+          <Link to="/">
+            <Button>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen pt-16 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-200 rounded w-64 mb-4 mx-auto"></div>
+            <div className="h-4 bg-gray-200 rounded w-48 mb-8 mx-auto"></div>
+            <div className="h-10 bg-gray-200 rounded w-32 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!transformedData) {
     return (
       <div className="min-h-screen pt-16 flex items-center justify-center">
         <div className="text-center">
@@ -202,10 +280,10 @@ const CaseStudy = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
               <h1 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
-                {caseStudy.title}
+                {transformedData.title}
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                {caseStudy.description}
+                {transformedData.description}
               </p>
 
               <Card className="bg-mint-teal/5 border-mint-teal/20">
@@ -214,7 +292,7 @@ const CaseStudy = () => {
                     Design Challenge
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    {caseStudy.challenge}
+                    {transformedData.challenge}
                   </p>
                 </CardContent>
               </Card>
@@ -229,19 +307,19 @@ const CaseStudy = () => {
                   <div className="space-y-2 text-sm">
                     <div>
                       <span className="font-medium">Location:</span>{" "}
-                      {caseStudy.projectDetails.location}
+                      {transformedData.projectDetails.location}
                     </div>
                     <div>
                       <span className="font-medium">Year:</span>{" "}
-                      {caseStudy.projectDetails.year}
+                      {transformedData.projectDetails.year}
                     </div>
                     <div>
                       <span className="font-medium">Team:</span>{" "}
-                      {caseStudy.projectDetails.team}
+                      {transformedData.projectDetails.team}
                     </div>
                     <div>
                       <span className="font-medium">Partners:</span>{" "}
-                      {caseStudy.projectDetails.partners}
+                      {transformedData.projectDetails.partners}
                     </div>
                   </div>
                 </CardContent>
@@ -253,7 +331,7 @@ const CaseStudy = () => {
                     Color Palette
                   </h3>
                   <div className="space-y-3">
-                    {caseStudy.colorPalette.map((palette, index) => (
+                    {transformedData.colorPalette.map((palette, index) => (
                       <div key={index} className="flex items-center space-x-3">
                         <div
                           className="w-8 h-8 rounded border"
@@ -306,39 +384,51 @@ const CaseStudy = () => {
               User Research
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {caseStudy.userResearch.description}
+              {transformedData.userResearch.description}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {caseStudy.userResearch.personas.map((persona, index) => (
-              <Card key={index}>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-serif font-semibold text-gray-900 mb-2">
-                    {persona.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">{persona.age}</p>
+            {transformedData.userResearch.personas &&
+            transformedData.userResearch.personas.length > 0 ? (
+              transformedData.userResearch.personas.map((persona, index) => (
+                <Card key={index}>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-serif font-semibold text-gray-900 mb-2">
+                      {persona.name || "User Persona"}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {persona.age || "Age: Not specified"}
+                    </p>
 
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Goals:</h4>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        {persona.goals.map((goal, goalIndex) => (
-                          <li key={goalIndex} className="flex items-start">
-                            <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                            {goal}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-medium text-gray-900 mb-2">
+                          Goals:
+                        </h4>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          {(persona.goals && Array.isArray(persona.goals)
+                            ? persona.goals
+                            : []
+                          ).map((goal, goalIndex) => (
+                            <li key={goalIndex} className="flex items-start">
+                              <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                              {goal}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-2">
-                        Motivations:
-                      </h4>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        {persona.motivations.map(
-                          (motivation, motivationIndex) => (
+                      <div>
+                        <h4 className="font-medium text-gray-900 mb-2">
+                          Motivations:
+                        </h4>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          {(persona.motivations &&
+                          Array.isArray(persona.motivations)
+                            ? persona.motivations
+                            : []
+                          ).map((motivation, motivationIndex) => (
                             <li
                               key={motivationIndex}
                               className="flex items-start"
@@ -346,28 +436,38 @@ const CaseStudy = () => {
                               <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
                               {motivation}
                             </li>
-                          )
-                        )}
-                      </ul>
-                    </div>
+                          ))}
+                        </ul>
+                      </div>
 
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-2">
-                        Pain Points:
-                      </h4>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        {persona.painPoints.map((painPoint, painIndex) => (
-                          <li key={painIndex} className="flex items-start">
-                            <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                            {painPoint}
-                          </li>
-                        ))}
-                      </ul>
+                      <div>
+                        <h4 className="font-medium text-gray-900 mb-2">
+                          Pain Points:
+                        </h4>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          {(persona.painPoints &&
+                          Array.isArray(persona.painPoints)
+                            ? persona.painPoints
+                            : []
+                          ).map((painPoint, painIndex) => (
+                            <li key={painIndex} className="flex items-start">
+                              <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                              {painPoint}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <div className="col-span-2 text-center py-8">
+                <p className="text-gray-600">
+                  User research data will be available soon.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -380,33 +480,45 @@ const CaseStudy = () => {
               Design Process
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {caseStudy.designProcess.description}
+              {transformedData.designProcess.description}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {caseStudy.designProcess.steps.map((step, index) => (
-              <Card key={index}>
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-mint-teal rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-white font-bold text-xl">
-                      {step.number}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-serif font-semibold text-gray-900 mb-4">
-                    {step.title}
-                  </h3>
-                  <ul className="text-sm text-gray-600 space-y-2">
-                    {step.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start">
-                        <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+            {transformedData.designProcess.steps &&
+            transformedData.designProcess.steps.length > 0 ? (
+              transformedData.designProcess.steps.map((step, index) => (
+                <Card key={index}>
+                  <CardContent className="p-6 text-center">
+                    <div className="w-16 h-16 bg-mint-teal rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span className="text-white font-bold text-xl">
+                        {step.number || index + 1}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-serif font-semibold text-gray-900 mb-4">
+                      {step.title || "Design Step"}
+                    </h3>
+                    <ul className="text-sm text-gray-600 space-y-2">
+                      {(step.items && Array.isArray(step.items)
+                        ? step.items
+                        : []
+                      ).map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start">
+                          <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              <div className="col-span-3 text-center py-8">
+                <p className="text-gray-600">
+                  Design process information will be available soon.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -421,7 +533,7 @@ const CaseStudy = () => {
                   The Challenge
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {caseStudy.challengeSolution.challenge}
+                  {transformedData.challengeSolution.challenge}
                 </p>
               </CardContent>
             </Card>
@@ -432,7 +544,7 @@ const CaseStudy = () => {
                   Our Solution
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {caseStudy.challengeSolution.solution}
+                  {transformedData.challengeSolution.solution}
                 </p>
               </CardContent>
             </Card>
@@ -453,7 +565,7 @@ const CaseStudy = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {caseStudy.keyInsights.map((insight, index) => (
+            {transformedData.keyInsights.map((insight, index) => (
               <Card key={index}>
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-3">
@@ -479,12 +591,12 @@ const CaseStudy = () => {
               Measurable Impact
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {caseStudy.measurableImpact.description}
+              {transformedData.measurableImpact.description}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {caseStudy.measurableImpact.metrics.map((metric, index) => (
+            {transformedData.measurableImpact.metrics.map((metric, index) => (
               <Card key={index}>
                 <CardContent className="p-6 text-center">
                   <div className="text-3xl font-bold text-mint-teal mb-2">

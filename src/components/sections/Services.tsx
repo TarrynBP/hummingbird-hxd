@@ -12,39 +12,8 @@ import * as LucideIcons from "lucide-react";
 const Services = () => {
   const { data: services, isLoading, error } = useServices();
 
-  // Fallback services if Sanity data is not available
-  const fallbackServices = [
-    {
-      icon: "Rocket",
-      title: "Launch with Purpose",
-      description:
-        "We'll design a website that guides your customers step by step. One that's easy to love, and made for small business growth.",
-      color: "mint-teal",
-    },
-    {
-      icon: "RefreshCw",
-      title: "Simplify Your Workflow",
-      description:
-        "We'll review your everyday tasks and customer steps to spot simple ways to improve your customer experience and how things run.",
-      color: "mint-teal",
-    },
-    {
-      icon: "Monitor",
-      title: "Get Set Online",
-      description:
-        "We'll help you choose and connect the right digital tools for your business, so your online setup supports how you work and how you grow.",
-      color: "soft-mauve",
-    },
-    {
-      icon: "Lightbulb",
-      title: "Grow with AI",
-      description:
-        "We'll show you how to use AI in smart, practical ways to ease your workload, so you focus on the growth of your business.",
-      color: "creamy-apricot",
-    },
-  ];
-
-  const servicesData = services || fallbackServices;
+  // Use Sanity data directly
+  const servicesData = services;
 
   // Helper function to get icon component
   const getIconComponent = (iconName: string) => {
@@ -75,6 +44,15 @@ const Services = () => {
                 </CardHeader>
               </Card>
             ))}
+          </div>
+        ) : error || !servicesData || servicesData.length === 0 ? (
+          <div className="text-center py-16">
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+              Services not found
+            </h3>
+            <p className="text-gray-600">
+              Please add services in your Sanity Studio.
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">

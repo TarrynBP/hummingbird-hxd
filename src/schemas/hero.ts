@@ -22,26 +22,6 @@ export const heroSchema = {
       rows: 3,
       validation: (Rule: any) => Rule.required(),
     },
-    {
-      name: 'ctaText',
-      title: 'CTA Button Text',
-      type: 'string',
-      validation: (Rule: any) => Rule.required(),
-    },
-    {
-      name: 'ctaLink',
-      title: 'CTA Button Link',
-      type: 'string',
-      validation: (Rule: any) => Rule.required(),
-    },
-    {
-      name: 'backgroundImage',
-      title: 'Background Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    },
   ],
   preview: {
     select: {

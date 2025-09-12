@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import {
   getHeroContent,
   getServices,
+  getServicePackages,
   getTestimonials,
   getPortfolioItems,
   getCaseStudies,
@@ -10,6 +11,7 @@ import {
   getTeamMembers,
   getAboutContent,
   getServicesPageContent,
+  getSiteSettings,
 } from '@/lib/sanityQueries';
 
 // Hero content hook
@@ -21,11 +23,20 @@ export const useHeroContent = () => {
   });
 };
 
-// Services hook
+// Services hook (for home page)
 export const useServices = () => {
   return useQuery({
     queryKey: ['services'],
     queryFn: getServices,
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
+// Service packages hook (for services page)
+export const useServicePackages = () => {
+  return useQuery({
+    queryKey: ['servicePackages'],
+    queryFn: getServicePackages,
     staleTime: 5 * 60 * 1000,
   });
 };
@@ -100,5 +111,14 @@ export const useServicesPageContent = () => {
     queryKey: ['servicesPageContent'],
     queryFn: getServicesPageContent,
     staleTime: 5 * 60 * 1000,
+  });
+};
+
+// Site settings hook
+export const useSiteSettings = () => {
+  return useQuery({
+    queryKey: ['siteSettings'],
+    queryFn: getSiteSettings,
+    staleTime: 10 * 60 * 1000, // 10 minutes - site settings change less frequently
   });
 };

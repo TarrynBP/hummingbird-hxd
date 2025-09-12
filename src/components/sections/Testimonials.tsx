@@ -1,30 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import { useTestimonials } from "@/hooks/useSanityData";
+import { urlFor } from "@/lib/sanity";
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      name: "Gulzaar Parker",
-      role: "Africa Wellness",
-      content:
-        "We got more than we expected. Hummingbird gave us clear, practical feedback and showed us where to focus our web efforts. If you want to improve your website and make smarter use of your budget, reach out.",
-      rating: 5,
-    },
-    {
-      name: "Nadine Agrionov",
-      role: "Rugal",
-      content:
-        "Hummingbird saw our website needed more than a review and designed a new foundation for us instead. They truly care about small businesses. We highly recommend working with them to improve your online presence.",
-      rating: 5,
-    },
-    {
-      name: "Enrique Fourie",
-      role: "Enrique Fourie Hair and Makeup",
-      content:
-        "Tarryn really took the time to understand my brand and brought my vision to life. The site looks and works beautifully. She truly cares, and it shows. I felt supported every step of the way.",
-      rating: 5,
-    },
-  ];
+  const { data: testimonials, isLoading, error } = useTestimonials();
+
+  // Use Sanity data directly
+  const testimonialsData = testimonials;
 
   return (
     <section className="py-20 bg-creamy-apricot-300">
@@ -38,35 +21,80 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-5 w-5 text-yellow-400 fill-current"
-                    />
-                  ))}
-                </div>
-                <blockquote className="text-gray-700 mb-6 leading-relaxed">
-                  "{testimonial.content}"
-                </blockquote>
-                <div className="flex items-center">
-                  <div>
-                    <div className="font-semibold text-gray-900">
-                      {testimonial.name}
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[...Array(3)].map((_, index) => (
+              <Card key={index} className="border-0 shadow-lg">
+                <CardContent className="p-8">
+                  <div className="animate-pulse">
+                    <div className="flex mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="h-5 w-5 bg-gray-200 rounded mr-1"
+                        ></div>
+                      ))}
                     </div>
-                    <div className="text-gray-600 text-sm">
-                      {testimonial.role}
+                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-6 w-3/4"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-1 w-1/2"></div>
+                    <div className="h-3 bg-gray-200 rounded w-1/3"></div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        ) : error || !testimonialsData || testimonialsData.length === 0 ? (
+          <div className="text-center py-16">
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+              Testimonials not found
+            </h3>
+            <p className="text-gray-600">
+              Please add testimonials in your Sanity Studio.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {testimonialsData.map((testimonial, index) => (
+              <Card key={index} className="border-0 shadow-lg">
+                <CardContent className="p-8">
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-5 w-5 text-yellow-400 fill-current"
+                      />
+                    ))}
+                  </div>
+                  <blockquote className="text-gray-700 mb-6 leading-relaxed">
+                    "{testimonial.content}"
+                  </blockquote>
+                  <div className="flex items-center">
+                    {testimonial.avatar && (
+                      <img
+                        src={urlFor(testimonial.avatar)
+                          .width(50)
+                          .height(50)
+                          .url()}
+                        alt={testimonial.name}
+                        className="w-12 h-12 rounded-full mr-4 object-cover"
+                      />
+                    )}
+                    <div>
+                      <div className="font-semibold text-gray-900">
+                        {testimonial.name}
+                      </div>
+                      <div className="text-gray-600 text-sm">
+                        {testimonial.company}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

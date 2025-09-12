@@ -1,26 +1,48 @@
 import { client } from './sanity';
 
-// Hero content queries
+// Hero content queries - using actual hero documents
 export const getHeroContent = async () => {
-  const query = `*[_type == "hero"][0]`;
+  const query = `*[_type == "hero"][0] {
+    _id,
+    title,
+    subtitle,
+    description
+  }`;
   return await client.fetch(query);
 };
 
-// Services queries
+// Services queries (for home page)
 export const getServices = async () => {
   const query = `*[_type == "service"] | order(order asc)`;
   return await client.fetch(query);
 };
 
-// Testimonials queries
-export const getTestimonials = async () => {
-  const query = `*[_type == "testimonial"] | order(order asc)`;
+// Service packages queries (for services page)
+export const getServicePackages = async () => {
+  const query = `*[_type == "servicePackage"] | order(order asc)`;
   return await client.fetch(query);
 };
 
-// Portfolio queries
+// Testimonials queries - using actual testimonial documents
+export const getTestimonials = async () => {
+  const query = `*[_type == "testimonial"] | order(_createdAt desc)`;
+  return await client.fetch(query);
+};
+
+// Portfolio queries - using caseStudy but only fetching fields needed for portfolio preview
 export const getPortfolioItems = async () => {
-  const query = `*[_type == "portfolio"] | order(order asc)`;
+  const query = `*[_type == "caseStudy"] | order(_createdAt desc) {
+    _id,
+    title,
+    description,
+    category,
+    features,
+    keyFeatures,
+    projectedResults,
+    measurableImpact,
+    colorPalette,
+    slug
+  }`;
   return await client.fetch(query);
 };
 
@@ -61,7 +83,13 @@ export const getAboutContent = async () => {
 export const getServicesPageContent = async () => {
   const query = `{
     "hero": *[_type == "hero" && _id == "services-hero"][0],
-    "services": *[_type == "service"] | order(order asc)
+    "servicePackages": *[_type == "servicePackage"] | order(order asc)
   }`;
+  return await client.fetch(query);
+};
+
+// Site settings queries
+export const getSiteSettings = async () => {
+  const query = `*[_type == "siteSettings"][0]`;
   return await client.fetch(query);
 };

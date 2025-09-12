@@ -24,23 +24,24 @@ export const serviceSchema = {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: 'features',
-      title: 'Features',
-      type: 'array',
-      of: [{ type: 'string' }],
-      validation: (Rule: any) => Rule.required().min(1),
-    },
-    {
-      name: 'price',
-      title: 'Price',
+      name: 'color',
+      title: 'Color Theme',
       type: 'string',
-      description: 'Optional pricing information (e.g., "From R15,000")',
+      options: {
+        list: [
+          { title: 'Mint Teal', value: 'mint-teal' },
+          { title: 'Soft Mauve', value: 'soft-mauve' },
+          { title: 'Creamy Apricot', value: 'creamy-apricot' },
+        ],
+      },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'order',
       title: 'Display Order',
       type: 'number',
       description: 'Order in which services appear (lower numbers first)',
+      validation: (Rule: any) => Rule.required(),
     },
   ],
   preview: {

@@ -1,21 +1,11 @@
 import { useHeroContent } from "@/hooks/useSanityData";
 import { urlFor } from "@/lib/sanity";
-import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   const { data: heroContent, isLoading, error } = useHeroContent();
 
-  // Fallback content if Sanity data is not available
-  const fallbackContent = {
-    title: "Design for humanity",
-    subtitle: "Human Experience Design",
-    description:
-      "Shaping your service with care, from the flow of your site to the systems behind it. We create experiences that welcome your customers in, support your team, and help your business grow with purpose.",
-    ctaText: "Get Started",
-    ctaLink: "/contact",
-  };
-
-  const content = heroContent || fallbackContent;
+  // Use Sanity data directly
+  const content = heroContent;
 
   if (isLoading) {
     return (
@@ -26,6 +16,23 @@ const Hero = () => {
             <div className="h-16 bg-gray-200 rounded w-full mb-6"></div>
             <div className="h-6 bg-gray-200 rounded w-full mb-4"></div>
             <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !content) {
+    return (
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center">
+            <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+              Hero content not found
+            </h1>
+            <p className="text-xl text-gray-600">
+              Please add hero content in your Sanity Studio.
+            </p>
           </div>
         </div>
       </section>
@@ -53,15 +60,9 @@ const Hero = () => {
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-gray-900 mb-6 leading-tight">
               {content.title}
             </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <p className="text-xl text-gray-600 leading-relaxed">
               {content.description}
             </p>
-            <Button
-              asChild
-              className="bg-mint-teal hover:bg-mint-teal-dark text-white px-8 py-3 text-lg"
-            >
-              <a href={content.ctaLink}>{content.ctaText}</a>
-            </Button>
           </div>
 
           <div className="relative lg:block hidden">

@@ -5,39 +5,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Heart, MessageCircle, Users, Trophy } from "lucide-react";
+import { useValues } from "@/hooks/useSanityData";
+import * as LucideIcons from "lucide-react";
 
 const Values = () => {
-  const values = [
-    {
-      icon: Heart,
-      title: "Digital and AI First",
-      description:
-        "We embrace technology to simplify your work and enhance your customer experiences, making your business more efficient and effective.",
-      color: "mint-teal",
-    },
-    {
-      icon: MessageCircle,
-      title: "Emotional Connection",
-      description:
-        "We believe in forging genuine connections between your brand and your customers, creating experiences that resonate and build lasting relationships.",
-      color: "soft-mauve",
-    },
-    {
-      icon: Users,
-      title: "Collaborative Process",
-      description:
-        "We work closely with you, combining your vision with our expertise to create solutions that truly reflect your business and goals.",
-      color: "creamy-apricot",
-    },
-    {
-      icon: Trophy,
-      title: "Excellence Driven",
-      description:
-        "We're committed to delivering exceptional results that exceed expectations, always striving for the highest quality in everything we do.",
-      color: "mint-teal",
-    },
-  ];
+  const { data: values, isLoading, error } = useValues();
+
+  // Use Sanity data directly
+  const valuesData = values;
+
+  // Helper function to get icon component
+  const getIconComponent = (iconName: string) => {
+    const IconComponent = (LucideIcons as any)[iconName];
+    return IconComponent || LucideIcons.Heart;
+  };
 
   return (
     <section className="py-20 bg-white">
@@ -52,47 +33,73 @@ const Values = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((value, index) => {
-            const Icon = value.icon;
-            return (
-              <Card
-                key={index}
-                className="group hover:shadow-lg transition-all duration-300 border-0 bg-white"
-              >
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[...Array(4)].map((_, index) => (
+              <Card key={index} className="border-0 bg-white">
                 <CardHeader className="text-center pb-4">
-                  <div
-                    className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 ${
-                      value.color === "mint-teal"
-                        ? "bg-mint-teal/10"
-                        : value.color === "soft-mauve"
-                        ? "bg-soft-mauve/10"
-                        : "bg-creamy-apricot/10"
-                    }`}
-                  >
-                    <Icon
-                      className={`h-8 w-8 ${
-                        value.color === "mint-teal"
-                          ? "text-mint-teal"
-                          : value.color === "soft-mauve"
-                          ? "text-soft-mauve"
-                          : "text-yellow-600"
-                      }`}
-                    />
+                  <div className="animate-pulse">
+                    <div className="w-16 h-16 bg-gray-200 rounded-2xl mb-4 mx-auto"></div>
+                    <div className="h-6 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded w-full mb-1"></div>
+                    <div className="h-4 bg-gray-200 rounded w-2/3 mx-auto"></div>
                   </div>
-                  <CardTitle className="text-xl font-serif font-semibold">
-                    {value.title}
-                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-600 leading-relaxed">
-                    {value.description}
-                  </CardDescription>
-                </CardContent>
               </Card>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        ) : error || !valuesData || valuesData.length === 0 ? (
+          <div className="text-center py-16">
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+              Values not found
+            </h3>
+            <p className="text-gray-600">
+              Please add values in your Sanity Studio.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {valuesData.map((value, index) => {
+              const Icon = getIconComponent(value.icon);
+              return (
+                <Card
+                  key={index}
+                  className="group hover:shadow-lg transition-all duration-300 border-0 bg-white"
+                >
+                  <CardHeader className="text-center pb-4">
+                    <div
+                      className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 ${
+                        value.color === "mint-teal"
+                          ? "bg-mint-teal/10"
+                          : value.color === "soft-mauve"
+                          ? "bg-soft-mauve/10"
+                          : "bg-creamy-apricot/10"
+                      }`}
+                    >
+                      <Icon
+                        className={`h-8 w-8 ${
+                          value.color === "mint-teal"
+                            ? "text-mint-teal"
+                            : value.color === "soft-mauve"
+                            ? "text-soft-mauve"
+                            : "text-yellow-600"
+                        }`}
+                      />
+                    </div>
+                    <CardTitle className="text-xl font-serif font-semibold">
+                      {value.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-gray-600 leading-relaxed">
+                      {value.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );
