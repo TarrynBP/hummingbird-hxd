@@ -1,0 +1,82 @@
+{
+  "name": "HummingBirdd Human Experience Design",
+  "short_name": "HummingBirdd",
+  "description": "HummingBirdd specializes in human experience design, creating user-centered solutions that enhance customer engagement and drive business growth through empathetic design thinking",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4ade80",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "design", "productivity"],
+  "icons": [
+    {
+      "src": "/assets/favicon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/desktop-mockup.svg",
+      "sizes": "1280x720",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "HummingBirdd Human Experience Design Homepage"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch for a free consultation",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/assets/favicon-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Our Services",
+      "short_name": "Services",
+      "description": "View our web design services",
+      "url": "/services",
+      "icons": [
+        {
+          "src": "/assets/favicon-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Case Studies",
+      "short_name": "Portfolio",
+      "description": "View our design case studies",
+      "url": "/articles",
+      "icons": [
+        {
+          "src": "/assets/favicon-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

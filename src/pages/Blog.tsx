@@ -1,6 +1,13 @@
 import { useParams } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Clock, Calendar, Share2, BookOpen, User } from "lucide-react";
+import {
+  ArrowLeft,
+  Clock,
+  Calendar,
+  Share2,
+  BookOpen,
+  User,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Blog = () => {
@@ -13,7 +20,8 @@ const Blog = () => {
       readTime: "5 min read",
       category: "Productivity",
       author: "HummingBird Team",
-      excerpt: "Small inefficiencies compound over time, creating bigger problems that drain your energy and slow your progress.",
+      excerpt:
+        "Small inefficiencies compound over time, creating bigger problems that drain your energy and slow your progress.",
       content: `
         <div class="text-xl text-muted-foreground leading-relaxed mb-8">Small inefficiencies compound over time, creating bigger problems that drain your energy and slow your progress. Here's how to identify and eliminate them before they become major roadblocks.</div>
 
@@ -100,15 +108,16 @@ const Blog = () => {
         <div class="bg-gradient-to-r from-mint-teal/5 to-soft-mauve/5 border border-mint-teal/20 rounded-lg p-8 mb-8">
           <p class="text-xl font-semibold text-foreground text-center">Remember: The goal isn't perfection, it's progress. Small improvements compound into significant time savings.</p>
         </div>
-      `
+      `,
     },
     "improve-user-work": {
       title: "Ways to Improve How You Work",
-      date: "28 Jun 2024", 
+      date: "28 Jun 2024",
       readTime: "5 min read",
       category: "Workflow",
       author: "HummingBird Team",
-      excerpt: "Simple adjustments to your daily workflow can dramatically improve both your productivity and your customers' experience.",
+      excerpt:
+        "Simple adjustments to your daily workflow can dramatically improve both your productivity and your customers' experience.",
       content: `
         <div class="text-xl text-muted-foreground leading-relaxed mb-8">Simple adjustments to your daily workflow can dramatically improve both your productivity and your customers' experience. Here are proven strategies that deliver immediate results.</div>
 
@@ -142,7 +151,7 @@ const Blog = () => {
         <div class="bg-gradient-to-r from-mint-teal/5 to-soft-mauve/5 border border-mint-teal/20 rounded-lg p-8 mb-8">
           <p class="text-xl font-semibold text-foreground text-center">Small changes in how you work can create big improvements in both your efficiency and customer satisfaction.</p>
         </div>
-      `
+      `,
     },
     "truth-about-admin": {
       title: "Truth That Help You Do Less Admin",
@@ -150,7 +159,8 @@ const Blog = () => {
       readTime: "5 min read",
       category: "Automation",
       author: "HummingBird Team",
-      excerpt: "Administrative tasks don't have to consume your day. With the right tools and mindset, you can reduce admin work without adding complexity.",
+      excerpt:
+        "Administrative tasks don't have to consume your day. With the right tools and mindset, you can reduce admin work without adding complexity.",
       content: `
         <div class="text-xl text-muted-foreground leading-relaxed mb-8">Administrative tasks don't have to consume your day. With the right tools and mindset, you can reduce admin work without adding complexity to your life.</div>
 
@@ -187,7 +197,7 @@ const Blog = () => {
         <div class="bg-gradient-to-r from-mint-teal/5 to-soft-mauve/5 border border-mint-teal/20 rounded-lg p-8 mb-8">
           <p class="text-xl font-semibold text-foreground text-center">Less admin time means more time for the work that truly matters—and the work you actually enjoy.</p>
         </div>
-      `
+      `,
     },
     "improve-offers": {
       title: "Start Small, Improve Often",
@@ -195,7 +205,8 @@ const Blog = () => {
       readTime: "3 min read",
       category: "Growth",
       author: "HummingBird Team",
-      excerpt: "Sustainable improvement comes from consistent small changes, not dramatic overhauls.",
+      excerpt:
+        "Sustainable improvement comes from consistent small changes, not dramatic overhauls.",
       content: `
         <div class="text-xl text-muted-foreground leading-relaxed mb-8">Sustainable improvement comes from consistent small changes, not dramatic overhauls. Here's why the incremental approach wins every time.</div>
 
@@ -228,7 +239,7 @@ const Blog = () => {
         <div class="bg-gradient-to-r from-mint-teal/5 to-soft-mauve/5 border border-mint-teal/20 rounded-lg p-8 mb-8">
           <p class="text-xl font-semibold text-foreground text-center">Progress isn't about perfection—it's about direction. Small steps in the right direction beat standing still while planning the perfect leap.</p>
         </div>
-      `
+      `,
     },
     "business-essentials": {
       title: "Which Business Essentials Run",
@@ -236,7 +247,8 @@ const Blog = () => {
       readTime: "3 min read",
       category: "Business Strategy",
       author: "HummingBird Team",
-      excerpt: "Not all business activities are created equal. Understanding which essentials actually move your business forward helps you focus your energy where it matters most.",
+      excerpt:
+        "Not all business activities are created equal. Understanding which essentials actually move your business forward helps you focus your energy where it matters most.",
       content: `
         <div class="text-xl text-muted-foreground leading-relaxed mb-8">Not all business activities are created equal. Understanding which essentials actually move your business forward helps you focus your energy where it matters most.</div>
 
@@ -269,7 +281,7 @@ const Blog = () => {
         <div class="bg-gradient-to-r from-mint-teal/5 to-soft-mauve/5 border border-mint-teal/20 rounded-lg p-8 mb-8">
           <p class="text-xl font-semibold text-foreground text-center">Focus on the essentials, and let everything else serve those priorities.</p>
         </div>
-      `
+      `,
     },
     "progress-not-perfection": {
       title: "Progress, Not Perfection",
@@ -277,7 +289,8 @@ const Blog = () => {
       readTime: "5 min read",
       category: "Mindset",
       author: "HummingBird Team",
-      excerpt: "Perfectionism is the enemy of progress. Learning to start small, focus on what matters, and fix things as you go is the key to sustainable success.",
+      excerpt:
+        "Perfectionism is the enemy of progress. Learning to start small, focus on what matters, and fix things as you go is the key to sustainable success.",
       content: `
         <div class="text-xl text-muted-foreground leading-relaxed mb-8">Perfectionism is the enemy of progress. Learning to start small, focus on what matters, and fix things as you go is the key to sustainable success.</div>
 
@@ -313,8 +326,8 @@ const Blog = () => {
         <div class="bg-gradient-to-r from-mint-teal/5 to-soft-mauve/5 border border-mint-teal/20 rounded-lg p-8 mb-8">
           <p class="text-xl font-semibold text-foreground text-center">Progress compounds. Perfection procrastinates. Choose progress.</p>
         </div>
-      `
-    }
+      `,
+    },
   };
 
   const post = blogPosts[blogId as keyof typeof blogPosts];
@@ -323,8 +336,12 @@ const Blog = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-secondary/20">
         <div className="text-center">
-          <h1 className="text-4xl font-serif font-bold text-foreground mb-4">Blog Post Not Found</h1>
-          <Link to="/" className="text-mint-teal hover:underline">Return to Home</Link>
+          <h1 className="text-4xl font-serif font-bold text-foreground mb-4">
+            Blog Post Not Found
+          </h1>
+          <Link to="/" className="text-mint-teal hover:underline">
+            Return to Home
+          </Link>
         </div>
       </div>
     );
@@ -336,8 +353,8 @@ const Blog = () => {
       <div className="bg-gradient-to-r from-mint-teal/10 via-soft-mauve/10 to-creamy-apricot/10 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-mint-teal/5 to-soft-mauve/5"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="inline-flex items-center text-mint-teal hover:text-mint-teal/80 transition-colors mb-8 group"
           >
             <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1" />
@@ -362,11 +379,11 @@ const Blog = () => {
                 {post.author}
               </div>
             </div>
-            
+
             <h1 className="text-4xl lg:text-6xl font-serif font-bold text-foreground mb-6 leading-tight">
               {post.title}
             </h1>
-            
+
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
               {post.excerpt}
             </p>
@@ -389,7 +406,7 @@ const Blog = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <Card className="border-0 shadow-2xl bg-card/50 backdrop-blur-sm">
           <CardContent className="p-8 lg:p-16">
-            <div 
+            <div
               className="prose prose-lg max-w-none text-foreground"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
@@ -404,17 +421,19 @@ const Blog = () => {
                   Ready to Transform Your Website?
                 </h3>
                 <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Let's work together to create a website that not only looks beautiful but drives real results for your business through strategic color choices.
+                  Let's work together to create a website that not only looks
+                  beautiful but drives real results for your business through
+                  strategic color choices.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link 
-                    to="/contact" 
+                  <Link
+                    to="/contact"
                     className="inline-block bg-gradient-to-r from-mint-teal to-soft-mauve text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity shadow-lg"
                   >
                     Start Your Project
                   </Link>
-                  <Link 
-                    to="/articles" 
+                  <Link
+                    to="/articles"
                     className="inline-block border-2 border-mint-teal text-mint-teal px-8 py-4 rounded-xl font-semibold hover:bg-mint-teal hover:text-white transition-colors"
                   >
                     Read More Articles

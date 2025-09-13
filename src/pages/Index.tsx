@@ -4,17 +4,24 @@ import Testimonials from "@/components/sections/Testimonials";
 import Portfolio from "@/components/sections/Portfolio";
 import CTA from "@/components/sections/CTA";
 import Values from "@/components/sections/Values";
+import SEO from "@/components/SEO";
+import { useSEO } from "@/hooks/useSEO";
 
 const Index = () => {
+  const seoData = useSEO();
+
   return (
-    <div className="min-h-screen">
-      <Hero />
-      <Services />
-      <Testimonials />
-      <Portfolio />
-      <CTA />
-      <Values />
-    </div>
+    <>
+      <SEO seoData={seoData} />
+      <div className="min-h-screen">
+        <Hero />
+        <Services />
+        <Testimonials />
+        <Portfolio />
+        <CTA />
+        <Values />
+      </div>
+    </>
   );
 };
 

@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 import { useServices } from "@/hooks/useSanityData";
 import * as LucideIcons from "lucide-react";
 
@@ -101,12 +102,14 @@ const Services = () => {
         )}
 
         <div className="flex flex-col sm:flex-row justify-center">
-          <Button
-            size="lg"
-            className="bg-mint-teal hover:bg-mint-teal-dark text-white group"
-          >
-            View Our Services
-          </Button>
+          <Link to="/services">
+            <Button
+              size="lg"
+              className="bg-mint-teal hover:bg-mint-teal-dark text-white group"
+            >
+              View Our Services
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

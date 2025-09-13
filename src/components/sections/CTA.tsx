@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const CTA = () => {
   return (
@@ -18,19 +19,23 @@ const CTA = () => {
           driving real results for your business.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            size="lg"
-            className="bg-mint-teal hover:bg-mint-teal-dark text-white"
-          >
-            View Our Packages
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white"
-          >
-            View Our Work
-          </Button>
+          <Link to="/services">
+            <Button
+              size="lg"
+              className="bg-mint-teal hover:bg-mint-teal-dark text-white"
+            >
+              View Our Packages
+            </Button>
+          </Link>
+          <Link to="/#portfolio">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white"
+            >
+              View Our Work
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

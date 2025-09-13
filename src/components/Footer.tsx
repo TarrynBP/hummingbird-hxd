@@ -48,7 +48,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/portfolio"
+                  to="/#portfolio"
                   className="text-gray-600 hover:text-mint-teal transition-colors"
                 >
                   Portfolio

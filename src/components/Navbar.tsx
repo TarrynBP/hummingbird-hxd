@@ -44,9 +44,11 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            <Button className="bg-mint-teal hover:bg-mint-teal-dark text-white">
-              Get Started
-            </Button>
+            <Link to="/contact">
+              <Button className="bg-mint-teal hover:bg-mint-teal-dark text-white">
+                Get Started
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -84,9 +86,11 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="px-3 py-2">
-                <Button className="w-full bg-mint-teal hover:bg-mint-teal-dark text-white">
-                  Get Started
-                </Button>
+                <Link to="/contact">
+                  <Button className="w-full bg-mint-teal hover:bg-mint-teal-dark text-white">
+                    Get Started
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

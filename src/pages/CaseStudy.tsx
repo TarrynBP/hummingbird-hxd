@@ -368,7 +368,10 @@ const CaseStudy = () => {
                 A streamlined signup flow with clear pricing plans and intuitive
                 navigation.
               </p>
-              <Button className="bg-mint-teal hover:bg-mint-teal-dark text-white">
+              <Button
+                className="bg-mint-teal hover:bg-mint-teal-dark text-white"
+                disabled
+              >
                 Explore Demo
               </Button>
             </div>
@@ -623,12 +626,14 @@ const CaseStudy = () => {
             Let's create a website that delivers measurable impact for your
             business.
           </p>
-          <Button
-            size="lg"
-            className="bg-mint-teal hover:bg-mint-teal-dark text-white"
-          >
-            Start Your Project
-          </Button>
+          <Link to="/contact">
+            <Button
+              size="lg"
+              className="bg-mint-teal hover:bg-mint-teal-dark text-white"
+            >
+              Start Your Project
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
