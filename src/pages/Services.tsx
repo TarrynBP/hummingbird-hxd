@@ -43,7 +43,7 @@ const Services = () => {
         </section>
 
         {/* Services Grid */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-creamy-apricot/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {isLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -196,15 +196,13 @@ const Services = () => {
               ].map((phase, index) => (
                 <div key={index} className="text-center">
                   <div
-                    className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
-                      phase.color === "mint-teal"
-                        ? "bg-mint-teal"
-                        : phase.color === "soft-mauve"
-                        ? "bg-soft-mauve"
-                        : "bg-yellow-500"
-                    }`}
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 `}
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(120, 206, 195, 0.25) 0%, rgba(195, 162, 179, 0.25) 100%)",
+                    }}
                   >
-                    <span className="text-white font-bold text-lg">
+                    <span className="text-mint-teal font-bold text-lg">
                       {phase.step}
                     </span>
                   </div>
@@ -221,8 +219,9 @@ const Services = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-20 relative overflow-hidden">
+          <div className="absolute inset-0 gradient-mint-mauve opacity-5 z-0"></div>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-6">
               Ready to get started?
             </h2>

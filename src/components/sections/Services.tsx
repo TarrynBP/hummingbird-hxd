@@ -34,7 +34,7 @@ const Services = () => {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {[...Array(4)].map((_, index) => (
-              <Card key={index} className="border-0 bg-white">
+              <Card key={index} className="border-0">
                 <CardHeader className="text-center pb-4">
                   <div className="animate-pulse">
                     <div className="w-16 h-16 bg-gray-200 rounded-2xl mb-4 mx-auto"></div>
@@ -62,7 +62,10 @@ const Services = () => {
               return (
                 <Card
                   key={index}
-                  className="group hover:shadow-lg transition-all duration-300 border-0 bg-white"
+                  className="group hover:shadow-lg transition-all duration-300 border-0"
+                  style={{
+                    backgroundColor: "#F8FDFB",
+                  }}
                 >
                   <CardHeader className="text-center pb-4">
                     <div

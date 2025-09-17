@@ -23,13 +23,6 @@ export const caseStudySchema = {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: 'color',
-      title: 'Theme Color',
-      type: 'string',
-      description: 'CSS color value (e.g., #10B981, #8B5CF6)',
-      validation: (Rule: any) => Rule.required(),
-    },
-    {
       name: 'keyFeatures',
       title: 'Key Features',
       type: 'array',
@@ -42,14 +35,6 @@ export const caseStudySchema = {
       type: 'array',
       of: [{ type: 'string' }],
       validation: (Rule: any) => Rule.required().min(1),
-    },
-    {
-      name: 'image',
-      title: 'Project Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
     },
     {
       name: 'slug',
@@ -77,38 +62,58 @@ export const caseStudySchema = {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: 'process',
+      name: 'designProcess',
       title: 'Design Process',
-      type: 'text',
-      rows: 4,
-      validation: (Rule: any) => Rule.required(),
-    },
-    {
-      name: 'results',
-      title: 'Results',
-      type: 'text',
-      rows: 4,
-      validation: (Rule: any) => Rule.required(),
-    },
-    {
-      name: 'metrics',
-      title: 'Key Metrics',
-      type: 'array',
-      of: [
+      type: 'object',
+      fields: [
         {
-          type: 'object',
-          fields: [
+          name: 'description',
+          title: 'Section Description',
+          type: 'text',
+          rows: 2,
+        },
+        {
+          name: 'steps',
+          title: 'Process Steps',
+          type: 'array',
+          of: [
             {
-              name: 'label',
-              title: 'Metric Label',
-              type: 'string',
-              validation: (Rule: any) => Rule.required(),
-            },
-            {
-              name: 'value',
-              title: 'Metric Value',
-              type: 'string',
-              validation: (Rule: any) => Rule.required(),
+              type: 'object',
+              fields: [
+                {
+                  name: 'number',
+                  title: 'Step Number',
+                  type: 'string',
+                  validation: (Rule: any) => Rule.required(),
+                },
+                {
+                  name: 'title',
+                  title: 'Step Title',
+                  type: 'string',
+                  validation: (Rule: any) => Rule.required(),
+                },
+                {
+                  name: 'duration',
+                  title: 'Step Duration',
+                  type: 'string',
+                  description: 'e.g., "2 weeks", "1 month", "3 days"',
+                  validation: (Rule: any) => Rule.required(),
+                },
+                {
+                  name: 'activities',
+                  title: 'Step Activities',
+                  type: 'array',
+                  of: [{ type: 'string' }],
+                  validation: (Rule: any) => Rule.required().min(1),
+                },
+                {
+                  name: 'keyInsight',
+                  title: 'Step Key Insight',
+                  type: 'text',
+                  rows: 2,
+                  validation: (Rule: any) => Rule.required(),
+                },
+              ],
             },
           ],
         },
@@ -151,74 +156,11 @@ export const caseStudySchema = {
         },
       ],
     },
-    {
-      name: 'userResearch',
-      title: 'User Research',
-      type: 'text',
-      rows: 4,
-    },
-    {
-      name: 'designProcess',
-      title: 'Design Process',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'number',
-              title: 'Step Number',
-              type: 'string',
-            },
-            {
-              name: 'title',
-              title: 'Step Title',
-              type: 'string',
-            },
-            {
-              name: 'items',
-              title: 'Step Items',
-              type: 'array',
-              of: [{ type: 'string' }],
-            },
-          ],
-        },
-      ],
-    },
     // Additional fields that were removed
-    {
-      name: 'clientFeedback',
-      title: 'Client Feedback',
-      type: 'object',
-      fields: [
-        {
-          name: 'author',
-          title: 'Author/Company',
-          type: 'string',
-        },
-        {
-          name: 'quote',
-          title: 'Quote',
-          type: 'text',
-          rows: 3,
-        },
-        {
-          name: 'role',
-          title: 'Role',
-          type: 'string',
-        },
-      ],
-    },
     {
       name: 'duration',
       title: 'Project Duration',
       type: 'string',
-    },
-    {
-      name: 'features',
-      title: 'Features',
-      type: 'array',
-      of: [{ type: 'string' }],
     },
     {
       name: 'keyInsights',
@@ -227,42 +169,86 @@ export const caseStudySchema = {
       of: [{ type: 'string' }],
     },
     {
-      name: 'mainImage',
-      title: 'Main Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      name: 'solutionVisual',
+      title: 'Solution Visual',
+      type: 'object',
+      fields: [
+        {
+          name: 'desktopImage',
+          title: 'Desktop Mockup',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'mobileImage',
+          title: 'Mobile Mockup',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'figmaEmbedUrl',
+          title: 'Figma Embed URL',
+          type: 'url',
+          description: 'Figma embed URL for interactive demo (e.g., https://www.figma.com/embed?embed_host=share&url=...)',
+        },
+        {
+          name: 'demoButtonText',
+          title: 'Demo Button Text',
+          type: 'string',
+          initialValue: 'Explore Demo',
+        },
+      ],
     },
     {
       name: 'measurableImpact',
       title: 'Measurable Impact',
-      type: 'array',
-      of: [
+      type: 'object',
+      fields: [
         {
-          type: 'object',
-          fields: [
+          name: 'description',
+          title: 'Section Description',
+          type: 'text',
+          rows: 2,
+        },
+        {
+          name: 'metrics',
+          title: 'Metrics',
+          type: 'array',
+          of: [
             {
-              name: 'metric',
-              title: 'Metric Name',
-              type: 'string',
-            },
-            {
-              name: 'value',
-              title: 'Value',
-              type: 'string',
-            },
-            {
-              name: 'description',
-              title: 'Description',
-              type: 'text',
-              rows: 2,
-            },
-            {
-              name: 'icon',
-              title: 'Icon Name',
-              type: 'string',
-              description: 'Name of the Lucide React icon',
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  title: 'Metric Title',
+                  type: 'string',
+                  validation: (Rule: any) => Rule.required(),
+                },
+                {
+                  name: 'value',
+                  title: 'Value (e.g., +26%, -22%)',
+                  type: 'string',
+                  validation: (Rule: any) => Rule.required(),
+                },
+                {
+                  name: 'description',
+                  title: 'Description',
+                  type: 'text',
+                  rows: 2,
+                  validation: (Rule: any) => Rule.required(),
+                },
+                {
+                  name: 'icon',
+                  title: 'Icon Name',
+                  type: 'string',
+                  description: 'Name of the Lucide React icon (e.g., Eye, Clock, MousePointer)',
+                  validation: (Rule: any) => Rule.required(),
+                },
+              ],
             },
           ],
         },
@@ -315,8 +301,8 @@ export const caseStudySchema = {
               of: [{ type: 'string' }],
             },
             {
-              name: 'motivations',
-              title: 'Motivations',
+              name: 'behaviours',
+              title: 'Behaviours',
               type: 'array',
               of: [{ type: 'string' }],
             },

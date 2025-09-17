@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const CTA = () => {
   return (
     <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-white"></div>
-      <div className="absolute top-10 right-10 w-32 h-32 bg-mint-teal/10 rounded-full blur-2xl opacity-30"></div>
-      <div className="absolute bottom-10 left-10 w-24 h-24 bg-soft-mauve/10 rounded-full blur-xl opacity-40"></div>
+      <div className="absolute inset-0 gradient-mint-mauve opacity-10"></div>
+      <div className="absolute top-10 right-10 w-32 h-32 gradient-mauve-apricot rounded-full blur-2xl opacity-30"></div>
+      <div className="absolute bottom-10 left-10 w-24 h-24 gradient-teal-apricot rounded-full blur-xl opacity-40"></div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">

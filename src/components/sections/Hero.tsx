@@ -41,8 +41,12 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-white"></div>
+      <div className="absolute inset-0 gradient-mint-mauve opacity-5"></div>
+      <div className="absolute top-20 right-20 w-64 h-64 gradient-mauve-apricot rounded-full blur-3xl opacity-20 animate-float"></div>
+      <div
+        className="absolute bottom-20 left-20 w-48 h-48 gradient-teal-apricot rounded-full blur-2xl opacity-30 animate-float"
+        style={{ animationDelay: "1s" }}
+      ></div>
       <div className="absolute top-20 right-20 w-64 h-64 bg-mint-teal/10 rounded-full blur-3xl opacity-20 animate-float"></div>
       <div
         className="absolute bottom-20 left-20 w-48 h-48 bg-soft-mauve/10 rounded-full blur-2xl opacity-30 animate-float"

@@ -22,10 +22,17 @@ import { Mail, Phone, MapPin, Clock, Send, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import SEO from "@/components/SEO";
 import { useSEO } from "@/hooks/useSEO";
+import {
+  sendContactEmail,
+  initEmailJS,
+  type ContactFormData,
+} from "@/lib/emailjs";
+import { useEffect } from "react";
 
 const Contact = () => {
   const { toast } = useToast();
   const seoData = useSEO();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,24 +42,61 @@ const Contact = () => {
     message: "",
   });
 
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    initEmailJS();
+  }, []);
+
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      service: "",
-      budget: "",
-      message: "",
-    });
+    setIsSubmitting(true);
+
+    try {
+      // Validate required fields
+      if (!formData.name || !formData.email || !formData.message) {
+        toast({
+          title: "Missing Information",
+          description: "Please fill in all required fields.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Send email using EmailJS
+      const success = await sendContactEmail(formData as ContactFormData);
+
+      if (success) {
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you within 24 hours.",
+        });
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          service: "",
+          budget: "",
+          message: "",
+        });
+      } else {
+        throw new Error("Failed to send email");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -228,9 +272,10 @@ const Contact = () => {
                         type="submit"
                         size="lg"
                         className="bg-mint-teal hover:bg-mint-teal-dark text-white group"
+                        disabled={isSubmitting}
                       >
                         <Send className="mr-2 h-4 w-4" />
-                        Send Message
+                        {isSubmitting ? "Sending..." : "Send Message"}
                       </Button>
                       <Button
                         type="button"

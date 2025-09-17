@@ -6,9 +6,11 @@ import CTA from "@/components/sections/CTA";
 import Values from "@/components/sections/Values";
 import SEO from "@/components/SEO";
 import { useSEO } from "@/hooks/useSEO";
+import { useScrollToElement } from "@/hooks/useScrollToElement";
 
 const Index = () => {
   const seoData = useSEO();
+  useScrollToElement(); // Handle hash navigation
 
   return (
     <>

@@ -68,23 +68,13 @@ const Values = () => {
                 >
                   <CardHeader className="text-center pb-4">
                     <div
-                      className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 ${
-                        value.color === "mint-teal"
-                          ? "bg-mint-teal/10"
-                          : value.color === "soft-mauve"
-                          ? "bg-soft-mauve/10"
-                          : "bg-creamy-apricot/10"
-                      }`}
+                      className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300`}
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(120, 206, 195, 0.25) 0%, rgba(195, 162, 179, 0.25) 100%)",
+                      }}
                     >
-                      <Icon
-                        className={`h-8 w-8 ${
-                          value.color === "mint-teal"
-                            ? "text-mint-teal"
-                            : value.color === "soft-mauve"
-                            ? "text-soft-mauve"
-                            : "text-yellow-600"
-                        }`}
-                      />
+                      <Icon className={`h-8 w-8 text-mint-teal `} />
                     </div>
                     <CardTitle className="text-xl font-serif font-semibold">
                       {value.title}

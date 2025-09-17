@@ -17,8 +17,8 @@ const Portfolio = () => {
   const portfolioData = portfolioItems;
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-32 bg-white" id="portfolio">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
             Our Portfolio
@@ -102,8 +102,8 @@ const Portfolio = () => {
                     {/* Top Section with Tag and Navigation Dots */}
                     <div className="flex justify-between items-start mb-4">
                       {/* Category Tag */}
-                      <div className="px-3 py-1 bg-pink-100 border border-pink-200 rounded-full">
-                        <span className="text-sm font-medium text-gray-700">
+                      <div className="px-3 py-1 bg-soft-mauve-light border border-soft-mauve rounded-full">
+                        <span className="text-sm font-medium text-soft-mauve">
                           {item.category || "Project"}
                         </span>
                       </div>
@@ -136,18 +136,18 @@ const Portfolio = () => {
                     </div>
 
                     {/* Main Title */}
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3 leading-tight">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-3 leading-tight break-words">
                       {item.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
+                    <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed break-words">
                       {item.description}
                     </p>
 
                     {/* Key Features Section */}
                     <div className="mb-6">
-                      <h4 className="font-bold text-gray-900 mb-3">
+                      <h4 className="text-sm md:text-base font-bold text-gray-900 mb-3">
                         Key Features:
                       </h4>
                       <ul className="space-y-2">
@@ -155,19 +155,8 @@ const Portfolio = () => {
                           .slice(0, 3)
                           .map((feature, featureIndex) => (
                             <li key={featureIndex} className="flex items-start">
-                              <span
-                                className="w-1.5 h-1.5 rounded-full mt-2 mr-3 flex-shrink-0"
-                                style={{
-                                  backgroundColor:
-                                    item.colorPalette &&
-                                    item.colorPalette.length > 0
-                                      ? item.colorPalette[0]?.color ||
-                                        item.colorPalette[0]?.hex ||
-                                        "#10B981"
-                                      : "#10B981",
-                                }}
-                              ></span>
-                              <span className="text-sm text-gray-600">
+                              <span className="w-1.5 h-1.5 rounded-full mt-2 mr-3 flex-shrink-0 bg-mint-teal"></span>
+                              <span className="text-xs md:text-sm text-gray-600 break-words">
                                 {feature}
                               </span>
                             </li>
@@ -177,20 +166,10 @@ const Portfolio = () => {
 
                     {/* Projected Results Section */}
                     <div className="mb-6">
-                      <h4 className="font-bold text-gray-900 mb-3">
+                      <h4 className="text-sm md:text-base font-bold text-gray-900 mb-3">
                         Projected Results:
                       </h4>
-                      <p
-                        className="text-sm"
-                        style={{
-                          color:
-                            item.colorPalette && item.colorPalette.length > 0
-                              ? item.colorPalette[0]?.color ||
-                                item.colorPalette[0]?.hex ||
-                                "#10B981"
-                              : "#10B981",
-                        }}
-                      >
+                      <p className="text-xs md:text-sm text-mint-teal break-words">
                         {item.projectedResults &&
                         item.projectedResults.length > 0
                           ? item.projectedResults
@@ -218,17 +197,7 @@ const Portfolio = () => {
 
                     {/* Arrow Icon */}
                     <div className="flex justify-end mt-auto">
-                      <ArrowRight
-                        className="w-5 h-5"
-                        style={{
-                          color:
-                            item.colorPalette && item.colorPalette.length > 0
-                              ? item.colorPalette[0]?.color ||
-                                item.colorPalette[0]?.hex ||
-                                "#10B981"
-                              : "#10B981",
-                        }}
-                      />
+                      <ArrowRight className="w-5 h-5 text-mint-teal" />
                     </div>
                   </CardContent>
                 </Card>

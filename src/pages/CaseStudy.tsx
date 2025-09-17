@@ -8,10 +8,17 @@ import {
   Lightbulb,
   Target,
   TrendingUp,
+  Eye,
+  Clock,
+  MousePointer,
+  CheckCircle,
+  Heart,
+  BarChart3,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCaseStudy } from "@/hooks/useSanityData";
 import { urlFor } from "@/lib/sanity";
+import SolutionVisual from "@/components/sections/SolutionVisual";
 
 const CaseStudy = () => {
   const { id } = useParams();
@@ -33,19 +40,24 @@ const CaseStudy = () => {
       },
       colorPalette: [
         {
-          color: "#77cebb",
-          name: "Primary: Sky Blue",
-          description: "trust, open, reliable",
+          color: "#4A90E2",
+          name: "Primary Blue",
+          description: "Stability, trust, digital confidence",
         },
         {
-          color: "#c1a5b4",
-          name: "Secondary: Pink",
-          description: "energetic, playful",
+          color: "#FF7F7F",
+          name: "Coral",
+          description: "Energy, warmth, and momentum",
         },
         {
-          color: "#2c2c2c",
-          name: "Accent: Black",
-          description: "bold, modern",
+          color: "#2C2C2C",
+          name: "Deep Charcoal",
+          description: "Authority, legibility, and focus",
+        },
+        {
+          color: "#F5F5F5",
+          name: "Soft Grey",
+          description: "Calm, simplicity, neutral structure",
         },
       ],
       userResearch: {
@@ -56,14 +68,14 @@ const CaseStudy = () => {
             name: "Micro Business Owner: David",
             age: "Age: 30-45",
             goals: ["Set up VoIP quickly without tech support"],
-            motivations: ["Save time, reduce costs, look professional"],
+            behaviours: ["Save time, reduce costs, look professional"],
             painPoints: ["Complex setup, hidden fees, unreliable service"],
           },
           {
             name: "Office Manager: Priya",
             age: "Age: 35-50",
             goals: ["Manage multiple lines easily"],
-            motivations: ["Efficiency, control, peace of mind"],
+            behaviours: ["Efficiency, control, peace of mind"],
             painPoints: [
               "Confusing invoices, difficult upgrades, poor support",
             ],
@@ -77,34 +89,43 @@ const CaseStudy = () => {
           {
             number: "1",
             title: "Research & Discovery",
-            items: [
+            duration: "2 weeks",
+            activities: [
               "User interviews",
               "Competitor analysis",
               "Stakeholder workshops",
               "Requirements gathering",
             ],
+            keyInsight:
+              "Understanding user goals, motivations, and pain points guided every design decision.",
           },
           {
             number: "2",
             title: "Strategy & Ideation",
-            items: [
+            duration: "3 weeks",
+            activities: [
               "User flows",
               "Wireframing",
               "Information architecture",
               "Content strategy",
               "Concept development",
             ],
+            keyInsight:
+              "A structured approach ensuring every decision leads to a better design solution.",
           },
           {
             number: "3",
             title: "Design & Build",
-            items: [
+            duration: "4 weeks",
+            activities: [
               "UI design",
               "Prototyping",
               "Usability testing",
               "Development hand-off",
               "Launch & iteration",
             ],
+            keyInsight:
+              "Iterative design and testing ensures the final product meets user needs and business goals.",
           },
         ],
       },
@@ -126,37 +147,50 @@ const CaseStudy = () => {
           "While not formally tracked, the redesigned flow was projected to improve clarity, reduce friction and increase user confidence.",
         metrics: [
           {
-            percentage: "+25%",
+            value: "+25%",
             title: "Plan Clarity",
             description: "Plan details staying visible improves comparison.",
+            icon: "Eye",
           },
           {
-            percentage: "+25%",
+            value: "+25%",
             title: "Upgrade Completion",
             description: "Step-by-step cues aim to reduce user drop-offs.",
+            icon: "CheckCircle",
           },
           {
-            percentage: "+30%",
+            value: "+30%",
             title: "User Confidence",
             description:
               "Friendly copy aims to make users feel more supported.",
+            icon: "Heart",
           },
           {
-            percentage: "-35%",
+            value: "-35%",
             title: "Payment Drop-off",
             description: "Simplified process reduces payment related exits.",
+            icon: "TrendingUp",
           },
           {
-            percentage: "+28%",
+            value: "+28%",
             title: "Mobile Completion",
             description: "Mobile-first design improves flow completion.",
+            icon: "MousePointer",
           },
           {
-            percentage: "-25%",
+            value: "-25%",
             title: "Time to Complete",
             description: "Faster, streamlined flow based on user testing.",
+            icon: "Clock",
           },
         ],
+      },
+      solutionVisual: {
+        desktopImage: null, // Will be set from Sanity
+        mobileImage: null, // Will be set from Sanity
+        figmaEmbedUrl:
+          "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fexample",
+        demoButtonText: "Explore Demo",
       },
     },
   };
@@ -181,14 +215,16 @@ const CaseStudy = () => {
         },
         designProcess: {
           description:
+            caseStudy.designProcess?.description ||
             "A structured approach ensuring every decision leads to a better design solution.",
-          steps: caseStudy.designProcess || [],
+          steps: caseStudy.designProcess?.steps || [],
         },
         keyInsights: caseStudy.keyInsights || [],
         measurableImpact: {
           description:
+            caseStudy.measurableImpact?.description ||
             "While not formally tracked, the redesigned flow was projected to improve clarity, reduce friction and increase user confidence.",
-          metrics: caseStudy.measurableImpact || [],
+          metrics: caseStudy.measurableImpact?.metrics || [],
         },
         results: caseStudy.results || "Results coming soon",
         solution: caseStudy.solution || caseStudy.description,
@@ -198,6 +234,13 @@ const CaseStudy = () => {
             caseStudy.solution ||
             caseStudy.description ||
             "Solution details coming soon.",
+        },
+        solutionVisual: {
+          desktopImage: caseStudy.solutionVisual?.desktopImage,
+          mobileImage: caseStudy.solutionVisual?.mobileImage,
+          figmaEmbedUrl: caseStudy.solutionVisual?.figmaEmbedUrl,
+          demoButtonText:
+            caseStudy.solutionVisual?.demoButtonText || "Explore Demo",
         },
       }
     : fallbackCaseStudy[id as keyof typeof fallbackCaseStudy];
@@ -327,22 +370,35 @@ const CaseStudy = () => {
 
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-serif font-semibold text-gray-900 mb-4">
-                    Color Palette
+                  <h3 className="text-lg font-serif font-semibold text-gray-900 mb-6">
+                    Colour Palette
                   </h3>
-                  <div className="space-y-3">
+
+                  {/* Color Swatches Row */}
+                  <div className="flex space-x-2 mb-6">
+                    {transformedData.colorPalette.map((palette, index) => (
+                      <div
+                        key={index}
+                        className="w-8 h-8 rounded-lg border border-gray-200 shadow-sm"
+                        style={{ backgroundColor: palette.color }}
+                      ></div>
+                    ))}
+                  </div>
+
+                  {/* Color Details */}
+                  <div className="space-y-4">
                     {transformedData.colorPalette.map((palette, index) => (
                       <div key={index} className="flex items-center space-x-3">
                         <div
-                          className="w-8 h-8 rounded border"
+                          className="w-4 h-4 rounded-full border border-gray-200"
                           style={{ backgroundColor: palette.color }}
                         ></div>
                         <div>
                           <div className="text-sm font-medium text-gray-900">
-                            {palette.name}
-                          </div>
-                          <div className="text-xs text-gray-600">
-                            {palette.description}
+                            {palette.name}: {""}
+                            <span className="text-xs text-gray-600">
+                              {palette.psychology}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -355,32 +411,16 @@ const CaseStudy = () => {
         </div>
       </section>
 
-      {/* Solution Visual */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-              <Monitor className="h-16 w-16 text-mint-teal mx-auto mb-4" />
-              <h3 className="text-2xl font-serif font-semibold text-gray-900 mb-4">
-                Solution Preview
-              </h3>
-              <p className="text-gray-600 mb-6">
-                A streamlined signup flow with clear pricing plans and intuitive
-                navigation.
-              </p>
-              <Button
-                className="bg-mint-teal hover:bg-mint-teal-dark text-white"
-                disabled
-              >
-                Explore Demo
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Solution Visual Section */}
+      <SolutionVisual
+        desktopImage={transformedData.solutionVisual.desktopImage}
+        mobileImage={transformedData.solutionVisual.mobileImage}
+        figmaEmbedUrl={transformedData.solutionVisual.figmaEmbedUrl}
+        demoButtonText={transformedData.solutionVisual.demoButtonText}
+      />
 
       {/* User Research Section */}
-      <section className="py-16">
+      <section className="py-16 bg-creamy-apricot/10   ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
@@ -421,28 +461,6 @@ const CaseStudy = () => {
                           ))}
                         </ul>
                       </div>
-
-                      <div>
-                        <h4 className="font-medium text-gray-900 mb-2">
-                          Motivations:
-                        </h4>
-                        <ul className="text-sm text-gray-600 space-y-1">
-                          {(persona.motivations &&
-                          Array.isArray(persona.motivations)
-                            ? persona.motivations
-                            : []
-                          ).map((motivation, motivationIndex) => (
-                            <li
-                              key={motivationIndex}
-                              className="flex items-start"
-                            >
-                              <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                              {motivation}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
                       <div>
                         <h4 className="font-medium text-gray-900 mb-2">
                           Pain Points:
@@ -456,6 +474,27 @@ const CaseStudy = () => {
                             <li key={painIndex} className="flex items-start">
                               <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
                               {painPoint}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h4 className="font-medium text-gray-900 mb-2">
+                          Behaviour:
+                        </h4>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          {(persona.behaviours &&
+                          Array.isArray(persona.behaviours)
+                            ? persona.behaviours
+                            : []
+                          ).map((behavior, behaviorIndex) => (
+                            <li
+                              key={behaviorIndex}
+                              className="flex items-start"
+                            >
+                              <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                              {behavior}
                             </li>
                           ))}
                         </ul>
@@ -491,27 +530,45 @@ const CaseStudy = () => {
             {transformedData.designProcess.steps &&
             transformedData.designProcess.steps.length > 0 ? (
               transformedData.designProcess.steps.map((step, index) => (
-                <Card key={index}>
-                  <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 bg-mint-teal rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="text-white font-bold text-xl">
-                        {step.number || index + 1}
-                      </span>
+                <Card key={index} className="bg-white border-0 shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-12 h-12 bg-mint-teal rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-lg">
+                          {step.number || index + 1}
+                        </span>
+                      </div>
+                      <div className="text-sm text-mint-teal font-medium">
+                        {step.duration || "Duration TBD"}
+                      </div>
                     </div>
-                    <h3 className="text-xl font-serif font-semibold text-gray-900 mb-4">
+                    <h3 className="text-xl font-serif font-semibold text-gray-900 mb-3">
                       {step.title || "Design Step"}
                     </h3>
-                    <ul className="text-sm text-gray-600 space-y-2">
-                      {(step.items && Array.isArray(step.items)
-                        ? step.items
-                        : []
-                      ).map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start">
-                          <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                        Activities:
+                      </h4>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        {(step.activities && Array.isArray(step.activities)
+                          ? step.activities
+                          : []
+                        ).map((activity, activityIndex) => (
+                          <li key={activityIndex} className="flex items-start">
+                            <span className="w-1.5 h-1.5 bg-mint-teal rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                            {activity}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="bg-mint-teal/5 p-3 rounded-lg">
+                      <h4 className="text-sm font-semibold text-gray-700 mb-1">
+                        Key Insight:
+                      </h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {step.keyInsight || "Key insight not available"}
+                      </p>
+                    </div>
                   </CardContent>
                 </Card>
               ))
@@ -527,7 +584,12 @@ const CaseStudy = () => {
       </section>
 
       {/* Challenge & Solution Section */}
-      <section className="py-16">
+      <section
+        className="py-16"
+        style={{
+          background: "linear-gradient(135deg, #e0edeb 0%, #f9f6f8 75%)",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Card>
@@ -556,7 +618,7 @@ const CaseStudy = () => {
       </section>
 
       {/* Key Insights Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
@@ -567,12 +629,27 @@ const CaseStudy = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 align-middle
+          "
+          >
             {transformedData.keyInsights.map((insight, index) => (
-              <Card key={index}>
+              <Card
+                key={index}
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(120, 206, 195, 0.10)  0%, rgba(195, 162, 179, 0.10) 75%)",
+                }}
+              >
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-mint-teal rounded-full flex items-center justify-center flex-shrink-0">
+                    <div
+                      className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(120, 206, 195, 0.50) 0%, rgba(195, 162, 179, 0.50) 100%)",
+                      }}
+                    >
                       <span className="text-white font-bold text-sm">
                         {index + 1}
                       </span>
@@ -599,26 +676,57 @@ const CaseStudy = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {transformedData.measurableImpact.metrics.map((metric, index) => (
-              <Card key={index}>
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-mint-teal mb-2">
-                    {metric.percentage}
-                  </div>
-                  <h3 className="text-lg font-serif font-semibold text-gray-900 mb-2">
-                    {metric.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">{metric.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+            {(transformedData.measurableImpact.metrics || []).map(
+              (metric, index) => {
+                // Define icons for each metric type
+                const getIcon = (iconName: string) => {
+                  const iconMap: { [key: string]: any } = {
+                    Eye: Eye,
+                    Clock: Clock,
+                    MousePointer: MousePointer,
+                    CheckCircle: CheckCircle,
+                    TrendingUp: TrendingUp,
+                    Heart: Heart,
+                    BarChart3: BarChart3,
+                  };
+                  return iconMap[iconName] || BarChart3;
+                };
+
+                const IconComponent = getIcon(metric?.icon || "BarChart3");
+
+                return (
+                  <Card key={index} className="bg-white border-0 shadow-lg">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-16 h-16 bg-mint-teal/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <IconComponent className="h-8 w-8 text-mint-teal" />
+                      </div>
+                      <div className="text-3xl font-bold text-mint-teal mb-3">
+                        {metric?.value || "N/A"}
+                      </div>
+                      <h3 className="text-lg font-serif font-semibold text-gray-900 mb-2">
+                        {metric?.title || "Metric Title"}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {metric?.description || "Description not available"}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              }
+            )}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-mint-teal/5">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-16 bg-mint-teal/5 relative overflow-hidden">
+        <div className="absolute inset-0 gradient-mint-mauve opacity-5"></div>
+        <div className="absolute top-20 right-20 w-24 h-24 gradient-mauve-apricot rounded-full blur-2xl opacity-60 animate-float"></div>
+        <div
+          className="absolute bottom-20 left-20 w-24 h-24 gradient-teal-apricot rounded-full blur-2xl opacity-60 animate-float"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-4xl font-serif font-bold text-gray-900 mb-6">
             Ready for similar results?
           </h2>

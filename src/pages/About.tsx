@@ -1,12 +1,22 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Palette, Heart, Users, Award } from "lucide-react";
 import SEO from "@/components/SEO";
 import { useSEO } from "@/hooks/useSEO";
+import { scrollToElement } from "@/hooks/useScrollToElement";
 
 const About = () => {
   const seoData = useSEO();
+  const navigate = useNavigate();
+
+  const handleViewPortfolio = () => {
+    navigate("/");
+    // Small delay to ensure navigation completes before scrolling
+    setTimeout(() => {
+      scrollToElement("portfolio");
+    }, 100);
+  };
 
   const values = [
     {
@@ -70,7 +80,7 @@ const About = () => {
         </section>
 
         {/* Story Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-creamy-apricot/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -96,8 +106,14 @@ const About = () => {
                 </p>
               </div>
               <div className="relative">
-                <div className="w-full h-80 bg-mint-teal/10 rounded-2xl border border-mint-teal/20 flex items-center justify-center">
-                  <div className="text-center">
+                <div
+                  className="w-full h-80 rounded-2xl flex items-center justify-center px-4 py-4"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #78CEC3 0%, #FEE8A4 100%)",
+                  }}
+                >
+                  <div className="text-center bg-white w-full h-full flex flex-col justify-center items-center gap-10">
                     <p className="text-4xl font-bold text-gray-900 mb-2">
                       50+ Projects
                     </p>
@@ -148,9 +164,13 @@ const About = () => {
                   >
                     <CardContent className="p-8">
                       <div
-                        className={`inline-flex items-center justify-center w-16 h-16 ${colors[index]} rounded-2xl mb-6 mx-auto`}
+                        className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 mx-auto`}
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(120, 206, 195, 0.25) 0%, rgba(195, 162, 179, 0.25) 100%)",
+                        }}
                       >
-                        <Icon className={`h-8 w-8 ${iconColors[index]}`} />
+                        <Icon className={`h-8 w-8 text-mint-teal`} />
                       </div>
                       <h3 className="text-xl font-serif font-semibold text-gray-900 mb-4">
                         {value.title}
@@ -167,7 +187,7 @@ const About = () => {
         </section>
 
         {/* Team Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-creamy-apricot/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
@@ -184,7 +204,13 @@ const About = () => {
               {team.map((member, index) => (
                 <Card key={index} className="text-center border-0 shadow-lg">
                   <CardContent className="p-8">
-                    <div className="w-24 h-24 bg-mint-teal/10 border-2 border-mint-teal/20 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <div
+                      className="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(120, 206, 195, 0.25) 0%, rgba(195, 162, 179, 0.25) 100%)",
+                      }}
+                    >
                       <span className="text-mint-teal font-bold text-2xl">
                         {member.name
                           .split(" ")
@@ -227,15 +253,14 @@ const About = () => {
                   View Our Services
                 </Button>
               </Link>
-              <Link to="/#portfolio">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white"
-                >
-                  View Our Portfolio
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white"
+                onClick={handleViewPortfolio}
+              >
+                View Our Portfolio
+              </Button>
             </div>
           </div>
         </section>
