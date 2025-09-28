@@ -69,9 +69,11 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Contact</h3>
             <ul className="space-y-2">
-              <li className="flex items-center space-x-2 text-gray-600">
-                <Mail className="h-4 w-4 flex-shrink-0" />
-                <span>tarryn.pietersen@hummingbirdhxd.com</span>
+              <li className="flex items-start space-x-2 text-gray-600">
+                <Mail className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                <span className="break-all text-sm sm:text-base">
+                  tarryn.pietersen@hummingbirdhxd.com
+                </span>
               </li>
               <li className="flex items-center space-x-2 text-gray-600">
                 <Phone className="h-4 w-4 flex-shrink-0" />
