@@ -157,3 +157,9 @@ Once everything is working:
 
 **Note**: Keep your EmailJS credentials secure and never commit them to version control. Use environment variables for all sensitive information.
 
+
+
+
+
+
+

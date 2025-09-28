@@ -21,11 +21,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2 group">
             <img
               src="/assets/logo-sl.svg"
               alt="HummingBird HXD"
-              className="w-40 h-40"
+              className="w-40 h-40 group-hover:scale-105 transition-transform duration-200"
             />
           </Link>
 
@@ -35,13 +35,16 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`transition-colors duration-200 ${
+                className={`relative transition-all duration-200 ${
                   isActive(link.path)
                     ? "text-mint-teal font-medium"
                     : "text-gray-600 hover:text-mint-teal"
                 }`}
               >
                 {link.label}
+                {isActive(link.path) && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-mint-teal animate-scale-in"></span>
+                )}
               </Link>
             ))}
             <Link to="/contact">

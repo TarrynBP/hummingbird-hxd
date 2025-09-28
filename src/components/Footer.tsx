@@ -1,12 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  Mail,
-  Phone,
-  Instagram,
-  Twitter,
-  Linkedin,
-  MailIcon,
-} from "lucide-react";
+import { Mail, Phone, Instagram, Twitter, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -77,11 +70,11 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-900 mb-4">Contact</h3>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2 text-gray-600">
-                <Mail className="h-4 w-4" />
+                <Mail className="h-4 w-4 flex-shrink-0" />
                 <span>tarryn.pietersen@hummingbirdhxd.com</span>
               </li>
               <li className="flex items-center space-x-2 text-gray-600">
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-4 flex-shrink-0" />
                 <span>+72 (072) 608 5749</span>
               </li>
             </ul>

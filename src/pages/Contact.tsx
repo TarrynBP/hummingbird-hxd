@@ -163,6 +163,7 @@ const Contact = () => {
                           }
                           placeholder="Your full name"
                           required
+                          className="transition-all duration-200 focus:scale-105 focus:shadow-md"
                         />
                       </div>
                       <div className="space-y-2">
@@ -176,6 +177,7 @@ const Contact = () => {
                           }
                           placeholder="your@email.com"
                           required
+                          className="transition-all duration-200 focus:scale-105 focus:shadow-md"
                         />
                       </div>
                     </div>
@@ -189,6 +191,7 @@ const Contact = () => {
                           handleInputChange("company", e.target.value)
                         }
                         placeholder="Your company name"
+                        className="transition-all duration-200 focus:scale-105 focus:shadow-md"
                       />
                     </div>
 
@@ -262,7 +265,7 @@ const Contact = () => {
                           handleInputChange("message", e.target.value)
                         }
                         placeholder="Tell us about your project, goals, and any specific requirements..."
-                        className="min-h-32"
+                        className="min-h-32 transition-all duration-200 focus:scale-105 focus:shadow-md"
                         required
                       />
                     </div>
@@ -271,11 +274,20 @@ const Contact = () => {
                       <Button
                         type="submit"
                         size="lg"
-                        className="bg-mint-teal hover:bg-mint-teal-dark text-white group"
+                        className="bg-mint-teal hover:bg-mint-teal-dark text-white group relative overflow-hidden"
                         disabled={isSubmitting}
                       >
-                        <Send className="mr-2 h-4 w-4" />
+                        <Send
+                          className={`mr-2 h-4 w-4 transition-transform duration-200 ${
+                            isSubmitting
+                              ? "animate-spin"
+                              : "group-hover:translate-x-1"
+                          }`}
+                        />
                         {isSubmitting ? "Sending..." : "Send Message"}
+                        {isSubmitting && (
+                          <div className="absolute inset-0 bg-mint-teal-dark animate-pulse"></div>
+                        )}
                       </Button>
                       <Button
                         type="button"

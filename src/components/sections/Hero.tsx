@@ -42,29 +42,44 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0 gradient-mint-mauve opacity-5"></div>
-      <div className="absolute top-20 right-20 w-64 h-64 gradient-mauve-apricot rounded-full blur-3xl opacity-20 animate-float"></div>
+      <div
+        className="absolute top-20 right-20 w-64 h-64 gradient-mauve-apricot rounded-full blur-3xl opacity-20 animate-float"
+        style={{ transform: "translateZ(0)" }}
+      ></div>
       <div
         className="absolute bottom-20 left-20 w-48 h-48 gradient-teal-apricot rounded-full blur-2xl opacity-30 animate-float"
-        style={{ animationDelay: "1s" }}
+        style={{ animationDelay: "1s", transform: "translateZ(0)" }}
       ></div>
-      <div className="absolute top-20 right-20 w-64 h-64 bg-mint-teal/10 rounded-full blur-3xl opacity-20 animate-float"></div>
+      <div
+        className="absolute top-20 right-20 w-64 h-64 bg-mint-teal/10 rounded-full blur-3xl opacity-20 animate-float"
+        style={{ transform: "translateZ(0)" }}
+      ></div>
       <div
         className="absolute bottom-20 left-20 w-48 h-48 bg-soft-mauve/10 rounded-full blur-2xl opacity-30 animate-float"
-        style={{ animationDelay: "1s" }}
+        style={{ animationDelay: "1s", transform: "translateZ(0)" }}
       ></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <div className="mb-6">
-              <span className="text-mint-teal font-medium text-lg">
+              <span
+                className="text-mint-teal font-medium text-lg animate-fade-in"
+                style={{ animationDelay: "0.2s", animationFillMode: "both" }}
+              >
                 {content.subtitle}
               </span>
             </div>
-            <h1 className="text-5xl lg:text-7xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+            <h1
+              className="text-5xl lg:text-7xl font-serif font-bold text-gray-900 mb-6 leading-tight animate-fade-in"
+              style={{ animationDelay: "0.4s", animationFillMode: "both" }}
+            >
               {content.title}
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p
+              className="text-xl text-gray-600 leading-relaxed animate-fade-in"
+              style={{ animationDelay: "0.6s", animationFillMode: "both" }}
+            >
               {content.description}
             </p>
           </div>
@@ -93,6 +108,13 @@ const Hero = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>

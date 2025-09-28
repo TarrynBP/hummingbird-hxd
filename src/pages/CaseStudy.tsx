@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { useCaseStudy } from "@/hooks/useSanityData";
 import { urlFor } from "@/lib/sanity";
 import SolutionVisual from "@/components/sections/SolutionVisual";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 const CaseStudy = () => {
   const { id } = useParams();
@@ -701,7 +702,11 @@ const CaseStudy = () => {
                         <IconComponent className="h-8 w-8 text-mint-teal" />
                       </div>
                       <div className="text-3xl font-bold text-mint-teal mb-3">
-                        {metric?.value || "N/A"}
+                        <AnimatedCounter
+                          value={metric?.value || "0%"}
+                          duration={2000}
+                          startOnView={true}
+                        />
                       </div>
                       <h3 className="text-lg font-serif font-semibold text-gray-900 mb-2">
                         {metric?.title || "Metric Title"}

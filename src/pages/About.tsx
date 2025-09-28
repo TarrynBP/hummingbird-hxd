@@ -5,6 +5,7 @@ import { Palette, Heart, Users, Award } from "lucide-react";
 import SEO from "@/components/SEO";
 import { useSEO } from "@/hooks/useSEO";
 import { scrollToElement } from "@/hooks/useScrollToElement";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 const About = () => {
   const seoData = useSEO();
@@ -115,7 +116,12 @@ const About = () => {
                 >
                   <div className="text-center bg-white w-full h-full flex flex-col justify-center items-center gap-10">
                     <p className="text-4xl font-bold text-gray-900 mb-2">
-                      50+ Projects
+                      <AnimatedCounter
+                        value="50+"
+                        duration={2000}
+                        startOnView={true}
+                      />{" "}
+                      Projects
                     </p>
                     <Link to="/services">
                       <Button className="bg-mint-teal hover:bg-mint-teal-dark text-white">

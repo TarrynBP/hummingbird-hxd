@@ -13,10 +13,13 @@ const Testimonials = () => {
     <section className="py-20 bg-creamy-apricot/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4 animate-fade-in">
             How our clients feel
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p
+            className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in"
+            style={{ animationDelay: "0.2s", animationFillMode: "both" }}
+          >
             Don't just take our word for it. See how our clients feel.
           </p>
         </div>
@@ -57,13 +60,24 @@ const Testimonials = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {testimonialsData.map((testimonial, index) => (
-              <Card key={index} className="border-0 shadow-lg">
+              <Card
+                key={index}
+                className="border-0 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group animate-slide-up"
+                style={{
+                  animationDelay: `${index * 0.15}s`,
+                  animationFillMode: "both",
+                }}
+              >
                 <CardContent className="p-8">
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
                         key={i}
-                        className="h-5 w-5 text-yellow-400 fill-current"
+                        className="h-5 w-5 text-yellow-400 fill-current animate-scale-in group-hover:scale-110 transition-transform duration-200"
+                        style={{
+                          animationDelay: `${i * 0.1}s`,
+                          animationFillMode: "both",
+                        }}
                       />
                     ))}
                   </div>

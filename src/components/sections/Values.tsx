@@ -24,10 +24,13 @@ const Values = () => {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4 animate-fade-in">
             Our Values
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p
+            className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in"
+            style={{ animationDelay: "0.2s", animationFillMode: "both" }}
+          >
             These core principles guide every project we take on and every
             relationship we build with our clients.
           </p>
@@ -64,7 +67,11 @@ const Values = () => {
               return (
                 <Card
                   key={index}
-                  className="group hover:shadow-lg transition-all duration-300 border-0 bg-white"
+                  className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 bg-white animate-slide-up"
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                    animationFillMode: "both",
+                  }}
                 >
                   <CardHeader className="text-center pb-4">
                     <div
@@ -74,7 +81,9 @@ const Values = () => {
                           "linear-gradient(135deg, rgba(120, 206, 195, 0.25) 0%, rgba(195, 162, 179, 0.25) 100%)",
                       }}
                     >
-                      <Icon className={`h-8 w-8 text-mint-teal `} />
+                      <Icon
+                        className={`h-8 w-8 text-mint-teal group-hover:rotate-12 transition-transform duration-300`}
+                      />
                     </div>
                     <CardTitle className="text-xl font-serif font-semibold">
                       {value.title}

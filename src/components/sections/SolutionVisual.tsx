@@ -31,74 +31,54 @@ const SolutionVisual = ({
 
   return (
     <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
           {/* Mockups Section */}
-          <div className="relative">
-            <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
-              {/* Desktop Mockup */}
-              {desktopImage && (
-                <div className="relative">
-                  <div className="w-full max-w-md lg:max-w-lg">
-                    <div className="relative bg-gray-800 rounded-lg p-4 shadow-2xl">
-                      {/* Browser Chrome */}
-                      <div className="flex items-center space-x-2 mb-4">
-                        <div className="flex space-x-1">
-                          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                        </div>
-                        <div className="flex-1 bg-gray-700 rounded px-3 py-1">
-                          <div className="text-xs text-gray-300">bankx.com</div>
-                        </div>
-                      </div>
-                      {/* Desktop Image */}
-
-                      <div className="relative overflow-hidden rounded-lg">
-                        <img
-                          src={urlFor(desktopImage)
-                            .width(800)
-                            .height(600)
-                            .url()}
-                          alt="Desktop mockup"
-                          className="w-full h-auto object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute -bottom-4 -left-4 bg-mint-teal text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
-                    <Monitor className="w-4 h-4" />
-                    <span>Desktop</span>
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
+            {/* Desktop Mockup */}
+            {desktopImage && (
+              <div>
+                <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[12px] rounded-t-xl h-[258px] max-w-[452px] md:h-[441px] md:max-w-[768px]">
+                  <div className="rounded-lg overflow-hidden h-[234px] md:h-[417px] bg-white dark:bg-gray-800">
+                    <img
+                      src={urlFor(desktopImage).url()}
+                      className="dark:hidden h-[234px] md:h-[417px] w-full rounded-lg"
+                      alt=""
+                    />
+                    <img
+                      src="https://flowbite.s3.amazonaws.com/docs/device-mockups/laptop-screen-dark.png"
+                      className="hidden dark:block h-[234px] md:h-[417px] w-full rounded-lg"
+                      alt=""
+                    />
                   </div>
                 </div>
-              )}
-
-              {/* Mobile Mockup */}
-              {mobileImage && (
-                <div className="relative">
-                  <div className="w-64 lg:w-72">
-                    <div
-                      className="relative w-full h-auto bg-contain bg-no-repeat bg-center"
-                      style={{
-                        backgroundImage: "url('/assets/mobile_mockup.svg')",
-                        aspectRatio: "9/16",
-                      }}
-                    >
-                      {/* Overlay the project image on the mobile mockup */}
-                      <div className="absolute inset-0 flex items-center justify-center pr-7 pl-7 pt-4 pb-3">
-                        <div className="w-full h-full rounded-3xl overflow-hidden">
-                          <img
-                            src={urlFor(mobileImage).url()}
-                            alt="Mobile mockup"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="relative mx-auto bg-gray-900 dark:bg-gray-700 rounded-b-xl rounded-t-sm h-[26px] max-w-[527px] md:h-[32px] md:max-w-[896px]">
+                  <div className="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl w-[84px] h-[8px] md:w-[144px] md:h-[12px] bg-gray-800"></div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+
+            {/* Mobile Mockup */}
+            {mobileImage && (
+              <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[7px] rounded-[1.25rem] h-[300px] w-[150px]">
+                <div className="h-[16px] w-[1.5px] bg-gray-800 dark:bg-gray-800 absolute -start-[8.5px] top-[36px] rounded-s-lg"></div>
+                <div className="h-[23px] w-[1.5px] bg-gray-800 dark:bg-gray-800 absolute -start-[8.5px] top-[62px] rounded-s-lg"></div>
+                <div className="h-[23px] w-[1.5px] bg-gray-800 dark:bg-gray-800 absolute -start-[8.5px] top-[89px] rounded-s-lg"></div>
+                <div className="h-[32px] w-[1.5px] bg-gray-800 dark:bg-gray-800 absolute -end-[8.5px] top-[71px] rounded-e-lg"></div>
+                <div className="rounded-[1rem] overflow-hidden w-[136px] h-[286px] bg-white dark:bg-gray-800">
+                  <img
+                    src={urlFor(mobileImage).url()}
+                    className="dark:hidden w-[136px] h-[286px]"
+                    alt=""
+                  />
+                  <img
+                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-1-dark.png"
+                    className="hidden dark:block w-[136px] h-[286px]"
+                    alt=""
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
           {/* CTA Section */}

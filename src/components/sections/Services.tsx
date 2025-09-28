@@ -26,7 +26,7 @@ const Services = () => {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4 animate-fade-in">
             What we do
           </h2>
         </div>
@@ -62,8 +62,10 @@ const Services = () => {
               return (
                 <Card
                   key={index}
-                  className="group hover:shadow-lg transition-all duration-300 border-0"
+                  className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 animate-slide-up"
                   style={{
+                    animationDelay: `${index * 0.1}s`,
+                    animationFillMode: "both",
                     backgroundColor: "#F8FDFB",
                   }}
                 >
@@ -78,7 +80,7 @@ const Services = () => {
                       }`}
                     >
                       <Icon
-                        className={`h-8 w-8 ${
+                        className={`h-8 w-8 group-hover:rotate-12 transition-transform duration-300 ${
                           service.color === "mint-teal"
                             ? "text-mint-teal"
                             : service.color === "soft-mauve"

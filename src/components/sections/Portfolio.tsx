@@ -20,10 +20,13 @@ const Portfolio = () => {
     <section className="py-32 bg-white" id="portfolio">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4 animate-fade-in">
             Our Portfolio
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p
+            className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in"
+            style={{ animationDelay: "0.2s", animationFillMode: "both" }}
+          >
             We help small businesses work smarter and show up better online.
             From websites to workflows to AI tools, we make things simpler for
             you and smoother for your customers.
@@ -97,7 +100,13 @@ const Portfolio = () => {
                 key={index}
                 to={`/case-study/${item.slug?.current || item._id}`}
               >
-                <Card className="group hover:shadow-lg transition-all duration-300 border-0 bg-white cursor-pointer h-full">
+                <Card
+                  className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 bg-white cursor-pointer h-full animate-slide-up"
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                    animationFillMode: "both",
+                  }}
+                >
                   <CardContent className="p-6 h-full flex flex-col">
                     {/* Top Section with Tag and Navigation Dots */}
                     <div className="flex justify-between items-start mb-4">
@@ -116,20 +125,33 @@ const Portfolio = () => {
                             .map((color, colorIndex) => (
                               <div
                                 key={colorIndex}
-                                className="w-2 h-2 rounded-full"
+                                className="w-2 h-2 rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"
                                 style={{
                                   backgroundColor:
                                     color.color || color.hex || "#10B981",
+                                  animationDelay: `${colorIndex * 0.1}s`,
                                 }}
                               ></div>
                             ))
                         ) : (
                           // Fallback colors if no color palette
                           <>
-                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                            <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
-                            <div className="w-2 h-2 bg-white border border-gray-300 rounded-full"></div>
-                            <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
+                            <div
+                              className="w-2 h-2 bg-red-500 rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"
+                              style={{ animationDelay: "0s" }}
+                            ></div>
+                            <div
+                              className="w-2 h-2 bg-teal-500 rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"
+                              style={{ animationDelay: "0.1s" }}
+                            ></div>
+                            <div
+                              className="w-2 h-2 bg-white border border-gray-300 rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"
+                              style={{ animationDelay: "0.2s" }}
+                            ></div>
+                            <div
+                              className="w-2 h-2 bg-gray-800 rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"
+                              style={{ animationDelay: "0.3s" }}
+                            ></div>
                           </>
                         )}
                       </div>
