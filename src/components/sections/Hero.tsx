@@ -60,8 +60,8 @@ const Hero = () => {
       ></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+          <div className="animate-fade-in order-1 lg:order-1">
             <div className="mb-6">
               <span
                 className="text-mint-teal font-medium text-lg animate-fade-in"
@@ -84,8 +84,8 @@ const Hero = () => {
             </p>
           </div>
 
-          <div className="relative lg:block hidden">
-            <div className="relative w-full h-96">
+          <div className="relative order-2 lg:order-2 hidden md:block">
+            <div className="relative w-full h-64 md:h-80 lg:h-96">
               {/* Floating Geometric Shapes */}
               <div className="absolute top-0 right-0 w-16 h-16 bg-mint-teal rounded-2xl shadow-lg animate-float"></div>
               <div
@@ -103,8 +103,8 @@ const Hero = () => {
 
               {/* Central Design Element */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-64 h-64 gradient-teal-apricot rounded-full opacity-80 blur-sm"></div>
-                <div className="absolute w-48 h-48 gradient-mint-mauve rounded-full"></div>
+                <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 gradient-teal-apricot rounded-full opacity-80 blur-sm"></div>
+                <div className="absolute w-36 h-36 md:w-44 md:h-44 lg:w-48 lg:h-48 gradient-mint-mauve rounded-full"></div>
               </div>
             </div>
           </div>
