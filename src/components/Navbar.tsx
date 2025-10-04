@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,20 @@ const Navbar = () => {
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
+
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    // Cleanup function to restore scrolling when component unmounts
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   const navLinks = [
     { path: "/", label: "Home" },
@@ -72,8 +86,11 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+          <div
+            className="md:hidden bg-white border-t"
+            style={{ height: "calc(100svh - 64px)" }}
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 h-full flex flex-col justify-start">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -88,12 +105,32 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <div className="px-3 py-2">
-                <Link to="/contact">
-                  <Button className="w-full bg-mint-teal hover:bg-mint-teal-dark text-white">
+
+              <div className="py-2">
+                <Link to="/contact" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full bg-mint-teal hover:bg-mint-teal-dark text-white text-center">
                     Get Started
                   </Button>
                 </Link>
+              </div>
+
+              {/* Animated Loading Sphere at Bottom */}
+              <div className="flex justify-center items-center pt-16 pb-8 mt-auto">
+                <div className="relative w-20 h-20 mx-auto">
+                  {/* Animated hummingbird icon */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-mint-teal to-soft-mauve rounded-full animate-pulse"></div>
+                  </div>
+                  <div className="absolute top-2 left-2 w-4 h-4 bg-mint-teal rounded-full animate-bounce"></div>
+                  <div
+                    className="absolute top-2 right-2 w-4 h-4 bg-soft-mauve rounded-full animate-bounce"
+                    style={{ animationDelay: "0.2s" }}
+                  ></div>
+                  <div
+                    className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-creamy-apricot rounded-full animate-bounce"
+                    style={{ animationDelay: "0.4s" }}
+                  ></div>
+                </div>
               </div>
             </div>
           </div>

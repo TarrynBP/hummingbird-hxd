@@ -106,11 +106,11 @@ const Services = () => {
           </div>
         )}
 
-        <div className="flex flex-col sm:flex-row justify-center">
+        <div className="flex flex-col sm:flex-row justify-center items-center">
           <Link to="/services">
             <Button
               size="lg"
-              className="bg-mint-teal hover:bg-mint-teal-dark text-white group"
+              className="bg-mint-teal hover:bg-mint-teal-dark text-white group w-48"
             >
               View Our Services
             </Button>

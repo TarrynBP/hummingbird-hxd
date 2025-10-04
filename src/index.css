@@ -99,4 +99,19 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  /* Calendly Widget Styles */
+  .calendly-inline-widget-container {
+    width: 100%;
+    min-height: 700px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .calendly-inline-widget {
+    width: 100% !important;
+    height: 700px !important;
+    border: none;
+    border-radius: 0.5rem;
+  }
 }

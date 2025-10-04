@@ -22,7 +22,7 @@ const CTA = () => {
           <Link to="/services">
             <Button
               size="lg"
-              className="bg-mint-teal hover:bg-mint-teal-dark text-white"
+              className="bg-mint-teal hover:bg-mint-teal-dark text-white w-48"
             >
               View Our Packages
             </Button>
@@ -31,7 +31,7 @@ const CTA = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white"
+              className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white w-48"
             >
               View Our Work
             </Button>

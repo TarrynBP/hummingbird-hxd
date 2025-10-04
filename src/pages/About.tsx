@@ -207,35 +207,35 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {team.map((member, index) => (
-                <Card key={index} className="text-center border-0 shadow-lg">
-                  <CardContent className="p-8">
-                    <div
-                      className="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(120, 206, 195, 0.25) 0%, rgba(195, 162, 179, 0.25) 100%)",
-                      }}
-                    >
-                      <span className="text-mint-teal font-bold text-2xl">
-                        {member.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-serif font-semibold text-gray-900 mb-2">
-                      {member.name}
-                    </h3>
-                    <p className="text-mint-teal font-medium mb-4">
-                      {member.role}
-                    </p>
-                    <p className="text-gray-600 leading-relaxed">
-                      {member.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+              {team.map((member, index) => {
+                const imagePath =
+                  member.name === "Tarryn Pietersen"
+                    ? "/assets/tarryn.jpeg"
+                    : "/assets/william.jpg";
+
+                return (
+                  <Card key={index} className="text-center border-0 shadow-lg">
+                    <CardContent className="p-8">
+                      <div className="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden">
+                        <img
+                          src={imagePath}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <h3 className="text-xl font-serif font-semibold text-gray-900 mb-2">
+                        {member.name}
+                      </h3>
+                      <p className="text-mint-teal font-medium mb-4">
+                        {member.role}
+                      </p>
+                      <p className="text-gray-600 leading-relaxed">
+                        {member.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -250,11 +250,11 @@ const About = () => {
               Let's create something effective together. We'd love to hear about
               your project and explore how design can transform your business.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/services">
                 <Button
                   size="lg"
-                  className="bg-mint-teal hover:bg-mint-teal-dark text-white"
+                  className="bg-mint-teal hover:bg-mint-teal-dark text-white w-48"
                 >
                   View Our Services
                 </Button>
@@ -262,7 +262,7 @@ const About = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white"
+                className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white w-48"
                 onClick={handleViewPortfolio}
               >
                 View Our Portfolio
