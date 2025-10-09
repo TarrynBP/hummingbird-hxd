@@ -1,7 +1,7 @@
 {
-  "name": "HummingBirdd Human Experience Design",
-  "short_name": "HummingBirdd",
-  "description": "HummingBirdd specializes in human experience design, creating user-centered solutions that enhance customer engagement and drive business growth through empathetic design thinking",
+  "name": "HummingBird Human Experience Design",
+  "short_name": "HummingBird",
+  "description": "HummingBird specializes in human experience design, creating user-centered solutions that enhance customer engagement and drive business growth through empathetic design thinking",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -42,7 +42,7 @@
       "sizes": "1280x720",
       "type": "image/svg+xml",
       "form_factor": "wide",
-      "label": "HummingBirdd Human Experience Design Homepage"
+      "label": "HummingBird Human Experience Design Homepage"
     }
   ],
   "shortcuts": [

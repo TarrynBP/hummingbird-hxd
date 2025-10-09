@@ -1,11 +1,29 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useAllServices } from "@/hooks/useSanityData";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { data: allServices } = useAllServices();
+
+  // Filter to only show parent services (main service categories)
+  const parentServices =
+    allServices?.filter(
+      (service: any) =>
+        service.serviceType === "web-design" ||
+        service.serviceType === "productivity-services" ||
+        service.title === "Web Design" ||
+        service.title === "Productivity Services"
+    ) || [];
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -26,9 +44,13 @@ const Navbar = () => {
   const navLinks = [
     { path: "/", label: "Home" },
     { path: "/about", label: "About" },
-    { path: "/services", label: "Services" },
     { path: "/contact", label: "Contact" },
   ];
+
+  const handleScheduleCall = () => {
+    // Navigate to contact page and set active tab to booking
+    window.location.href = "/contact#booking";
+  };
 
   return (
     <nav className="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
@@ -61,11 +83,50 @@ const Navbar = () => {
                 )}
               </Link>
             ))}
-            <Link to="/contact">
-              <Button className="bg-mint-teal hover:bg-mint-teal-dark text-white">
-                Get Started
-              </Button>
-            </Link>
+
+            {/* Services Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-600 hover:text-mint-teal transition-all duration-200">
+                <Link
+                  to="/services"
+                  className={`relative transition-all duration-200 ${
+                    isActive("/services")
+                      ? "text-mint-teal font-medium"
+                      : "text-gray-600 hover:text-mint-teal"
+                  }`}
+                >
+                  Services
+                  {isActive("/services") && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-mint-teal animate-scale-in"></span>
+                  )}
+                </Link>
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <Link to="/services" className="cursor-pointer font-medium">
+                    All Services
+                  </Link>
+                </DropdownMenuItem>
+                {parentServices?.map((service: any) => (
+                  <DropdownMenuItem key={service._id} asChild>
+                    <Link
+                      to={`/service/${service.slug?.current}`}
+                      className="cursor-pointer"
+                    >
+                      {service.title}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Button
+              onClick={handleScheduleCall}
+              className="bg-mint-teal hover:bg-mint-teal-dark text-white"
+            >
+              Schedule a Call
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -106,12 +167,43 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              <div className="py-2">
-                <Link to="/contact" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full bg-mint-teal hover:bg-mint-teal-dark text-white text-center">
-                    Get Started
-                  </Button>
+              {/* Services Section for Mobile */}
+              <div className="px-3 py-2">
+                <Link
+                  to="/services"
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                    isActive("/services")
+                      ? "text-mint-teal bg-mint-teal/10"
+                      : "text-gray-600 hover:text-mint-teal hover:bg-mint-teal/5"
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Services
                 </Link>
+                <div className="pl-4 space-y-1">
+                  {parentServices?.map((service: any) => (
+                    <Link
+                      key={service._id}
+                      to={`/service/${service.slug?.current}`}
+                      className="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-mint-teal hover:bg-mint-teal/5 transition-colors duration-200"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="py-2">
+                <Button
+                  onClick={() => {
+                    setIsOpen(false);
+                    handleScheduleCall();
+                  }}
+                  className="w-full bg-mint-teal hover:bg-mint-teal-dark text-white text-center"
+                >
+                  Schedule a Call
+                </Button>
               </div>
 
               {/* Animated Loading Sphere at Bottom */}

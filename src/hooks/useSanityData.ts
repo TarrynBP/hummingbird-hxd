@@ -2,7 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import {
   getHeroContent,
   getServices,
+  getAllServices,
+  getServiceBySlug,
   getServicePackages,
+  getServicePackageBySlug,
   getTestimonials,
   getPortfolioItems,
   getCaseStudies,
@@ -32,11 +35,40 @@ export const useServices = () => {
   });
 };
 
+// All services hook (for navigation)
+export const useAllServices = () => {
+  return useQuery({
+    queryKey: ['allServices'],
+    queryFn: getAllServices,
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
+// Single service hook
+export const useService = (slug: string) => {
+  return useQuery({
+    queryKey: ['service', slug],
+    queryFn: () => getServiceBySlug(slug),
+    enabled: !!slug,
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
 // Service packages hook (for services page)
 export const useServicePackages = () => {
   return useQuery({
     queryKey: ['servicePackages'],
     queryFn: getServicePackages,
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
+// Single service package hook
+export const useServicePackage = (slug: string) => {
+  return useQuery({
+    queryKey: ['servicePackage', slug],
+    queryFn: () => getServicePackageBySlug(slug),
+    enabled: !!slug,
     staleTime: 5 * 60 * 1000,
   });
 };

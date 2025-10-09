@@ -251,7 +251,7 @@ const About = () => {
               your project and explore how design can transform your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link to="/services">
+              <Link to="/#services">
                 <Button
                   size="lg"
                   className="bg-mint-teal hover:bg-mint-teal-dark text-white w-48"

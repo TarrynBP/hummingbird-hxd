@@ -1,8 +1,8 @@
-# EmailJS Setup Guide for HummingBirdd Contact Form
+# EmailJS Setup Guide for HummingBird Contact Form
 
 ## 📋 Overview
 
-This guide will help you set up EmailJS to handle contact form submissions for your HummingBirdd website.
+This guide will help you set up EmailJS to handle contact form submissions for your HummingBird website.
 
 ## 🔧 Step 1: Create EmailJS Account
 
@@ -33,7 +33,7 @@ This guide will help you set up EmailJS to handle contact form submissions for y
 
 1. Create another template
 2. **Template Name**: `auto_reply`
-3. **Subject**: `Thank you for contacting HummingBirdd!`
+3. **Subject**: `Thank you for contacting HummingBird!`
 4. **Content**: Copy the HTML from `email-templates/auto-reply-template.html`
 5. **Save the Template ID** (you'll need this later)
 
@@ -156,15 +156,3 @@ Once everything is working:
 ---
 
 **Note**: Keep your EmailJS credentials secure and never commit them to version control. Use environment variables for all sensitive information.
-
-
-
-
-
-
-
-
-
-
-
-

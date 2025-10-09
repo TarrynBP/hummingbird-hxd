@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Service from "./pages/Service";
 import CaseStudy from "./pages/CaseStudy";
 import Articles from "./pages/Articles";
 import Blog from "./pages/Blog";
@@ -40,6 +41,7 @@ const AppContent = () => {
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/service/:slug" element={<Service />} />
               <Route path="/case-study/:id" element={<CaseStudy />} />
               <Route path="/articles" element={<Articles />} />
               <Route path="/blog/:blogId" element={<Blog />} />

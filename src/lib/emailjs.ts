@@ -75,7 +75,7 @@ export const sendAutoReplyEmail = async (formData: ContactFormData): Promise<boo
       company: formData.company || 'your business',
       service: formData.service || 'your inquiry',
       // You can customize this message
-      auto_reply_message: `Thank you for reaching out to HummingBirdd! We've received your inquiry about ${formData.service || 'our services'} and will get back to you within 24 hours.`,
+      auto_reply_message: `Thank you for reaching out to HummingBird! We've received your inquiry about ${formData.service || 'our services'} and will get back to you within 24 hours.`,
     };
 
     // Send auto-reply (you'll need a separate template for this)

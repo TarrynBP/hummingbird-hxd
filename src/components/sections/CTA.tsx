@@ -11,7 +11,7 @@ const CTA = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
           Ready to build your{" "}
-          <span className="text-gray-500">colourful future?</span>
+          <span className="text-gradient">colourful future?</span>
         </h2>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
           Every colour, every shape, every word of your website is carefully
@@ -19,7 +19,7 @@ const CTA = () => {
           driving real results for your business.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/services">
+          <Link to="/#services">
             <Button
               size="lg"
               className="bg-mint-teal hover:bg-mint-teal-dark text-white w-48"

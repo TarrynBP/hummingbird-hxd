@@ -17,10 +17,73 @@ export const getServices = async () => {
   return await client.fetch(query);
 };
 
+// Get all services for navigation
+export const getAllServices = async () => {
+  const query = `*[_type == "service"] | order(order asc) {
+    _id,
+    title,
+    slug,
+    serviceType,
+    order
+  }`;
+  return await client.fetch(query);
+};
+
+// Get service by slug with its packages
+export const getServiceBySlug = async (slug: string) => {
+  const query = `*[_type == "service" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description,
+    heroTitle,
+    heroSubtitle,
+    heroDescription,
+    icon,
+    features,
+    price,
+    serviceType,
+    ctaTitle,
+    ctaDescription,
+    "packages": *[_type == "servicePackage" && references(^._id)] | order(order asc) {
+      _id,
+      name,
+      price,
+      description,
+      servicesIncluded,
+      popular,
+      ctaLink,
+      order
+    }
+  }`;
+  return await client.fetch(query, { slug });
+};
+
 // Service packages queries (for services page)
 export const getServicePackages = async () => {
   const query = `*[_type == "servicePackage"] | order(order asc)`;
   return await client.fetch(query);
+};
+
+// Get service package by slug
+export const getServicePackageBySlug = async (slug: string) => {
+  const query = `*[_type == "servicePackage" && slug.current == $slug][0] {
+    _id,
+    name,
+    price,
+    description,
+    servicesIncluded,
+    popular,
+    ctaLink,
+    order,
+    service-> {
+      _id,
+      title,
+      slug,
+      serviceType
+    }
+  }`;
+  return await client.fetch(query, { slug });
 };
 
 // Testimonials queries - using actual testimonial documents

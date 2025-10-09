@@ -168,7 +168,7 @@ const Portfolio = () => {
                     </p>
 
                     {/* Key Features Section */}
-                    <div className="mb-6">
+                    <div className="mb-6 flex-grow">
                       <h4 className="text-sm md:text-base font-bold text-gray-900 mb-3">
                         Key Features:
                       </h4>
@@ -186,12 +186,12 @@ const Portfolio = () => {
                       </ul>
                     </div>
 
-                    {/* Projected Results Section */}
-                    <div className="mb-6">
+                    {/* Projected Results Section - Fixed at bottom */}
+                    <div className="mt-auto">
                       <h4 className="text-sm md:text-base font-bold text-gray-900 mb-3">
                         Projected Results:
                       </h4>
-                      <p className="text-xs md:text-sm text-mint-teal break-words">
+                      <p className="text-xs md:text-sm text-mint-teal break-words mb-4">
                         {item.projectedResults &&
                         item.projectedResults.length > 0
                           ? item.projectedResults
@@ -215,11 +215,11 @@ const Portfolio = () => {
                               .join(", ")
                           : "+25% clarity, +25% upgrades, -35% drop-offs, +28% mobile completion"}
                       </p>
-                    </div>
 
-                    {/* Arrow Icon */}
-                    <div className="flex justify-end mt-auto">
-                      <ArrowRight className="w-5 h-5 text-mint-teal" />
+                      {/* Arrow Icon */}
+                      <div className="flex justify-end">
+                        <ArrowRight className="w-5 h-5 text-mint-teal" />
+                      </div>
                     </div>
                   </CardContent>
                 </Card>

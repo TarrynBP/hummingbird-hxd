@@ -5,8 +5,20 @@ export const serviceSchema = {
   fields: [
     {
       name: 'title',
-      title: 'Title',
+      title: 'Service Name',
       type: 'string',
+      description: 'e.g., "Web Design", "Productivity Services"',
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      description: 'URL-friendly version (e.g., "web-design", "productivity-services")',
       validation: (Rule: any) => Rule.required(),
     },
     {
@@ -14,46 +26,78 @@ export const serviceSchema = {
       title: 'Description',
       type: 'text',
       rows: 3,
+      description: 'Brief description of the service',
       validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'heroTitle',
+      title: 'Hero Title',
+      type: 'string',
+      description: 'Main title for the service page (e.g., "Web Design Packages")',
+    },
+    {
+      name: 'heroSubtitle',
+      title: 'Hero Subtitle',
+      type: 'string',
+      description: 'Subtitle for the service page (e.g., "Packages")',
+    },
+    {
+      name: 'heroDescription',
+      title: 'Hero Description',
+      type: 'text',
+      rows: 3,
+      description: 'Description shown in the hero section',
     },
     {
       name: 'icon',
       title: 'Icon Name',
       type: 'string',
-      description: 'Name of the Lucide React icon (e.g., "Rocket", "Monitor")',
-      validation: (Rule: any) => Rule.required(),
+      description: 'Lucide icon name (e.g., "Monitor", "Settings", "Lightbulb", "Zap")',
     },
     {
-      name: 'color',
-      title: 'Color Theme',
+      name: 'serviceType',
+      title: 'Service Type',
       type: 'string',
       options: {
         list: [
-          { title: 'Mint Teal', value: 'mint-teal' },
-          { title: 'Soft Mauve', value: 'soft-mauve' },
-          { title: 'Creamy Apricot', value: 'creamy-apricot' },
+          { title: 'Web Design', value: 'web-design' },
+          { title: 'Productivity Services', value: 'productivity-services' },
         ],
       },
-      validation: (Rule: any) => Rule.required(),
+      description: 'Type of service for styling purposes',
+    },
+    {
+      name: 'ctaTitle',
+      title: 'CTA Title',
+      type: 'string',
+      description: 'Title for the call-to-action section',
+    },
+    {
+      name: 'ctaDescription',
+      title: 'CTA Description',
+      type: 'text',
+      rows: 2,
+      description: 'Description for the call-to-action section',
     },
     {
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      description: 'Order in which services appear (lower numbers first)',
+      description: 'Order in which services appear in navigation',
       validation: (Rule: any) => Rule.required(),
     },
   ],
   preview: {
     select: {
       title: 'title',
-      subtitle: 'description',
+      slug: 'slug.current',
+      order: 'order',
     },
     prepare(selection: any) {
-      const { title, subtitle } = selection;
+      const { title, slug, order } = selection;
       return {
-        title: title,
-        subtitle: subtitle?.substring(0, 100) + '...',
+        title: `${order}. ${title}`,
+        subtitle: `/${slug}`,
       };
     },
   },

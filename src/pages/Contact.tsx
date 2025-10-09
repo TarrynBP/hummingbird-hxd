@@ -42,6 +42,13 @@ const Contact = () => {
   const seoData = useSEO();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeTab, setActiveTab] = useState("form");
+
+  // Handle URL hash navigation for booking tab
+  useEffect(() => {
+    if (window.location.hash === "#booking") {
+      setActiveTab("booking");
+    }
+  }, []);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -401,26 +408,6 @@ const Contact = () => {
                       </div>
                     );
                   })}
-                </CardContent>
-              </Card>
-
-              <Card className="border-0 shadow-lg gradient-mint-mauve text-white">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-serif font-semibold mb-4">
-                    Free Color Consultation
-                  </h3>
-                  <p className="text-white/90 mb-4 leading-relaxed">
-                    Book a 30-minute consultation to discuss your color strategy
-                    and receive actionable insights for your brand.
-                  </p>
-                  <Button
-                    variant="secondary"
-                    className="w-full"
-                    onClick={() => setActiveTab("booking")}
-                  >
-                    <Calendar className="mr-2 h-4 w-4" />
-                    Book Free Call
-                  </Button>
                 </CardContent>
               </Card>
 
