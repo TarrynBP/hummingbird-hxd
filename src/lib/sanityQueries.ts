@@ -94,7 +94,7 @@ export const getTestimonials = async () => {
 
 // Portfolio queries - using caseStudy but only fetching fields needed for portfolio preview
 export const getPortfolioItems = async () => {
-  const query = `*[_type == "caseStudy"] | order(_createdAt desc) {
+  const query = `*[_type == "caseStudy" && (archived != true)] | order(_createdAt desc) {
     _id,
     title,
     description,
@@ -104,19 +104,20 @@ export const getPortfolioItems = async () => {
     projectedResults,
     measurableImpact,
     colorPalette,
-    slug
+    slug,
+    archived
   }`;
   return await client.fetch(query);
 };
 
 // Case study queries
 export const getCaseStudies = async () => {
-  const query = `*[_type == "caseStudy"]`;
+  const query = `*[_type == "caseStudy" && (archived != true)]`;
   return await client.fetch(query);
 };
 
 export const getCaseStudyBySlug = async (slug: string) => {
-  const query = `*[_type == "caseStudy" && slug.current == $slug][0]`;
+  const query = `*[_type == "caseStudy" && slug.current == $slug && (archived != true)][0]`;
   return await client.fetch(query, { slug });
 };
 

@@ -16,8 +16,16 @@ const Portfolio = () => {
   // Use Sanity data directly
   const portfolioData = portfolioItems;
 
+  // Debug logging
+  console.log("Portfolio Debug:", {
+    portfolioItems,
+    isLoading,
+    error,
+    portfolioData,
+  });
+
   return (
-    <section className="py-32 bg-white" id="portfolio">
+    <section className="pt-32 pb-20 md:py-32 bg-white" id="portfolio">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4 animate-fade-in">
@@ -34,9 +42,12 @@ const Portfolio = () => {
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:[grid-template-columns:repeat(2,max-content)] lg:[grid-template-columns:repeat(3,max-content)] gap-6 justify-center">
             {[...Array(4)].map((_, index) => (
-              <Card key={index} className="border-0 bg-white h-full">
+              <Card
+                key={index}
+                className="border-0 bg-white h-full w-full sm:w-[22rem] lg:w-[24rem] max-w-full"
+              >
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="animate-pulse">
                     {/* Top Section */}
@@ -94,14 +105,15 @@ const Portfolio = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:[grid-template-columns:repeat(2,max-content)] lg:[grid-template-columns:repeat(3,max-content)] gap-6 justify-center">
             {portfolioData.map((item, index) => (
               <Link
                 key={index}
                 to={`/case-study/${item.slug?.current || item._id}`}
+                className="w-full"
               >
                 <Card
-                  className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 bg-white cursor-pointer h-full animate-slide-up"
+                  className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 bg-white cursor-pointer h-full animate-slide-up w-full sm:w-[22rem] lg:w-[24rem] max-w-full mx-auto"
                   style={{
                     animationDelay: `${index * 0.1}s`,
                     animationFillMode: "both",

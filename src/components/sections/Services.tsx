@@ -7,58 +7,18 @@ import {
 } from "@/components/ui/card";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-import { Rocket, Monitor, Zap, Palette } from "lucide-react";
+import * as LucideIcons from "lucide-react";
+import { useServices } from "@/hooks/useSanityData";
 
 const Services = () => {
-  // Static service data matching the design
-  const servicesData = [
-    {
-      id: 1,
-      title: "Web Design",
-      description: "Web designs services",
-      icon: Rocket,
-      color: "mint-teal",
-    },
-    {
-      id: 2,
-      title: "Launch with Purpose",
-      description:
-        "We'll design a website that guides your customers step by step. One that's easy to love, and made for small business growth.",
-      icon: Monitor,
-      color: "mint-teal",
-    },
-    {
-      id: 3,
-      title: "Simplify Your Workflow",
-      description:
-        "We'll review your everyday tasks and customer steps to spot simple ways to improve your customer experience and how things run.",
-      icon: Zap,
-      color: "mint-teal",
-    },
-    {
-      id: 4,
-      title: "Productivity Services",
-      description: "Productivity services",
-      icon: Rocket,
-      color: "mint-teal",
-    },
-    {
-      id: 5,
-      title: "Get Set Online",
-      description:
-        "We'll help you choose and connect the right digital tools for your business, so your online setup supports how you work and how you grow.",
-      icon: Palette,
-      color: "soft-mauve",
-    },
-    {
-      id: 6,
-      title: "Grow with AI",
-      description:
-        "We'll show you how to use AI in smart, practical ways to ease your workload, so you focus on the growth of your business.",
-      icon: Rocket,
-      color: "creamy-apricot",
-    },
-  ];
+  const { data: servicesData, isLoading, error } = useServices();
+
+  // Helper to map string icon name from Sanity to a Lucide icon component
+  const getIconComponent = (iconName: string) => {
+    const IconComponent =
+      (LucideIcons as any)[iconName] || (LucideIcons as any)["Zap"];
+    return IconComponent;
+  };
 
   return (
     <section className="py-20 bg-white">
@@ -69,53 +29,78 @@ const Services = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {servicesData.map((service, index) => {
-            const Icon = service.icon;
-            return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {isLoading ? (
+            [...Array(6)].map((_, index) => (
               <Card
-                key={service.id}
-                className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 animate-slide-up"
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                  animationFillMode: "both",
-                  backgroundColor: "#F8FDFB",
-                }}
+                key={index}
+                className="border-0 animate-pulse"
+                style={{ backgroundColor: "#F8FDFB" }}
               >
                 <CardHeader className="text-center pb-4">
-                  <div
-                    className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 ${
-                      service.color === "mint-teal"
-                        ? "bg-mint-teal/10"
-                        : service.color === "soft-mauve"
-                        ? "bg-soft-mauve/10"
-                        : "bg-creamy-apricot/10"
-                    }`}
-                  >
-                    <Icon
-                      className={`h-8 w-8 group-hover:rotate-12 transition-transform duration-300 ${
-                        service.color === "mint-teal"
-                          ? "text-mint-teal"
-                          : service.color === "soft-mauve"
-                          ? "text-soft-mauve"
-                          : service.color === "creamy-apricot"
-                          ? "text-yellow-600"
-                          : "text-mint-teal"
-                      }`}
-                    />
-                  </div>
-                  <CardTitle className="text-xl font-serif font-semibold">
-                    {service.title}
-                  </CardTitle>
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 mx-auto bg-mint-teal/10"></div>
+                  <div className="h-6 bg-gray-200 rounded w-40 mx-auto"></div>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-600 leading-relaxed">
-                    {service.description}
-                  </CardDescription>
+                  <div className="space-y-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                  </div>
                 </CardContent>
               </Card>
-            );
-          })}
+            ))
+          ) : error || !servicesData || servicesData.length === 0 ? (
+            <div className="col-span-full text-center text-gray-600">
+              Services not found. Add services in Sanity Studio.
+            </div>
+          ) : (
+            servicesData.map((service: any, index: number) => {
+              const Icon = getIconComponent(service.icon);
+              return (
+                <Card
+                  key={service._id || service.id || index}
+                  className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 animate-slide-up"
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                    animationFillMode: "both",
+                    backgroundColor: "#F8FDFB",
+                  }}
+                >
+                  <CardHeader className="text-center pb-4">
+                    <div
+                      className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 ${
+                        service.color === "mint-teal"
+                          ? "bg-mint-teal/10"
+                          : service.color === "soft-mauve"
+                          ? "bg-soft-mauve/10"
+                          : "bg-creamy-apricot/10"
+                      }`}
+                    >
+                      <Icon
+                        className={`h-8 w-8 group-hover:rotate-12 transition-transform duration-300 ${
+                          service.color === "mint-teal"
+                            ? "text-mint-teal"
+                            : service.color === "soft-mauve"
+                            ? "text-soft-mauve"
+                            : service.color === "creamy-apricot"
+                            ? "text-yellow-600"
+                            : "text-mint-teal"
+                        }`}
+                      />
+                    </div>
+                    <CardTitle className="text-xl font-serif font-semibold">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-gray-600 leading-relaxed">
+                      {service.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              );
+            })
+          )}
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center items-center">

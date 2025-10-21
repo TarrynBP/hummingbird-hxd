@@ -46,6 +46,13 @@ export const caseStudySchema = {
       },
       validation: (Rule: any) => Rule.required(),
     },
+    {
+      name: 'archived',
+      title: 'Archived',
+      type: 'boolean',
+      description: 'Check this to hide the case study from the website',
+      initialValue: false,
+    },
     // Case study specific fields
     {
       name: 'challenge',

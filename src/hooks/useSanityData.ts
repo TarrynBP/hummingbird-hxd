@@ -85,7 +85,7 @@ export const useTestimonials = () => {
 // Portfolio hook
 export const usePortfolioItems = () => {
   return useQuery({
-    queryKey: ['portfolioItems'],
+    queryKey: ['portfolioItems', 'v2'], // Changed key to force fresh fetch
     queryFn: getPortfolioItems,
     staleTime: 5 * 60 * 1000,
   });

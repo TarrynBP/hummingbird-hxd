@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const CTA = () => {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="pt-20 pb-20 md:py-20 relative overflow-hidden">
       <div className="absolute inset-0 gradient-mint-mauve opacity-10"></div>
       <div className="absolute top-10 right-10 w-32 h-32 gradient-mauve-apricot rounded-full blur-2xl opacity-30"></div>
       <div className="absolute bottom-10 left-10 w-24 h-24 gradient-teal-apricot rounded-full blur-xl opacity-40"></div>
