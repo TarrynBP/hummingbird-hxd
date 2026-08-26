@@ -59,7 +59,7 @@ const Services = () => {
               return (
                 <Card
                   key={service._id || service.id || index}
-                  className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 animate-slide-up"
+                  className="group shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 animate-slide-up"
                   style={{
                     animationDelay: `${index * 0.1}s`,
                     animationFillMode: "both",
@@ -72,8 +72,8 @@ const Services = () => {
                         service.color === "mint-teal"
                           ? "bg-mint-teal/10"
                           : service.color === "soft-mauve"
-                          ? "bg-soft-mauve/10"
-                          : "bg-creamy-apricot/10"
+                            ? "bg-soft-mauve/10"
+                            : "bg-creamy-apricot/10"
                       }`}
                     >
                       <Icon
@@ -81,10 +81,10 @@ const Services = () => {
                           service.color === "mint-teal"
                             ? "text-mint-teal"
                             : service.color === "soft-mauve"
-                            ? "text-soft-mauve"
-                            : service.color === "creamy-apricot"
-                            ? "text-yellow-600"
-                            : "text-mint-teal"
+                              ? "text-soft-mauve"
+                              : service.color === "creamy-apricot"
+                                ? "text-[#FCC46B]"
+                                : "text-mint-teal"
                         }`}
                       />
                     </div>

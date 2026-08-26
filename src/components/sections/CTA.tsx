@@ -27,15 +27,6 @@ const CTA = () => {
               View Our Packages
             </Button>
           </Link>
-          <Link to="/#portfolio">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white w-48"
-            >
-              View Our Work
-            </Button>
-          </Link>
         </div>
       </div>
     </section>

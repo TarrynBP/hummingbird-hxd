@@ -62,7 +62,7 @@ const Testimonials = () => {
             {testimonialsData.map((testimonial, index) => (
               <Card
                 key={index}
-                className="border-0 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group animate-slide-up"
+                className="border-0 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group animate-slide-up"
                 style={{
                   animationDelay: `${index * 0.15}s`,
                   animationFillMode: "both",

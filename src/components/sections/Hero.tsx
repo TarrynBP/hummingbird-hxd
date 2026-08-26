@@ -41,15 +41,7 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      <div className="absolute inset-0 gradient-mint-mauve opacity-5"></div>
-      <div
-        className="absolute top-20 right-20 w-64 h-64 gradient-mauve-apricot rounded-full blur-3xl opacity-20 animate-float"
-        style={{ transform: "translateZ(0)" }}
-      ></div>
-      <div
-        className="absolute bottom-20 left-20 w-48 h-48 gradient-teal-apricot rounded-full blur-2xl opacity-30 animate-float"
-        style={{ animationDelay: "1s", transform: "translateZ(0)" }}
-      ></div>
+      <div className="absolute inset-0 bg-[#F8FDFB]"></div>
       <div
         className="absolute top-20 right-20 w-64 h-64 bg-mint-teal/10 rounded-full blur-3xl opacity-20 animate-float"
         style={{ transform: "translateZ(0)" }}
@@ -103,8 +95,8 @@ const Hero = () => {
 
               {/* Central Design Element */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 gradient-teal-apricot rounded-full opacity-80 blur-sm"></div>
-                <div className="absolute w-36 h-36 md:w-44 md:h-44 lg:w-48 lg:h-48 gradient-mint-mauve rounded-full"></div>
+                <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 gradient-teal-apricot rounded-full   border-40px solid gradient-teal-apricot; border-radius: 50%;         background: transparent;    box-sizing: border-box;     "></div>
+                <div className="absolute w-36 h-36 md:w-44 md:h-44 lg:w-48 lg:h-48 bg-[#F8FDFB] rounded-full"></div>
               </div>
             </div>
           </div>
