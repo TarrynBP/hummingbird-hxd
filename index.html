@@ -53,7 +53,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
+    <!-- SPA fallback: if we were bounced from a 404.html deep-link redirect,
+         restore the original path so the router renders the right page. -->
+    <script>
+      (function () {
+        try {
+          var p = sessionStorage.getItem("spaRedirect");
+          if (p) {
+            sessionStorage.removeItem("spaRedirect");
+            if (p !== location.pathname + location.search + location.hash) {
+              history.replaceState(null, "", p);
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
 
   <body>
     <div id="root"></div>

@@ -25,6 +25,41 @@ export const useSEO = (customConfig?: Partial<PageSEOConfig>): SEOData => {
       case '/articles':
         baseConfig = pageSEOConfigs.articles;
         break;
+      case '/service/web-design':
+      case '/service/productivity-services':
+      case '/service/digital-integration':
+      case '/service/ai-integration': {
+        const slug = location.pathname.split('/').pop() || '';
+        const titles: Record<string, { t: string; d: string }> = {
+          'web-design': {
+            t: 'Web Design | HummingBird',
+            d: 'Custom, mobile-ready websites built around your brand and your customers.',
+          },
+          'productivity-services': {
+            t: 'Productivity Services | HummingBird',
+            d: 'Smarter ways of working, shaped around your customers and your goals.',
+          },
+          'digital-integration': {
+            t: 'Digital Integration | HummingBird',
+            d: 'Simple tools and smooth systems that take the friction out of how you work.',
+          },
+          'ai-integration': {
+            t: 'AI Integration | HummingBird',
+            d: 'Practical, no-hype AI that saves you time and helps you do more with less.',
+          },
+        };
+        const meta = titles[slug] || {
+          t: 'Services | HummingBird',
+          d: 'Down-to-earth support to help your business work better and shine online.',
+        };
+        baseConfig = {
+          title: meta.t,
+          description: meta.d,
+          path: location.pathname,
+          type: 'website',
+        };
+        break;
+      }
       default:
         // For dynamic routes like /case-study/:id or /blog/:id
         if (location.pathname.startsWith('/case-study/')) {

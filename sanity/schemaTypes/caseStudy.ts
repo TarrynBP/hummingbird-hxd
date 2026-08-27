@@ -53,6 +53,13 @@ export const caseStudySchema = {
       description: 'Check this to hide the case study from the website',
       initialValue: false,
     },
+    {
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      description:
+        'Controls the order in which case studies appear in the portfolio section on the home page. Lower numbers show first. Leave empty to sort by most recent.',
+    },
     // Case study specific fields
     {
       name: 'challenge',
@@ -343,4 +350,16 @@ export const caseStudySchema = {
       };
     },
   },
+  orderings: [
+    {
+      title: 'Display Order',
+      name: 'orderAsc',
+      by: [{ field: 'order', direction: 'asc' }],
+    },
+    {
+      title: 'Newest first',
+      name: 'createdDesc',
+      by: [{ field: '_createdAt', direction: 'desc' }],
+    },
+  ],
 };

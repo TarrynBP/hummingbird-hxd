@@ -94,7 +94,7 @@ export const getTestimonials = async () => {
 
 // Portfolio queries - using caseStudy but only fetching fields needed for portfolio preview
 export const getPortfolioItems = async () => {
-  const query = `*[_type == "caseStudy" && (archived != true)] | order(_createdAt desc) {
+  const query = `*[_type == "caseStudy" && (archived != true)] | order(order asc, _createdAt desc) {
     _id,
     title,
     description,
@@ -105,7 +105,9 @@ export const getPortfolioItems = async () => {
     measurableImpact,
     colorPalette,
     slug,
-    archived
+    archived,
+    order,
+    _createdAt
   }`;
   return await client.fetch(query);
 };

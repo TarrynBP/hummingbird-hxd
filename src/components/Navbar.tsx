@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,20 +9,35 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAllServices } from "@/hooks/useSanityData";
+import { fallbackServiceList } from "@/lib/fallbackServices";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { data: allServices } = useAllServices();
+
+  // Ensure the newer services (Digital Integration, AI Integration) always appear
+  // in the dropdown, even before their Sanity documents exist. Merge any live
+  // services on top, deduped by slug.
+  const knownSlugs = new Set(allServices?.map((s: any) => s.slug?.current));
+  const extraServices = fallbackServiceList.filter(
+    (s) => !knownSlugs.has(s.slug.current)
+  );
+  const mergedServices = [...(allServices || []), ...extraServices];
 
   // Filter to only show parent services (main service categories)
   const parentServices =
-    allServices?.filter(
+    mergedServices?.filter(
       (service: any) =>
         service.serviceType === "web-design" ||
         service.serviceType === "productivity-services" ||
+        service.serviceType === "digital-integration" ||
+        service.serviceType === "ai-integration" ||
         service.title === "Web Design" ||
-        service.title === "Productivity Services"
+        service.title === "Productivity Services" ||
+        service.title === "Digital Integration" ||
+        service.title === "AI Integration"
     ) || [];
 
   const isActive = (path: string) => location.pathname === path;
@@ -48,8 +63,10 @@ const Navbar = () => {
   ];
 
   const handleScheduleCall = () => {
-    // Navigate to contact page and set active tab to booking
-    window.location.href = "/contact#booking";
+    // Use client-side navigation so the SPA router handles the route.
+    // A hard redirect (window.location.href) to /contact triggers a full
+    // server request that 404s on statically hosted builds without SPA fallback.
+    navigate("/contact#booking");
   };
 
   return (

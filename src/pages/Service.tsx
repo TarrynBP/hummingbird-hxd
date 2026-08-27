@@ -17,31 +17,24 @@ import Values from "@/components/sections/Values";
 import Process from "@/components/sections/Process";
 import OtherServices from "@/components/sections/OtherServices";
 import ServiceHero from "@/components/sections/ServiceHero";
+import { fallbackServices } from "@/lib/fallbackServices";
 
 const Service = () => {
   const { slug } = useParams<{ slug: string }>();
   const seoData = useSEO();
   const { data: service, isLoading, error } = useService(slug || "");
 
-  // Icon mapping for different service types
-  const getIcon = (iconName: string) => {
-    switch (iconName?.toLowerCase()) {
-      case "lightbulb":
-        return Lightbulb;
-      case "settings":
-        return Settings;
-      case "zap":
-        return Zap;
-      default:
-        return Lightbulb;
-    }
-  };
+  // Use Sanity data when available; otherwise fall back to built-in copy for known
+  // slugs (so /service/digital-integration and /service/ai-integration render even
+  // before Studio documents exist).
+  const resolvedService =
+    service && !error ? service : fallbackServices[slug || ""] || null;
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
-  if (error || !service) {
+  if (error || !resolvedService) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -61,7 +54,21 @@ const Service = () => {
     );
   }
 
-  const Icon = getIcon(service.icon);
+  // Icon mapping for different service types
+  const getIcon = (iconName: string) => {
+    switch (iconName?.toLowerCase()) {
+      case "lightbulb":
+        return Lightbulb;
+      case "settings":
+        return Settings;
+      case "zap":
+        return Zap;
+      default:
+        return Lightbulb;
+    }
+  };
+
+  const Icon = getIcon(resolvedService.icon);
 
   return (
     <>
@@ -71,24 +78,24 @@ const Service = () => {
         <ServiceHero />
 
         {/* Packages/Services Section */}
-        {service.packages && service.packages.length > 0 ? (
+        {resolvedService.packages && resolvedService.packages.length > 0 ? (
           <section className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
                 <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
-                  {service.serviceType === "web-design"
+                  {resolvedService.serviceType === "web-design"
                     ? "Complete Packages"
                     : "Our Services"}
                 </h2>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                  {service.serviceType === "web-design"
+                  {resolvedService.serviceType === "web-design"
                     ? "Choose a package that suits your stage of business. All options include design, build, and mobile optimisation."
                     : "From smooth-running systems to smart websites and practical AI tools, we offer down-to-earth support to help your business work better and shine online."}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {service.packages.map((pkg: any, index: number) => (
+                {resolvedService.packages.map((pkg: any, index: number) => (
                   <div key={index} className="flex flex-col h-full">
                     <Card
                       className={`relative border-0 shadow-lg hover:shadow-xl transition-all duration-300 flex-grow ${
@@ -159,19 +166,19 @@ const Service = () => {
                   <Icon className="h-8 w-8 text-mint-teal" />
                 </div>
                 <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
-                  {service.title}
+                  {resolvedService.title}
                 </h2>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                  {service.description}
+                  {resolvedService.description}
                 </p>
-                {service.price && (
+                {resolvedService.price && (
                   <div className="text-3xl font-bold text-mint-teal mt-4">
-                    {service.price}
+                    {resolvedService.price}
                   </div>
                 )}
               </div>
 
-              {service.features && service.features.length > 0 && (
+              {resolvedService.features && resolvedService.features.length > 0 && (
                 <div className="max-w-4xl mx-auto">
                   <Card className="border-0 shadow-lg">
                     <CardContent className="p-8">
@@ -179,7 +186,7 @@ const Service = () => {
                         What's Included
                       </h3>
                       <ul className="space-y-4">
-                        {service.features.map(
+                        {resolvedService.features.map(
                           (feature: string, index: number) => (
                             <li
                               key={index}
@@ -212,10 +219,10 @@ const Service = () => {
         <section className="py-20 bg-creamy-apricot/10">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl font-serif font-bold text-gray-900 mb-6">
-              {service.ctaTitle || "Ready to get started?"}
+              {resolvedService.ctaTitle || "Ready to get started?"}
             </h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              {service.ctaDescription ||
+              {resolvedService.ctaDescription ||
                 "Let's discuss your project and find the perfect solution for your business needs."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

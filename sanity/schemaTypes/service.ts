@@ -62,6 +62,8 @@ export const serviceSchema = {
         list: [
           { title: 'Web Design', value: 'web-design' },
           { title: 'Productivity Services', value: 'productivity-services' },
+          { title: 'Digital Integration', value: 'digital-integration' },
+          { title: 'AI Integration', value: 'ai-integration' },
         ],
       },
       description: 'Type of service for styling purposes',

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <!-- SPA fallback: remember the requested deep link, then bounce to index.html -->
+    <script>
+      sessionStorage.setItem(
+        "spaRedirect",
+        location.pathname + location.search + location.hash
+      );
+    </script>
+    <meta http-equiv="refresh" content="0;url=/" />
+  </head>
+  <body></body>
+</html>

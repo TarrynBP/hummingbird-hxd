@@ -16,6 +16,20 @@ const Portfolio = () => {
   // Use Sanity data directly
   const portfolioData = portfolioItems;
 
+  // Sort by the per-case-study `order` field (lower shows first). Items with no
+  // order set keep their Sanity creation date as a stable tie-breaker so they
+  // don't jump ahead of explicitly ordered items.
+  const sortedPortfolio = portfolioData
+    ? [...portfolioData].sort((a: any, b: any) => {
+        const oa = typeof a.order === 'number' ? a.order : Number.POSITIVE_INFINITY;
+        const ob = typeof b.order === 'number' ? b.order : Number.POSITIVE_INFINITY;
+        if (oa !== ob) return oa - ob;
+        const ta = a._createdAt ? new Date(a._createdAt).getTime() : 0;
+        const tb = b._createdAt ? new Date(b._createdAt).getTime() : 0;
+        return tb - ta;
+      })
+    : portfolioData;
+
   // Debug logging
   console.log("Portfolio Debug:", {
     portfolioItems,
@@ -95,7 +109,7 @@ const Portfolio = () => {
               </Card>
             ))}
           </div>
-        ) : error || !portfolioData || portfolioData.length === 0 ? (
+        ) : error || !sortedPortfolio || sortedPortfolio.length === 0 ? (
           <div className="text-center py-16">
             <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
               Portfolio items not found
@@ -106,7 +120,7 @@ const Portfolio = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:[grid-template-columns:repeat(2,max-content)] lg:[grid-template-columns:repeat(3,max-content)] gap-6 justify-center">
-            {portfolioData.map((item, index) => (
+            {sortedPortfolio.map((item, index) => (
               <Link
                 key={index}
                 to={`/case-study/${item.slug?.current || item._id}`}
