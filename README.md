@@ -1,22 +1,12 @@
-# Welcome to your Lovable project
+# HummingBird HXD
 
-## Project info
-
-**URL**: https://lovable.dev/projects/f9f599e4-c6c7-40bc-b886-9f06dd40e91a
+Human Experience Design website — built with Vite, React, TypeScript, Tailwind CSS, shadcn-ui, and a Sanity CMS backend.
 
 ## How can I edit this code?
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/f9f599e4-c6c7-40bc-b886-9f06dd40e91a) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
 **Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Clone the repository and push changes. Pushed changes deploy automatically via Vercel.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -59,15 +49,17 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+- Sanity (headless CMS)
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/f9f599e4-c6c7-40bc-b886-9f06dd40e91a) and click on Share -> Publish.
+This project is hosted on [Vercel](https://vercel.com). Pushing to the `main` branch triggers an automatic deployment.
 
-## Can I connect a custom domain to my Lovable project?
+To deploy manually, import the repository into Vercel and use the following settings:
 
-Yes, you can!
+- **Build command:** `npm run build`
+- **Output directory:** `dist`
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Can I connect a custom domain?
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Yes. In your Vercel project dashboard, go to **Settings → Domains** and add your domain. See the [Vercel custom domain guide](https://vercel.com/docs/projects/domains) for details.
