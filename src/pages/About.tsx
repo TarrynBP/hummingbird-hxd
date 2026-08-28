@@ -6,10 +6,13 @@ import SEO from "@/components/SEO";
 import { useSEO } from "@/hooks/useSEO";
 import { scrollToElement } from "@/hooks/useScrollToElement";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import { useTeamMembers } from "@/hooks/useSanityData";
+import { urlFor } from "@/lib/sanity";
 
 const About = () => {
   const seoData = useSEO();
   const navigate = useNavigate();
+  const { data: sanityTeam, isLoading: teamLoading } = useTeamMembers();
 
   const handleViewPortfolio = () => {
     navigate("/");
@@ -46,20 +49,25 @@ const About = () => {
     },
   ];
 
-  const team = [
+  // Use Sanity team members when available; fall back to the built-in team so
+  // the page still renders before any teamMember documents are created.
+  const fallbackTeam = [
     {
       name: "Tarryn Pietersen",
       role: "Founder, consultant and Designer",
       description:
         "With 8+ years in colour theory and web design, Tarryn founded HummingBird to bridge the gap between psychology and digital aesthetics.",
+      avatar: undefined,
     },
     {
       name: "William Hankey",
       role: "Lead Developer",
       description:
         "William specialises in user experience optimisation, using colour psychology to guide user behaviour and improve conversion rates.",
+      avatar: undefined,
     },
   ];
+  const team = sanityTeam && sanityTeam.length > 0 ? sanityTeam : fallbackTeam;
 
   return (
     <>
@@ -208,17 +216,21 @@ const About = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {team.map((member, index) => {
-                const imagePath =
+                const fallbackPath =
                   member.name === "Tarryn Pietersen"
                     ? "/assets/tarryn.jpeg"
                     : "/assets/william.jpg";
+                const imageSrc =
+                  member.avatar
+                    ? urlFor(member.avatar).width(192).height(192).url()
+                    : fallbackPath;
 
                 return (
-                  <Card key={index} className="text-center border-0 shadow-lg">
+                  <Card key={member._id || index} className="text-center border-0 shadow-lg">
                     <CardContent className="p-8">
                       <div className="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden">
                         <img
-                          src={imagePath}
+                          src={imageSrc}
                           alt={member.name}
                           className="w-full h-full object-cover"
                         />
