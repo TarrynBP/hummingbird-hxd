@@ -48,6 +48,15 @@ const Contact = () => {
     if (window.location.hash === "#booking") {
       setActiveTab("booking");
     }
+
+    const handleHashChange = () => {
+      if (window.location.hash === "#booking") {
+        setActiveTab("booking");
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
   const [formData, setFormData] = useState({
     name: "",
@@ -140,7 +149,7 @@ const Contact = () => {
       icon: Phone,
       title: "Phone",
       details: "+27 (72) 608-5749",
-      description: "Mon-Fri from 9am to 6pm EST",
+      description: "Mon-Fri from 9am to 5pm EST",
     },
     {
       icon: MapPin,
@@ -169,8 +178,9 @@ const Contact = () => {
               <span className="text-gradient">together</span>
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Ready to transform your digital presence with the power of colour?
-              We'd love to hear about your project and explore how we can help.
+              Ready to transform your business with the power of intentional
+              design? We'd love to hear about your project and explore how we
+              can help.
             </p>
           </div>
         </section>
@@ -243,7 +253,7 @@ const Contact = () => {
                           </div>
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="company">Company/Organization</Label>
+                          <Label htmlFor="company">Company/Organisation</Label>
                           <Input
                             id="company"
                             value={formData.company}
@@ -272,13 +282,13 @@ const Contact = () => {
                                   Wix Website Design
                                 </SelectItem>
                                 <SelectItem value="color-strategy">
-                                  Color Strategy Consulting
+                                  Colour Strategy Consulting
                                 </SelectItem>
                                 <SelectItem value="brand-identity">
                                   Brand Identity Design
                                 </SelectItem>
                                 <SelectItem value="ux-optimization">
-                                  UX/UI Optimization
+                                  UX/UI Optimisation
                                 </SelectItem>
                                 <SelectItem value="complete-package">
                                   Complete Package
@@ -358,7 +368,7 @@ const Contact = () => {
                         </h3>
                         <p className="text-gray-600">
                           Book a 30-minute call to discuss your project and get
-                          personalized recommendations.
+                          personalised recommendations.
                         </p>
                       </div>
 
@@ -431,8 +441,8 @@ const Contact = () => {
                         Do you work with existing websites?
                       </h4>
                       <p className="text-sm text-gray-600">
-                        Yes! We offer optimization services for existing Wix
-                        websites to improve their color strategy.
+                        Yes! We offer optimisation services for existing Wix
+                        websites to improve their colour strategy.
                       </p>
                     </div>
                     <div>

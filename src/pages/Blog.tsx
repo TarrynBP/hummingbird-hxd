@@ -37,7 +37,7 @@ const Blog = () => {
           <div class="space-y-4">
             <div class="flex items-start space-x-3">
               <div class="w-2 h-2 bg-mint-teal rounded-full mt-3"></div>
-              <p class="text-lg">Disorganized digital files and folders</p>
+              <p class="text-lg">Disorganised digital files and folders</p>
             </div>
             <div class="flex items-start space-x-3">
               <div class="w-2 h-2 bg-soft-mauve rounded-full mt-3"></div>
@@ -55,13 +55,13 @@ const Blog = () => {
             </div>
             <div class="flex items-start space-x-3">
               <div class="w-2 h-2 bg-soft-mauve rounded-full mt-3"></div>
-              <p class="text-lg">Lack of standardized procedures</p>
+              <p class="text-lg">Lack of standardised procedures</p>
             </div>
           </div>
         </div>
 
         <h2 class="text-3xl font-serif font-bold text-foreground mb-6 mt-12">The 5-Minute Rule</h2>
-        <p class="text-lg leading-relaxed mb-8">If something consistently takes longer than expected, spend 5 minutes analyzing why. Often, a small upfront investment in organization or process improvement can save hours down the line.</p>
+        <p class="text-lg leading-relaxed mb-8">If something consistently takes longer than expected, spend 5 minutes analysing why. Often, a small upfront investment in organisation or process improvement can save hours down the line.</p>
 
         <h2 class="text-3xl font-serif font-bold text-foreground mb-6 mt-12">Quick Wins</h2>
         <p class="text-lg leading-relaxed mb-6">Start with these immediate improvements:</p>
@@ -124,8 +124,8 @@ const Blog = () => {
         <h2 class="text-3xl font-serif font-bold text-foreground mb-6 mt-12">Time-Saving Communication</h2>
         <p class="text-lg leading-relaxed mb-8">Clear communication prevents misunderstandings and reduces back-and-forth emails. Create templates for common scenarios and establish clear expectations upfront.</p>
 
-        <h2 class="text-3xl font-serif font-bold text-foreground mb-6 mt-12">Organization Systems</h2>
-        <p class="text-lg leading-relaxed mb-6">A well-organized workspace—both physical and digital—reduces stress and increases efficiency:</p>
+        <h2 class="text-3xl font-serif font-bold text-foreground mb-6 mt-12">Organisation Systems</h2>
+        <p class="text-lg leading-relaxed mb-6">A well-organised workspace—both physical and digital—reduces stress and increases efficiency:</p>
         <ul class="space-y-3 mb-8">
           <li class="flex items-start space-x-3">
             <div class="w-2 h-2 bg-mint-teal rounded-full mt-3"></div>
@@ -423,7 +423,7 @@ const Blog = () => {
                 <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                   Let's work together to create a website that not only looks
                   beautiful but drives real results for your business through
-                  strategic color choices.
+                  strategic colour choices.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link

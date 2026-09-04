@@ -235,12 +235,12 @@ const Services = () => {
               Let's discuss your project and create a custom solution that
               perfectly fits your needs and budget.
             </p>
-            <Link to="/contact">
+            <Link to="/contact#booking">
               <Button
                 size="lg"
                 className="bg-mint-teal hover:bg-mint-teal-dark text-white"
               >
-                Contact Us
+                Schedule a Call
               </Button>
             </Link>
           </div>

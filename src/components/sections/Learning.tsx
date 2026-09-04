@@ -16,7 +16,7 @@ const Learning = () => {
       date: "28 Jun 2024", 
       readTime: "5 min read",
       title: "Ways to Improve How You Work",
-      description: "A few easy wins to help you save time, stay organized, and set up customers better.",
+      description: "A few easy wins to help you save time, stay organised, and set up customers better.",
       image: "/placeholder.svg"
     },
     {

@@ -39,7 +39,7 @@ export const servicePackageSchema = {
     },
     {
       name: 'color',
-      title: 'Color Theme',
+      title: 'Colour Theme',
       type: 'string',
       options: {
         list: [

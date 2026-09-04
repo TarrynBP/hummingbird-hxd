@@ -248,7 +248,7 @@ const Articles = () => {
           </h3>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Let's work together to implement these strategies in your website
-            and business processes. Get personalized guidance tailored to your
+            and business processes. Get personalised guidance tailored to your
             specific needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -256,7 +256,7 @@ const Articles = () => {
               to="/contact"
               className="inline-block bg-gradient-to-r from-mint-teal to-soft-mauve text-white px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity shadow-lg"
             >
-              Get Personalized Help
+              Get Personalised Help
             </Link>
             <Link
               to="/services"

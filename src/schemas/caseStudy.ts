@@ -53,6 +53,13 @@ export const caseStudySchema = {
       description: 'Check this to hide the case study from the website',
       initialValue: false,
     },
+    {
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      description: 'Order in which the case study appears in the portfolio section (lower numbers first)',
+      validation: (Rule: any) => Rule.integer().min(0),
+    },
     // Case study specific fields
     {
       name: 'challenge',
@@ -128,7 +135,7 @@ export const caseStudySchema = {
     },
     {
       name: 'colorPalette',
-      title: 'Color Palette',
+      title: 'Colour Palette',
       type: 'array',
       of: [
         {
@@ -136,15 +143,15 @@ export const caseStudySchema = {
           fields: [
             {
               name: 'name',
-              title: 'Color Name',
+              title: 'Colour Name',
               type: 'string',
               validation: (Rule: any) => Rule.required(),
             },
             {
               name: 'color',
-              title: 'Color Value',
+              title: 'Colour Value',
               type: 'string',
-              description: 'CSS color value (e.g., #3E2353)',
+              description: 'CSS colour value (e.g., #3E2353)',
               validation: (Rule: any) => Rule.required(),
             },
             {
@@ -155,9 +162,9 @@ export const caseStudySchema = {
             },
             {
               name: 'psychology',
-              title: 'Color Psychology',
+              title: 'Colour Psychology',
               type: 'string',
-              description: 'What this color represents (e.g., "Creativity, sophistication, innovation")',
+              description: 'What this colour represents (e.g., "Creativity, sophistication, innovation")',
             },
           ],
         },

@@ -29,7 +29,7 @@ export interface PageSEOConfig {
 // Default SEO configuration
 export const defaultSEO: SEOData = {
   title: "HummingBird | Human Experience Design",
-  description: "HummingBird specializes in human experience design, creating user-centered solutions that enhance customer engagement and drive business growth through empathetic design thinking.",
+  description: "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking.",
   keywords: "human experience design, user experience design, UX design, human-centered design, design thinking, customer experience design, user-centered design, experience design agency, interaction design, service design, empathy-driven design, inclusive design, digital experience design",
   ogType: "website",
   twitterCard: "summary_large_image",
@@ -37,7 +37,7 @@ export const defaultSEO: SEOData = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "HummingBird Human Experience Design",
-    "description": "HummingBird specializes in human experience design, creating user-centered solutions that enhance customer engagement and drive business growth through empathetic design thinking",
+    "description": "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking",
     "url": "https://hummingbird-hxd.com",
     "logo": "https://hummingbird-hxd.com/assets/logo-sl.svg",
     "contactPoint": {
@@ -92,7 +92,7 @@ export const generatePageSEO = (config: PageSEOConfig): SEOData => {
 export const pageSEOConfigs = {
   home: {
     title: "HummingBird | Human Experience Design",
-    description: "HummingBird specializes in human experience design, creating user-centered solutions that enhance customer engagement and drive business growth through empathetic design thinking.",
+    description: "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking.",
     keywords: "human experience design, user experience design, UX design, human-centered design, design thinking, customer experience design, user-centered design, experience design agency, interaction design, service design, empathy-driven design, inclusive design, digital experience design",
     path: "/",
     type: "website"
@@ -113,7 +113,7 @@ export const pageSEOConfigs = {
   },
   contact: {
     title: "Contact Us | Get Your Free Human Experience Design Consultation",
-    description: "Ready to transform your user experience? Contact HummingBird for a free consultation and discover how human-centered design can elevate your business.",
+    description: "Ready to transform your user experience? Contact HummingBird for a free consultation and discover how human-centred design can elevate your business.",
     keywords: "contact human experience design agency, free UX consultation, design thinking consultation, user experience design quote, human-centered design services",
     path: "/contact",
     type: "website"
@@ -150,7 +150,7 @@ export const generateStructuredData = {
     "@type": "WebSite",
     "name": "HummingBird Human Experience Design",
     "url": "https://hummingbird-hxd.com",
-    "description": "HummingBird specializes in human experience design, creating user-centered solutions that enhance customer engagement and drive business growth through empathetic design thinking",
+    "description": "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking",
     "publisher": {
       "@type": "Organization",
       "name": "HummingBird Human Experience Design"

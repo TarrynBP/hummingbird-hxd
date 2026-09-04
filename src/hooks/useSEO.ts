@@ -66,7 +66,7 @@ export const useSEO = (customConfig?: Partial<PageSEOConfig>): SEOData => {
           const slug = location.pathname.split('/').pop();
           baseConfig = {
             title: `Case Study | HummingBird Web Design`,
-            description: "Explore our latest web design case study showcasing color psychology in action and measurable business results.",
+            description: "Explore our latest web design case study showcasing colour psychology in action and measurable business results.",
             path: location.pathname,
             type: "article"
           };
@@ -74,14 +74,14 @@ export const useSEO = (customConfig?: Partial<PageSEOConfig>): SEOData => {
           const slug = location.pathname.split('/').pop();
           baseConfig = {
             title: `Blog Post | HummingBird Design Insights`,
-            description: "Read our latest insights on web design, color theory, and digital strategy to help your business grow.",
+            description: "Read our latest insights on web design, colour theory, and digital strategy to help your business grow.",
             path: location.pathname,
             type: "article"
           };
         } else {
           baseConfig = {
-            title: "HummingBird | Color-Driven Web Design Agency",
-            description: "Professional Wix website design agency specializing in color theory and emotionally resonant web experiences.",
+            title: "HummingBird | Colour-Driven Web Design Agency",
+            description: "Professional Wix website design agency specialising in colour theory and emotionally resonant web experiences.",
             path: location.pathname
           };
         }

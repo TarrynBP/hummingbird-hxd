@@ -134,7 +134,7 @@ const CaseStudy = () => {
         challenge:
           "Telecoms X's existing flow was functional but uninspiring. Users dropped off during the legal and payment steps, often due to unclear copy, lack of reassurance, or unnecessary friction. The product itself was strong, but the sign-up experience didn't reflect that.",
         solution:
-          "We designed a guided 4-step sign-up journey that made complex tasks feel simple. From address verification to electronic signature, each screen included helpful microscopy, consistent formatting, and always visible plan details. Color narratives drew the eye to the next active progress-markers, showed users exactly where they were and how close they were to completion.",
+          "We designed a guided 4-step sign-up journey that made complex tasks feel simple. From address verification to electronic signature, each screen included helpful microscopy, consistent formatting, and always visible plan details. Colour narratives drew the eye to the next active progress-markers, showed users exactly where they were and how close they were to completion.",
       },
       keyInsights: [
         "Users want to feel secure and confident online.",
@@ -739,7 +739,7 @@ const CaseStudy = () => {
             Let's create a website that delivers measurable impact for your
             business.
           </p>
-          <Link to="/contact">
+          <Link to="/contact#booking">
             <Button
               size="lg"
               className="bg-mint-teal hover:bg-mint-teal-dark text-white"

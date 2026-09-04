@@ -125,11 +125,11 @@ const About = () => {
                   <div className="text-center bg-white w-full h-full flex flex-col justify-center items-center gap-10">
                     <p className="text-4xl font-bold text-gray-900 mb-2">
                       <AnimatedCounter
-                        value="50+"
+                        value="20+"
                         duration={2000}
                         startOnView={true}
                       />{" "}
-                      Projects
+                      Years
                     </p>
                     <Link to="/services">
                       <Button className="bg-mint-teal hover:bg-mint-teal-dark text-white">
