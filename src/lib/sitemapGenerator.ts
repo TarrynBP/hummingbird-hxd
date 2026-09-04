@@ -9,7 +9,7 @@ export interface SitemapUrl {
 }
 
 export const generateSitemap = async (): Promise<string> => {
-  const baseUrl = 'https://hummingbird-hxd.com';
+  const baseUrl = 'https://hummingbirdhxd.com';
   const currentDate = new Date().toISOString();
   
   // Static pages

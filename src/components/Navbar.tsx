@@ -74,7 +74,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/" className="flex items-center space-x-2 group focus:outline-none">
             <img
               src="/assets/logo-sl.svg"
               alt="HummingBird HXD"
@@ -88,7 +88,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative transition-all duration-200 ${
+                className={`relative transition-all duration-200 focus:outline-none ${
                   isActive(link.path)
                     ? "text-mint-teal font-medium"
                     : "text-gray-600 hover:text-mint-teal"
@@ -103,10 +103,10 @@ const Navbar = () => {
 
             {/* Services Dropdown */}
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-600 hover:text-mint-teal transition-all duration-200">
+              <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-600 hover:text-mint-teal transition-all duration-200 focus:outline-none">
                 <Link
                   to="/services"
-                  className={`relative transition-all duration-200 ${
+                  className={`relative transition-all duration-200 focus:outline-none ${
                     isActive("/services")
                       ? "text-mint-teal font-medium"
                       : "text-gray-600 hover:text-mint-teal"
@@ -121,7 +121,7 @@ const Navbar = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem asChild>
-                  <Link to="/services" className="cursor-pointer font-medium">
+                  <Link to="/services" className="cursor-pointer font-medium focus:outline-none">
                     All Services
                   </Link>
                 </DropdownMenuItem>
@@ -129,7 +129,7 @@ const Navbar = () => {
                   <DropdownMenuItem key={service._id} asChild>
                     <Link
                       to={`/service/${service.slug?.current}`}
-                      className="cursor-pointer"
+                      className="cursor-pointer focus:outline-none"
                     >
                       {service.title}
                     </Link>
@@ -173,7 +173,7 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none ${
                     isActive(link.path)
                       ? "text-mint-teal bg-mint-teal/10"
                       : "text-gray-600 hover:text-mint-teal hover:bg-mint-teal/5"
@@ -188,7 +188,7 @@ const Navbar = () => {
               <div className="px-3 py-2">
                 <Link
                   to="/services"
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none ${
                     isActive("/services")
                       ? "text-mint-teal bg-mint-teal/10"
                       : "text-gray-600 hover:text-mint-teal hover:bg-mint-teal/5"
@@ -202,7 +202,7 @@ const Navbar = () => {
                     <Link
                       key={service._id}
                       to={`/service/${service.slug?.current}`}
-                      className="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-mint-teal hover:bg-mint-teal/5 transition-colors duration-200"
+                      className="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-mint-teal hover:bg-mint-teal/5 transition-colors duration-200 focus:outline-none"
                       onClick={() => setIsOpen(false)}
                     >
                       {service.title}

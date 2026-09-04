@@ -1,4 +1,4 @@
-// SEO utility functions and types
+﻿// SEO utility functions and types
 export interface SEOData {
   title: string;
   description: string;
@@ -38,8 +38,8 @@ export const defaultSEO: SEOData = {
     "@type": "Organization",
     "name": "HummingBird Human Experience Design",
     "description": "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking",
-    "url": "https://hummingbird-hxd.com",
-    "logo": "https://hummingbird-hxd.com/assets/logo-sl.svg",
+    "url": "https://hummingbirdhxd.com",
+    "logo": "https://hummingbirdhxd.com/assets/logo-sl.svg",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+27-72-608-5749",
@@ -67,7 +67,7 @@ export const defaultSEO: SEOData = {
 
 // Generate SEO data for different pages
 export const generatePageSEO = (config: PageSEOConfig): SEOData => {
-  const baseUrl = "https://hummingbird-hxd.com";
+  const baseUrl = "https://hummingbirdhxd.com";
   const fullPath = config.path ? `${baseUrl}${config.path}` : baseUrl;
   
   return {
@@ -149,7 +149,7 @@ export const generateStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "HummingBird Human Experience Design",
-    "url": "https://hummingbird-hxd.com",
+    "url": "https://hummingbirdhxd.com",
     "description": "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking",
     "publisher": {
       "@type": "Organization",
@@ -164,7 +164,7 @@ export const generateStructuredData = {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": `https://hummingbird-hxd.com${item.url}`
+      "item": `https://hummingbirdhxd.com${item.url}`
     }))
   }),
   
@@ -198,7 +198,7 @@ export const generateStructuredData = {
       "name": "HummingBird Human Experience Design",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://hummingbird-hxd.com/assets/logo-sl.svg"
+        "url": "https://hummingbirdhxd.com/assets/logo-sl.svg"
       }
     },
     "datePublished": article.publishedDate,

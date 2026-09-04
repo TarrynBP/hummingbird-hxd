@@ -1,65 +1,98 @@
 # HummingBird HXD
 
-Human Experience Design website — built with Vite, React, TypeScript, Tailwind CSS, shadcn-ui, and a Sanity CMS backend.
+Human Experience Design website for HummingBird — built with Vite, React, TypeScript, Tailwind CSS, shadcn-ui, TanStack Query, and a Sanity CMS backend.
 
-## How can I edit this code?
+Live site: <https://www.hummingbirdhxd.com>
 
-**Use your preferred IDE**
+## Tech stack
 
-Clone the repository and push changes. Pushed changes deploy automatically via Vercel.
+- **Vite** + **React 18** + **TypeScript**
+- **Tailwind CSS** + **shadcn/ui** components
+- **TanStack Query** for data fetching/caching
+- **Sanity** (headless CMS) — live site content + hosted Studio
+- **react-router-dom** for routing
+- **lucide-react** for icons
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Project structure
 
-Follow these steps:
+```
+├── public/                  # Static assets (favicons, manifest, sitemap, robots)
+├── src/
+│   ├── components/          # UI + section components
+│   ├── hooks/               # useSEO, useSanityData (TanStack Query wrappers), etc.
+│   ├── lib/                 # sanity client, GROQ queries, SEO config, fallbacks
+│   ├── pages/               # Route pages (Home, About, Services, Service, Contact, …)
+│   └── schemas/             # Client-side mirror of the Sanity schemas
+├── sanity/                  # Sanity Studio project (separate npm project)
+│   └── schemaTypes/         # Sanity content schemas (service, caseStudy, post, …)
+├── scripts/generate-sitemap.js  # Generates public/sitemap.xml
+└── email-templates/         # Transactional email HTML templates
+```
+
+## Getting started
+
+Requires Node.js & npm.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+# 1. Install dependencies
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 2. Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Environment variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Copy `.env.example` to `.env` (create it if it doesn't exist). Only `VITE_SANITY_PROJECT_ID` is required for reads against the public dataset; the others are optional.
 
-**Use GitHub Codespaces**
+| Variable | Description | Default |
+| --- | --- | --- |
+| `VITE_SANITY_PROJECT_ID` | Sanity project ID | `hquuom5o` |
+| `VITE_SANITY_DATASET` | Sanity dataset name | `production` |
+| `VITE_SANITY_TOKEN` | Sanity API token (only needed for writes) | — |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Scripts
 
-## What technologies are used for this project?
+```sh
+npm run dev          # Start the Vite dev server
+npm run build        # Generate sitemap, then build for production (outputs dist/)
+npm run build:dev    # Build with development mode
+npm run preview      # Preview the production build locally
+npm run lint         # Run ESLint
+npm run generate:sitemap  # Regenerate public/sitemap.xml
+```
 
-This project is built with:
+## Sanity Studio
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-- Sanity (headless CMS)
+The hosted Studio lives at <https://hquuom5o.sanity.studio/>. It is a separate npm project under `sanity/`.
 
-## How can I deploy this project?
+```sh
+cd sanity
+npm i                 # Install Studio dependencies
+npx sanity dev        # Run the Studio locally
+npx sanity deploy     # Deploy the Studio to hquuom5o.sanity.studio
+```
+
+Schema definitions live in `sanity/schemaTypes/`. After changing a schema, run `npx sanity deploy` so the hosted Studio picks it up. New content types (service packages, case studies, etc.) are configured in `sanity/schemaTypes/index.ts`.
+
+Note: `src/schemas/` contains a client-side mirror of the schemas — keep it in sync when you change `sanity/schemaTypes/`.
+
+## Deployment
 
 This project is hosted on [Vercel](https://vercel.com). Pushing to the `main` branch triggers an automatic deployment.
 
-To deploy manually, import the repository into Vercel and use the following settings:
+Manual setup:
 
 - **Build command:** `npm run build`
 - **Output directory:** `dist`
 
-## Can I connect a custom domain?
+The domain `hummingbirdhxd.com` is configured in the Vercel project dashboard (**Settings → Domains**). All SEO/canonical URLs, `og:image`, `sitemap.xml`, and `robots.txt` reference `https://hummingbirdhxd.com`.
 
-Yes. In your Vercel project dashboard, go to **Settings → Domains** and add your domain. See the [Vercel custom domain guide](https://vercel.com/docs/projects/domains) for details.
+## SEO notes
+
+- `index.html` holds the static meta description/title served to crawlers — keep it in sync with `src/lib/seo.ts`.
+- `public/sitemap.xml` is regenerated by `npm run build` (or `npm run generate:sitemap`); `scripts/generate-sitemap.js` is the source.
+- `public/robots.txt` points to the sitemap.
+- `public/assets/og-default.jpg` is the social share image referenced by `og:image`/`twitter:image`.
+
+After changing descriptive content or favicons, request reindexing via [Google Search Console](https://search.google.com/search-console) — Google caches snippets and favicons and updates them slowly.

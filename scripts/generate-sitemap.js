@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 
 // Simple sitemap generator without Sanity dependency for build process
 const generateSitemap = () => {
-  const baseUrl = 'https://hummingbird-hxd.com';
+  const baseUrl = 'https://hummingbirdhxd.com';
   const currentDate = new Date().toISOString();
   
   const staticPages = [

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+﻿import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { generatePageSEO, pageSEOConfigs, type SEOData, type PageSEOConfig } from '@/lib/seo';
 
@@ -124,12 +124,12 @@ export const useCaseStudySEO = (caseStudy: any): SEOData => {
           "name": "HummingBird Web Design Agency",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://hummingbird-hxd.com/assets/logo-sl.svg"
+            "url": "https://hummingbirdhxd.com/assets/logo-sl.svg"
           }
         },
         "datePublished": caseStudy._createdAt,
         "dateModified": caseStudy._updatedAt || caseStudy._createdAt,
-        "image": caseStudy.image ? `https://hummingbird-hxd.com${caseStudy.image.asset.url}` : undefined
+        "image": caseStudy.image ? `https://hummingbirdhxd.com${caseStudy.image.asset.url}` : undefined
       }
     });
   }, [caseStudy]);
@@ -164,7 +164,7 @@ export const useBlogSEO = (blogPost: any): SEOData => {
           "name": "HummingBird Web Design Agency",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://hummingbird-hxd.com/assets/logo-sl.svg"
+            "url": "https://hummingbirdhxd.com/assets/logo-sl.svg"
           }
         },
         "datePublished": blogPost.date,
