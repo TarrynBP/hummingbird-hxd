@@ -214,42 +214,6 @@ const Service = () => {
 
         {/* Other Services Section */}
         <OtherServices />
-
-        {/* CTA Section */}
-        {!["productivity-services", "digital-integration", "ai-integration"].includes(
-          resolvedService.serviceType
-        ) && (
-          <section className="py-20 bg-creamy-apricot/10">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl font-serif font-bold text-gray-900 mb-6">
-              {resolvedService.ctaTitle || "Ready to get started?"}
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              {resolvedService.ctaDescription ||
-                "Let's discuss your project and find the perfect solution for your business needs."}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
-                <Button
-                  size="lg"
-                  className="bg-mint-teal hover:bg-mint-teal-dark text-white w-48"
-                >
-                  Get Started
-                </Button>
-              </Link>
-              <Link to="/#portfolio">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-mint-teal text-mint-teal hover:bg-mint-teal hover:text-white w-48"
-                >
-                  View Our Work
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-        )}
       </div>
     </>
   );
