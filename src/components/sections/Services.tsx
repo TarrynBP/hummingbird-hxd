@@ -20,6 +20,15 @@ const Services = () => {
     return IconComponent;
   };
 
+  // Per-service overrides for exact icon colours (keyed by Sanity slug)
+  const colorOverrides: Record<
+    string,
+    { backgroundColor?: string; color?: string }
+  > = {
+    "web-design": { backgroundColor: "#F0F9F7" },
+    "grow-with-ai": { backgroundColor: "#FFFAF0", color: "#FCC46B" },
+  };
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,6 +65,23 @@ const Services = () => {
           ) : (
             servicesData.map((service: any, index: number) => {
               const Icon = getIconComponent(service.icon);
+              const override = colorOverrides[service.slug?.current];
+              const bgClass = override?.backgroundColor
+                ? "bg-mint-teal/10"
+                : service.color === "mint-teal"
+                  ? "bg-mint-teal/10"
+                  : service.color === "soft-mauve"
+                    ? "bg-soft-mauve/10"
+                    : "bg-creamy-apricot/10";
+              const colorClass = override?.color
+                ? "text-mint-teal"
+                : service.color === "mint-teal"
+                  ? "text-mint-teal"
+                  : service.color === "soft-mauve"
+                    ? "text-soft-mauve"
+                    : service.color === "creamy-apricot"
+                      ? "text-[#FCC46B]"
+                      : "text-mint-teal";
               return (
                 <Card
                   key={service._id || service.id || index}
@@ -68,24 +94,14 @@ const Services = () => {
                 >
                   <CardHeader className="text-center pb-4">
                     <div
-                      className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 ${
-                        service.color === "mint-teal"
-                          ? "bg-mint-teal/10"
-                          : service.color === "soft-mauve"
-                            ? "bg-soft-mauve/10"
-                            : "bg-creamy-apricot/10"
-                      }`}
+                      className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 ${bgClass}`}
+                      style={{
+                        backgroundColor: override?.backgroundColor,
+                      }}
                     >
                       <Icon
-                        className={`h-8 w-8 group-hover:rotate-12 transition-transform duration-300 ${
-                          service.color === "mint-teal"
-                            ? "text-mint-teal"
-                            : service.color === "soft-mauve"
-                              ? "text-soft-mauve"
-                              : service.color === "creamy-apricot"
-                                ? "text-[#FCC46B]"
-                                : "text-mint-teal"
-                        }`}
+                        className={`h-8 w-8 group-hover:rotate-12 transition-transform duration-300 ${colorClass}`}
+                        style={{ color: override?.color }}
                       />
                     </div>
                     <CardTitle className="text-xl font-serif font-semibold">
