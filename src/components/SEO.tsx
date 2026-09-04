@@ -25,7 +25,7 @@ export const SEO: React.FC<SEOProps> = ({ seoData }) => {
       {seoData.ogImage && (
         <meta property="og:image" content={seoData.ogImage} />
       )}
-      <meta property="og:site_name" content="HummingBird Web Design Agency" />
+      <meta property="og:site_name" content="HummingBird HXD" />
 
       {/* Twitter Card Meta Tags */}
       <meta
@@ -46,7 +46,7 @@ export const SEO: React.FC<SEOProps> = ({ seoData }) => {
 
       {/* Additional Meta Tags */}
       <meta name="robots" content="index, follow" />
-      <meta name="author" content="HummingBird Web Design Agency" />
+      <meta name="author" content="HummingBird HXD" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       {/* Structured Data */}

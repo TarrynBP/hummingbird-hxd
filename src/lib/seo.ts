@@ -28,7 +28,7 @@ export interface PageSEOConfig {
 
 // Default SEO configuration
 export const defaultSEO: SEOData = {
-  title: "HummingBird | Human Experience Design",
+  title: "HummingBird HXD | Human Experience Design",
   description: "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking.",
   keywords: "human experience design, user experience design, UX design, human-centered design, design thinking, customer experience design, user-centered design, experience design agency, interaction design, service design, empathy-driven design, inclusive design, digital experience design",
   ogType: "website",
@@ -36,7 +36,7 @@ export const defaultSEO: SEOData = {
   structuredData: {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "HummingBird Human Experience Design",
+    "name": "HummingBird HXD",
     "description": "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking",
     "url": "https://hummingbirdhxd.com",
     "logo": "https://hummingbirdhxd.com/assets/logo-sl.svg",
@@ -91,14 +91,14 @@ export const generatePageSEO = (config: PageSEOConfig): SEOData => {
 // Page-specific SEO configurations
 export const pageSEOConfigs = {
   home: {
-    title: "HummingBird | Human Experience Design",
+    title: "HummingBird HXD | Human Experience Design",
     description: "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking.",
     keywords: "human experience design, user experience design, UX design, human-centered design, design thinking, customer experience design, user-centered design, experience design agency, interaction design, service design, empathy-driven design, inclusive design, digital experience design",
     path: "/",
     type: "website"
   },
   about: {
-    title: "About Us | HummingBird Human Experience Design",
+    title: "About Us | HummingBird HXD",
     description: "Meet the passionate team behind HummingBird. We're human experience designers, thinkers, and problem-solvers who believe empathetic design has the power to transform how people feel and engage.",
     keywords: "about hummingbird, human experience design team, UX design experts, design agency team, human-centered design, design thinking experts, user experience specialists",
     path: "/about",
@@ -119,21 +119,21 @@ export const pageSEOConfigs = {
     type: "website"
   },
   caseStudy: (title: string, description: string, slug: string) => ({
-    title: `${title} | Case Study | HummingBird`,
+    title: `${title} | Case Study | HummingBird HXD`,
     description: description,
     keywords: "case study, human experience design project, UX design in action, design thinking process, user experience results, design case study",
     path: `/case-study/${slug}`,
     type: "article"
   }),
   blog: (title: string, description: string, slug: string) => ({
-    title: `${title} | HummingBird Blog`,
+    title: `${title} | HummingBird HXD Blog`,
     description: description,
     keywords: "human experience design blog, UX design insights, design thinking tips, user experience, business growth, design strategy",
     path: `/blog/${slug}`,
     type: "article"
   }),
   articles: {
-    title: "Articles & Insights | HummingBird Human Experience Design",
+    title: "Articles & Insights | HummingBird HXD",
     description: "Explore our latest insights on human experience design, UX strategy, and design thinking. Expert tips and case studies to help your business grow through better user experiences.",
     keywords: "human experience design articles, UX design blog, design thinking insights, user experience strategy tips, business growth through design",
     path: "/articles",
@@ -148,12 +148,12 @@ export const generateStructuredData = {
   website: () => ({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "HummingBird Human Experience Design",
+    "name": "HummingBird HXD",
     "url": "https://hummingbirdhxd.com",
     "description": "HummingBird specialises in human experience design, creating user-centred solutions that enhance customer engagement and drive business growth through empathetic design thinking",
     "publisher": {
       "@type": "Organization",
-      "name": "HummingBird Human Experience Design"
+      "name": "HummingBird HXD"
     }
   }),
   
@@ -175,7 +175,7 @@ export const generateStructuredData = {
     "description": service.description,
     "provider": {
       "@type": "Organization",
-      "name": "HummingBird Human Experience Design"
+      "name": "HummingBird HXD"
     },
     "offers": {
       "@type": "Offer",
@@ -191,11 +191,11 @@ export const generateStructuredData = {
     "description": article.description,
     "author": {
       "@type": "Organization",
-      "name": "HummingBird Human Experience Design"
+      "name": "HummingBird HXD"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "HummingBird Human Experience Design",
+      "name": "HummingBird HXD",
       "logo": {
         "@type": "ImageObject",
         "url": "https://hummingbirdhxd.com/assets/logo-sl.svg"

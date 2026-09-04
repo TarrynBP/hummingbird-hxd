@@ -32,24 +32,24 @@ export const useSEO = (customConfig?: Partial<PageSEOConfig>): SEOData => {
         const slug = location.pathname.split('/').pop() || '';
         const titles: Record<string, { t: string; d: string }> = {
           'web-design': {
-            t: 'Web Design | HummingBird',
+            t: 'Web Design | HummingBird HXD',
             d: 'Custom, mobile-ready websites built around your brand and your customers.',
           },
           'productivity-services': {
-            t: 'Productivity Services | HummingBird',
+            t: 'Productivity Services | HummingBird HXD',
             d: 'Smarter ways of working, shaped around your customers and your goals.',
           },
           'digital-integration': {
-            t: 'Digital Integration | HummingBird',
+            t: 'Digital Integration | HummingBird HXD',
             d: 'Simple tools and smooth systems that take the friction out of how you work.',
           },
           'ai-integration': {
-            t: 'AI Integration | HummingBird',
+            t: 'AI Integration | HummingBird HXD',
             d: 'Practical, no-hype AI that saves you time and helps you do more with less.',
           },
         };
         const meta = titles[slug] || {
-          t: 'Services | HummingBird',
+          t: 'Services | HummingBird HXD',
           d: 'Down-to-earth support to help your business work better and shine online.',
         };
         baseConfig = {
@@ -65,7 +65,7 @@ export const useSEO = (customConfig?: Partial<PageSEOConfig>): SEOData => {
         if (location.pathname.startsWith('/case-study/')) {
           const slug = location.pathname.split('/').pop();
           baseConfig = {
-            title: `Case Study | HummingBird Web Design`,
+            title: `Case Study | HummingBird HXD`,
             description: "Explore our latest web design case study showcasing colour psychology in action and measurable business results.",
             path: location.pathname,
             type: "article"
@@ -73,14 +73,14 @@ export const useSEO = (customConfig?: Partial<PageSEOConfig>): SEOData => {
         } else if (location.pathname.startsWith('/blog/')) {
           const slug = location.pathname.split('/').pop();
           baseConfig = {
-            title: `Blog Post | HummingBird Design Insights`,
+            title: `Blog Post | HummingBird HXD`,
             description: "Read our latest insights on web design, colour theory, and digital strategy to help your business grow.",
             path: location.pathname,
             type: "article"
           };
         } else {
           baseConfig = {
-            title: "HummingBird | Colour-Driven Web Design Agency",
+            title: "HummingBird HXD | Colour-Driven Web Design Agency",
             description: "Professional Wix website design agency specialising in colour theory and emotionally resonant web experiences.",
             path: location.pathname
           };
@@ -117,11 +117,11 @@ export const useCaseStudySEO = (caseStudy: any): SEOData => {
         "description": caseStudy.description,
         "author": {
           "@type": "Organization",
-          "name": "HummingBird Web Design Agency"
+          "name": "HummingBird HXD"
         },
         "publisher": {
           "@type": "Organization",
-          "name": "HummingBird Web Design Agency",
+          "name": "HummingBird HXD",
           "logo": {
             "@type": "ImageObject",
             "url": "https://hummingbirdhxd.com/assets/logo-sl.svg"
@@ -157,11 +157,11 @@ export const useBlogSEO = (blogPost: any): SEOData => {
         "description": blogPost.excerpt || blogPost.description,
         "author": {
           "@type": "Organization",
-          "name": "HummingBird Web Design Agency"
+          "name": "HummingBird HXD"
         },
         "publisher": {
           "@type": "Organization",
-          "name": "HummingBird Web Design Agency",
+          "name": "HummingBird HXD",
           "logo": {
             "@type": "ImageObject",
             "url": "https://hummingbirdhxd.com/assets/logo-sl.svg"
