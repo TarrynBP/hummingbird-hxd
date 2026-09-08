@@ -45,11 +45,27 @@ const ServiceHero = () => {
             </p>
           </div>
 
-          {/* Right side - shapes for visual balance */}
-          <div className="relative h-96 lg:h-full">
-            {/* Additional decorative elements for mobile/tablet */}
-            <div className="absolute top-10 right-10 w-16 h-16 bg-mint-teal/20 rounded-full blur-lg"></div>
-            <div className="absolute bottom-10 left-10 w-12 h-12 bg-soft-mauve/20 rounded-full blur-lg"></div>
+          {/* Right side - animated sphere for visual balance */}
+          <div className="relative order-2 lg:order-2 hidden md:block">
+            <div className="relative w-full h-64 md:h-80 lg:h-96">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-mint-teal rounded-2xl shadow-lg animate-float"></div>
+              <div
+                className="absolute top-20 left-10 w-12 h-12 bg-soft-mauve rounded-xl shadow-lg animate-float"
+                style={{ animationDelay: "0.5s" }}
+              ></div>
+              <div
+                className="absolute bottom-20 right-10 w-20 h-20 bg-creamy-apricot rounded-3xl shadow-lg animate-float"
+                style={{ animationDelay: "1s" }}
+              ></div>
+              <div
+                className="absolute bottom-0 left-0 w-14 h-14 gradient-mint-mauve rounded-2xl shadow-lg animate-float"
+                style={{ animationDelay: "1.5s" }}
+              ></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 gradient-teal-apricot rounded-full border-40px solid gradient-teal-apricot; border-radius: 50%; background: transparent; box-sizing: border-box; "></div>
+                <div className="absolute w-36 h-36 md:w-44 md:h-44 lg:w-48 lg:h-48 bg-[#F8FDFB] rounded-full"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

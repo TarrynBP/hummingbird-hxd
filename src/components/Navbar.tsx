@@ -8,37 +8,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAllServices } from "@/hooks/useSanityData";
-import { fallbackServiceList } from "@/lib/fallbackServices";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { data: allServices } = useAllServices();
 
-  // Ensure the newer services (Digital Integration, AI Integration) always appear
-  // in the dropdown, even before their Sanity documents exist. Merge any live
-  // services on top, deduped by slug.
-  const knownSlugs = new Set(allServices?.map((s: any) => s.slug?.current));
-  const extraServices = fallbackServiceList.filter(
-    (s) => !knownSlugs.has(s.slug.current)
-  );
-  const mergedServices = [...(allServices || []), ...extraServices];
-
-  // Filter to only show parent services (main service categories)
-  const parentServices =
-    mergedServices?.filter(
-      (service: any) =>
-        service.serviceType === "web-design" ||
-        service.serviceType === "productivity-services" ||
-        service.serviceType === "digital-integration" ||
-        service.serviceType === "ai-integration" ||
-        service.title === "Web Design" ||
-        service.title === "Productivity Services" ||
-        service.title === "Digital Integration" ||
-        service.title === "AI Integration"
-    ) || [];
+  // Curated list of services shown in the dropdown. "Website Design" links to the
+  // web-design service (currently titled "Launch with Purpose" in Sanity), and the
+  // others link to their matching service slugs (fallback content covers any that
+  // don't have Studio documents yet).
+  const serviceNavItems = [
+    { title: "Website Design", slug: "web-design" },
+    { title: "Service Design", slug: "service-design" },
+    { title: "Digital Integration", slug: "digital-integration" },
+    { title: "AI Integration", slug: "ai-integration" },
+  ];
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -120,15 +105,10 @@ const Navbar = () => {
                 <ChevronDown className="h-4 w-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem asChild>
-                  <Link to="/services" className="cursor-pointer font-medium focus:outline-none">
-                    All Services
-                  </Link>
-                </DropdownMenuItem>
-                {parentServices?.map((service: any) => (
-                  <DropdownMenuItem key={service._id} asChild>
+                {serviceNavItems.map((service) => (
+                  <DropdownMenuItem key={service.slug} asChild>
                     <Link
-                      to={`/service/${service.slug?.current}`}
+                      to={`/service/${service.slug}`}
                       className="cursor-pointer focus:outline-none"
                     >
                       {service.title}
@@ -198,10 +178,10 @@ const Navbar = () => {
                   Services
                 </Link>
                 <div className="pl-4 space-y-1">
-                  {parentServices?.map((service: any) => (
+                  {serviceNavItems.map((service) => (
                     <Link
-                      key={service._id}
-                      to={`/service/${service.slug?.current}`}
+                      key={service.slug}
+                      to={`/service/${service.slug}`}
                       className="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-mint-teal hover:bg-mint-teal/5 transition-colors duration-200 focus:outline-none"
                       onClick={() => setIsOpen(false)}
                     >

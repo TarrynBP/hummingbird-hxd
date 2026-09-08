@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Play, Monitor, Smartphone } from "lucide-react";
+import { Play } from "lucide-react";
 import { urlFor } from "@/lib/sanity";
+import ComputerMockup from "@/components/ui/ComputerMockup";
 
 interface SolutionVisualProps {
   desktopImage?: any;
@@ -31,201 +31,14 @@ const SolutionVisual = ({
 
   return (
     <section className="py-16 bg-gray-50">
-      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
           {/* Mockups Section */}
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
             {/* Desktop Mockup */}
             {desktopImage && (
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  width="936"
-                  height="752"
-                  viewBox="0 0 936 752"
-                  fill="none"
-                >
-                  <mask
-                    id="mask0_633_5974"
-                    style={{ maskType: "luminance" }}
-                    maskUnits="userSpaceOnUse"
-                    x="0"
-                    y="0"
-                    width="936"
-                    height="566"
-                  >
-                    <path d="M0 0H935.474V566H0V0Z" fill="white" />
-                  </mask>
-                  <g mask="url(#mask0_633_5974)">
-                    <mask
-                      id="mask1_633_5974"
-                      style={{ maskType: "luminance" }}
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="935"
-                      height="566"
-                    >
-                      <path
-                        d="M892.339 0H42.6094C19.0781 0 0 19.0833 0 42.6146V565.109H934.948V42.6146C934.948 19.0833 915.87 0 892.339 0ZM894.245 524.401H39.4323V44.2083H894.245V524.401Z"
-                        fill="white"
-                      />
-                    </mask>
-                    <g mask="url(#mask1_633_5974)">
-                      <path d="M0 0H934.755V750.667H0V0Z" fill="black" />
-                    </g>
-                  </g>
-                  <mask
-                    id="mask2_633_5974"
-                    style={{ maskType: "luminance" }}
-                    maskUnits="userSpaceOnUse"
-                    x="0"
-                    y="564"
-                    width="936"
-                    height="89"
-                  >
-                    <path
-                      d="M0 564.984H935.474V652.667H0V564.984Z"
-                      fill="white"
-                    />
-                  </mask>
-                  <g mask="url(#mask2_633_5974)">
-                    <mask
-                      id="mask3_633_5974"
-                      style={{ maskType: "luminance" }}
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="565"
-                      width="935"
-                      height="88"
-                    >
-                      <path
-                        d="M0 609.786C0 633.323 19.0781 652.401 42.6094 652.401H892.339C915.87 652.401 934.948 633.323 934.948 609.786V565.266H0V609.786Z"
-                        fill="white"
-                      />
-                    </mask>
-                    <g mask="url(#mask3_633_5974)">
-                      <path d="M0 0H934.755V750.667H0V0Z" fill="#E9E9E9" />
-                    </g>
-                  </g>
-                  <mask
-                    id="mask4_633_5974"
-                    style={{ maskType: "luminance" }}
-                    maskUnits="userSpaceOnUse"
-                    x="304"
-                    y="652"
-                    width="327"
-                    height="100"
-                  >
-                    <path
-                      d="M304.709 652.271H630.048V751.334H304.709V652.271Z"
-                      fill="white"
-                    />
-                  </mask>
-                  <g mask="url(#mask4_633_5974)">
-                    <mask
-                      id="mask5_633_5974"
-                      style={{ maskType: "luminance" }}
-                      maskUnits="userSpaceOnUse"
-                      x="304"
-                      y="652"
-                      width="326"
-                      height="99"
-                    >
-                      <path
-                        d="M461.752 652.402H360.944C360.944 652.402 357.918 698.835 354.741 718.23C349.173 751.465 315.147 740.809 305.449 747.803C304.179 748.762 304.814 750.829 306.403 750.829H628.231C629.819 750.829 630.455 748.762 629.184 747.803C619.486 740.809 585.46 751.465 579.892 718.23C576.71 698.835 573.689 652.402 573.689 652.402H461.752Z"
-                        fill="white"
-                      />
-                    </mask>
-                    <g mask="url(#mask5_633_5974)">
-                      <path
-                        d="M0.00195312 0.00195312H934.757V750.669H0.00195312V0.00195312Z"
-                        fill="#BBBBBB"
-                      />
-                    </g>
-                  </g>
-                  <mask
-                    id="mask6_633_5974"
-                    style={{ maskType: "luminance" }}
-                    maskUnits="userSpaceOnUse"
-                    x="39"
-                    y="44"
-                    width="856"
-                    height="481"
-                  >
-                    <path
-                      d="M39.4316 44.209H894.244V524.402H39.4316V44.209Z"
-                      fill="white"
-                    />
-                  </mask>
-                  <g mask="url(#mask6_633_5974)">
-                    <mask
-                      id="mask7_633_5974"
-                      style={{ maskType: "luminance" }}
-                      maskUnits="userSpaceOnUse"
-                      x="-429"
-                      y="-38"
-                      width="1921"
-                      height="1350"
-                    >
-                      <rect
-                        x="-428.527"
-                        y="-38"
-                        width="1920"
-                        height="1349.33"
-                        fill="url(#pattern0_633_5974)"
-                      />
-                    </mask>
-                    <g mask="url(#mask7_633_5974)">
-                      <rect
-                        x="11.6914"
-                        y="-104.908"
-                        width="909.368"
-                        height="639.572"
-                        fill="url(#pattern1_633_5974)"
-                      />
-                    </g>
-                  </g>
-                  <defs>
-                    <pattern
-                      id="pattern0_633_5974"
-                      patternContentUnits="objectBoundingBox"
-                      width="1"
-                      height="1"
-                    >
-                      <use
-                        xlinkHref="#image0_633_5974"
-                        transform="scale(0.000694444 0.000988142)"
-                      />
-                    </pattern>
-                    <pattern
-                      id="pattern1_633_5974"
-                      patternContentUnits="objectBoundingBox"
-                      width="1"
-                      height="1"
-                    >
-                      <use
-                        xlinkHref="#image1_633_5974"
-                        transform="scale(0.000347222 0.000505561)"
-                      />
-                    </pattern>
-                    <image
-                      id="image0_633_5974"
-                      width="1440"
-                      height="1012"
-                      preserveAspectRatio="none"
-                      xlinkHref={urlFor(desktopImage).url()}
-                    />
-                    <image
-                      id="image1_633_5974"
-                      width="2880"
-                      height="1978"
-                      preserveAspectRatio="none"
-                      xlinkHref={urlFor(desktopImage).url()}
-                    />
-                  </defs>
-                </svg>
+              <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+                <ComputerMockup imageUrl={urlFor(desktopImage).url()} />
               </div>
             )}
 

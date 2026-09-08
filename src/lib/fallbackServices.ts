@@ -17,6 +17,27 @@ export interface FallbackService {
 }
 
 export const fallbackServices: Record<string, FallbackService> = {
+  "service-design": {
+    _id: "fallback-service-design",
+    title: "Service Design",
+    slug: { current: "service-design" },
+    serviceType: "",
+    description:
+      "Smarter ways of working, shaped around your customers and goals. We review how your business runs day to day and turn scattered processes into a calmer, smoother experience.",
+    icon: "lightbulb",
+    price: "Starting at R20,000 p/m",
+    features: [
+      "Look at how your business runs day to day",
+      "Review how customers experience your service",
+      "Find what's causing delays or confusion",
+      "Suggest ways of doing things",
+      "Prioritise what to fix first",
+      "Get a simple plan you can act on",
+    ],
+    ctaTitle: "Ready to streamline how you work?",
+    ctaDescription:
+      "Tell us where the friction is and we'll map a calmer, connected way to run your business.",
+  },
   "digital-integration": {
     _id: "fallback-digital-integration",
     title: "Digital Integration",

@@ -1,5 +1,4 @@
 import { useHeroContent } from "@/hooks/useSanityData";
-import { urlFor } from "@/lib/sanity";
 
 const Hero = () => {
   const { data: heroContent, isLoading, error } = useHeroContent();
@@ -43,11 +42,11 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-[#F8FDFB]"></div>
       <div
-        className="absolute top-20 right-20 w-64 h-64 bg-mint-teal/10 rounded-full blur-3xl opacity-20 animate-float"
+        className="absolute top-20 right-20 w-32 h-32 sm:w-64 sm:h-64 bg-mint-teal/10 rounded-full blur-3xl opacity-20 animate-float"
         style={{ transform: "translateZ(0)" }}
       ></div>
       <div
-        className="absolute bottom-20 left-20 w-48 h-48 bg-soft-mauve/10 rounded-full blur-2xl opacity-30 animate-float"
+        className="absolute bottom-20 left-20 w-24 h-24 sm:w-48 sm:h-48 bg-soft-mauve/10 rounded-full blur-2xl opacity-30 animate-float"
         style={{ animationDelay: "1s", transform: "translateZ(0)" }}
       ></div>
 
@@ -78,7 +77,6 @@ const Hero = () => {
 
           <div className="relative order-2 lg:order-2 hidden md:block">
             <div className="relative w-full h-64 md:h-80 lg:h-96">
-              {/* Floating Geometric Shapes */}
               <div className="absolute top-0 right-0 w-16 h-16 bg-mint-teal rounded-2xl shadow-lg animate-float"></div>
               <div
                 className="absolute top-20 left-10 w-12 h-12 bg-soft-mauve rounded-xl shadow-lg animate-float"
@@ -92,10 +90,8 @@ const Hero = () => {
                 className="absolute bottom-0 left-0 w-14 h-14 gradient-mint-mauve rounded-2xl shadow-lg animate-float"
                 style={{ animationDelay: "1.5s" }}
               ></div>
-
-              {/* Central Design Element */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 gradient-teal-apricot rounded-full   border-40px solid gradient-teal-apricot; border-radius: 50%;         background: transparent;    box-sizing: border-box;     "></div>
+                <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 gradient-teal-apricot rounded-full border-40px solid gradient-teal-apricot; border-radius: 50%; background: transparent; box-sizing: border-box; "></div>
                 <div className="absolute w-36 h-36 md:w-44 md:h-44 lg:w-48 lg:h-48 bg-[#F8FDFB] rounded-full"></div>
               </div>
             </div>
